@@ -4,6 +4,7 @@ import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 
 const VideoPlayer: React.FC = () => {
   const videoRef = useRef<Video>(null);
+  const [isPlaying, setPlaying] = useState(true);
   return (
     <TouchableWithoutFeedback onPress={togglePlay}>
       <Video
