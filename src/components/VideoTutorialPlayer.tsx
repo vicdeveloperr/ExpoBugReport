@@ -5,6 +5,18 @@ import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 const VideoPlayer: React.FC = () => {
   const videoRef = useRef<Video>(null);
   const [isPlaying, setPlaying] = useState(true);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pauseAsync();
+      } else {
+        videoRef.current.playAsync();
+      }
+      setPlaying(!isPlaying);
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={togglePlay}>
       <Video
