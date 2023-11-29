@@ -18,13 +18,15 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <VideoTutorialPlayer />
-      <TouchableOpacity onPress={openCamera}>
-        <FormattedIcon
-          size="medium"
-          name="camera"
-        />
-      </TouchableOpacity>
-      <VideoPicker />
+      <View style={styles.buttonsContainer}>
+        <VideoPicker />
+        <TouchableOpacity onPress={openCamera}>
+          <FormattedIcon
+            size="medium"
+            name="camera"
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -32,6 +34,14 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position: "relative",
+  },
+  buttonsContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    position: "absolute",
+    top: "87%",
   },
 });
 
