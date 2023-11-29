@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, TouchableOpacity } from "react-native";
+import { View, Button, TouchableOpacity, StyleSheet } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
@@ -16,7 +16,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <VideoTutorialPlayer />
       <TouchableOpacity onPress={openCamera}>
         <FormattedIcon name="camera" />
@@ -25,5 +25,11 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default VideoTutorialScreen;
