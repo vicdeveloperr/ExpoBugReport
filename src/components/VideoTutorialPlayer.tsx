@@ -3,6 +3,7 @@ import { Video } from "expo-av";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 
 const VideoPlayer: React.FC = () => {
+  const videoRef = useRef<Video>(null);
   return (
     <TouchableWithoutFeedback onPress={togglePlay}>
       <Video
