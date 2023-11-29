@@ -30,4 +30,10 @@ const VideoPlayer: React.FC = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  video: {
+    flex: 1,
+  },
+});
+
 export default VideoPlayer;
