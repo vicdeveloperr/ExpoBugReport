@@ -4,13 +4,15 @@ import { primaryColor } from "../styles/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 interface FormattedIconProps {
   name: "controller-stop" | "controller-record" | "folder-video" | "camera";
+  size?: "big" | "medium";
 }
-const FormattedIcon: React.FC<FormattedIconProps> = ({ name }) => {
+const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
+  const iconSize = size === "medium" ? 57 : 74;
   if (name === "camera") {
     return (
       <MaterialIcons
         name="camera"
-        size={74}
+        size={iconSize}
         color={primaryColor}
       />
     );
@@ -18,7 +20,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name }) => {
   return (
     <Entypo
       name={name}
-      size={74}
+      size={iconSize}
       color={primaryColor}
     />
   );
