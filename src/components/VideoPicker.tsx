@@ -28,7 +28,10 @@ const VideoPicker: React.FC = () => {
 
   return (
     <TouchableOpacity onPress={() => pickVideo()}>
-      <FormattedIcon name="folder-video" />
+      <FormattedIcon
+        size="medium"
+        name="folder-video"
+      />
     </TouchableOpacity>
   );
 };

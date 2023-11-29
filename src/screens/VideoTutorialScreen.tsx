@@ -19,7 +19,10 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
     <View style={styles.container}>
       <VideoTutorialPlayer />
       <TouchableOpacity onPress={openCamera}>
-        <FormattedIcon name="camera" />
+        <FormattedIcon
+          size="medium"
+          name="camera"
+        />
       </TouchableOpacity>
       <VideoPicker />
     </View>
