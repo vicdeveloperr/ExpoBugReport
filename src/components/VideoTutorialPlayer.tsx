@@ -18,10 +18,13 @@ const VideoTutorialPlayer: React.FC = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={togglePlay}>
+    <TouchableWithoutFeedback
+      style={{ flex: 1 }}
+      onPress={togglePlay}
+    >
       <Video
         ref={videoRef}
-        source={{ uri: "tu_url_del_video.mp4" }}
+        source={require("../assets/video-1-vs-1-basketball.mp4")}
         style={styles.video}
         isLooping
         shouldPlay
