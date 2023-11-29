@@ -19,7 +19,7 @@ const VideoTutorialPlayer: React.FC = () => {
 
   return (
     <TouchableWithoutFeedback
-      style={{ flex: 1 }}
+      style={styles.buttonTogglerPlay}
       onPress={togglePlay}
     >
       <Video
@@ -35,6 +35,9 @@ const VideoTutorialPlayer: React.FC = () => {
 
 const styles = StyleSheet.create({
   video: {
+    flex: 1,
+  },
+  buttonTogglerPlay: {
     flex: 1,
   },
 });
