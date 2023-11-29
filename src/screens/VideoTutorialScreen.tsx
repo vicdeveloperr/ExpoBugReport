@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     position: "absolute",
+    justifyContent: "space-around",
     top: "87%",
   },
 });
