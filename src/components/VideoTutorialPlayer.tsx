@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Video } from "expo-av";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 
-const VideoPlayer: React.FC = () => {
+const VideoTutorialPlayer: React.FC = () => {
   const videoRef = useRef<Video>(null);
   const [isPlaying, setPlaying] = useState(true);
 
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VideoPlayer;
+export default VideoTutorialPlayer;
