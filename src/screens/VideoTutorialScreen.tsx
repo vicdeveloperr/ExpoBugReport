@@ -4,7 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
-import VideoPlayer from "../components/VideoTutorialPlayer";
+import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 
 type VideoTutorialProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
