@@ -51,7 +51,10 @@ const CameraScreen = () => {
       >
         <ScreenContainer>
           <View style={styles.cameraContentContainer}>
-            <TouchableOpacity style={styles.buttonGoBack}>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={styles.buttonGoBack}
+            >
               <FormattedIcon
                 name="back"
                 size="small"
