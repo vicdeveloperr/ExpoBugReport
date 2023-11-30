@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Camera } from "expo-camera";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
@@ -50,10 +50,16 @@ const CameraScreen = () => {
           <View
             style={{
               flex: 1,
-              justifyContent: "flex-end",
+              justifyContent: "space-between",
               alignItems: "center",
             }}
           >
+            <TouchableOpacity style={styles.buttonGoBack}>
+              <FormattedIcon
+                name="back"
+                size="small"
+              />
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={isRecording ? stopRecording : startRecording}
             >
@@ -71,5 +77,11 @@ const CameraScreen = () => {
     return <View></View>;
   }
 };
+
+const styles = StyleSheet.create({
+  buttonGoBack: {
+    alignSelf: "flex-start",
+  },
+});
 
 export default CameraScreen;
