@@ -4,6 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
+import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 
 type VideoTutorialProps = {
@@ -16,7 +17,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer styles={styles.container}>
       <VideoTutorialPlayer />
       <View style={styles.buttonsContainer}>
         <VideoPicker />
@@ -30,14 +31,14 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     position: "relative",
+    paddingTop: 0,
   },
   buttonsContainer: {
     width: "100%",
