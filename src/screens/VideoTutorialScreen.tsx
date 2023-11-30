@@ -20,7 +20,10 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
       <VideoTutorialPlayer />
       <View style={styles.buttonsContainer}>
         <VideoPicker />
-        <TouchableOpacity onPress={openCamera}>
+        <TouchableOpacity
+          style={styles.buttonOpenCamera}
+          onPress={openCamera}
+        >
           <FormattedIcon
             size="medium"
             name="camera"
@@ -39,10 +42,14 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     width: "100%",
     display: "flex",
-    flexDirection: "row",
     position: "absolute",
-    justifyContent: "space-around",
+    justifyContent: "flex-start",
     top: "87%",
+  },
+  buttonOpenCamera: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
   },
 });
 
