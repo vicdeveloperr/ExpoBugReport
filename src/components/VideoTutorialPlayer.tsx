@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Video } from "expo-av";
+import { ResizeMode, Video } from "expo-av";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 
 const VideoTutorialPlayer: React.FC = () => {
@@ -23,6 +23,7 @@ const VideoTutorialPlayer: React.FC = () => {
       onPress={togglePlay}
     >
       <Video
+        resizeMode={ResizeMode.STRETCH}
         ref={videoRef}
         source={require("../assets/video-1-vs-1-basketball.mp4")}
         style={styles.video}
