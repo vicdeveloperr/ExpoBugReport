@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 
 interface ScreenContainerProps {
   children: React.ReactNode;
+  styles?: StyleProp<ViewStyle>;
 }
-const ScreenContainer: React.FC<ScreenContainerProps> = ({ children }) => {
+const ScreenContainer: React.FC<ScreenContainerProps> = ({
+  children,
+  styles,
+}) => {
   const [statusBarHeight, setStatusBarHeight] = useState<number>(0);
 
   useEffect(() => {
@@ -14,13 +18,19 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({ children }) => {
   }, []);
 
   return (
-    <View style={[styles.container, { paddingTop: statusBarHeight }]}>
+    <View
+      style={[
+        styles,
+        stylesScreenContainer.container,
+        { paddingTop: statusBarHeight },
+      ]}
+    >
       {children}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const stylesScreenContainer = StyleSheet.create({
   container: {
     flex: 1,
   },
