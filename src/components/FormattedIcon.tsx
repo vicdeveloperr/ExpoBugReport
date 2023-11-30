@@ -2,8 +2,14 @@ import { Entypo } from "@expo/vector-icons";
 import React from "react";
 import { primaryColor } from "../styles/colors";
 import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 interface FormattedIconProps {
-  name: "controller-stop" | "controller-record" | "folder-video" | "camera";
+  name:
+    | "controller-stop"
+    | "controller-record"
+    | "folder-video"
+    | "camera"
+    | "back";
   size?: "big" | "medium" | "small";
 }
 const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
@@ -12,6 +18,14 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
     return (
       <MaterialIcons
         name="camera"
+        size={iconSize}
+        color={primaryColor}
+      />
+    );
+  } else if (name === "back") {
+    return (
+      <AntDesign
+        name="back"
         size={iconSize}
         color={primaryColor}
       />
