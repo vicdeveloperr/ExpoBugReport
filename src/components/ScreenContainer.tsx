@@ -21,7 +21,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
     <View
       style={[
         stylesScreenContainer.container,
-        { paddingTop: statusBarHeight },
+        { paddingVertical: statusBarHeight, paddingHorizontal: 10 },
         styles,
       ]}
     >
