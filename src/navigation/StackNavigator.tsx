@@ -14,7 +14,10 @@ const Stack = createStackNavigator<RootStackParamList>();
 const StackNavigator: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="videoTutorial">
+      <Stack.Navigator
+        screenOptions={{ header: () => <></> }}
+        initialRouteName="videoTutorial"
+      >
         <Stack.Screen
           name="camera"
           component={CameraScreen}
