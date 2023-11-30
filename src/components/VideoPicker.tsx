@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Button, Text, TouchableOpacity } from "react-native";
+import { View, Button, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
@@ -27,13 +27,23 @@ const VideoPicker: React.FC = () => {
   };
 
   return (
-    <TouchableOpacity onPress={() => pickVideo()}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => pickVideo()}
+    >
       <FormattedIcon
-        size="medium"
+        size="small"
         name="folder-video"
       />
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    marginLeft: 9
+  },
+});
 
 export default VideoPicker;
