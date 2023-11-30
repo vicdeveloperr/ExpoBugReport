@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Camera } from "expo-camera";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
+import ScreenContainer from "../components/ScreenContainer";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -42,11 +43,11 @@ const CameraScreen = () => {
 
   if (statusCameraPermission && statusMicrophonePermission) {
     return (
-      <View style={{ flex: 1 }}>
-        <Camera
-          style={{ flex: 1 }}
-          ref={cameraRef}
-        >
+      <Camera
+        style={{ flex: 1 }}
+        ref={cameraRef}
+      >
+        <ScreenContainer>
           <View style={styles.cameraContentContainer}>
             <TouchableOpacity style={styles.buttonGoBack}>
               <FormattedIcon
@@ -64,8 +65,8 @@ const CameraScreen = () => {
               )}
             </TouchableOpacity>
           </View>
-        </Camera>
-      </View>
+        </ScreenContainer>
+      </Camera>
     );
   } else {
     return <View></View>;
