@@ -47,13 +47,7 @@ const CameraScreen = () => {
           style={{ flex: 1 }}
           ref={cameraRef}
         >
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <View style={styles.cameraContentContainer}>
             <TouchableOpacity style={styles.buttonGoBack}>
               <FormattedIcon
                 name="back"
@@ -81,6 +75,11 @@ const CameraScreen = () => {
 const styles = StyleSheet.create({
   buttonGoBack: {
     alignSelf: "flex-start",
+  },
+  cameraContentContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 
