@@ -4,6 +4,7 @@ import { Camera } from "expo-camera";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
+import { useNavigation } from "@react-navigation/native";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -12,6 +13,7 @@ const CameraScreen = () => {
     Camera.useCameraPermissions();
   const [statusMicrophonePermission, requestMicrophonePermission] =
     Camera.useMicrophonePermissions();
+  const navigation = useNavigation();
 
   useEffect(() => {
     requestCameraPermission();
