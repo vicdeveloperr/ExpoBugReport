@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import { Camera } from "expo-camera";
+import { Camera, CameraType } from "expo-camera";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
@@ -48,6 +48,7 @@ const CameraScreen = () => {
       <Camera
         style={{ flex: 1 }}
         ref={cameraRef}
+        type={CameraType.front}
       >
         <ScreenContainer styles={styles.cameraContentContainer}>
           <TouchableOpacity
