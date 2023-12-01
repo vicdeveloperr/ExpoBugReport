@@ -6,6 +6,7 @@ import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 type VideoTutorialProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     display: "flex",
     position: "absolute",
     justifyContent: "center",
-    top: "87%",
+    bottom: getStatusBarHeight(),
   },
   buttonOpenCamera: {
     flex: 1,
