@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     paddingTop: 0,
+    display: "flex",
+    justifyContent: "flex-end",
   },
   buttonsContainer: {
     width: "100%",
     display: "flex",
-    position: "absolute",
     justifyContent: "center",
-    bottom: getStatusBarHeight(),
   },
   buttonOpenCamera: {
-    flex: 1,
+    width: "100%",
     display: "flex",
     alignItems: "center",
   },
