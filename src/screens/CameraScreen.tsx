@@ -1,5 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
@@ -75,14 +81,7 @@ const CameraScreen = () => {
             </TouchableOpacity>
           </ScreenContainer>
         </Camera>
-        {isScreenDark && (
-          <View
-            style={{
-              ...StyleSheet.absoluteFillObject,
-              backgroundColor: "rgba(0,0,0,0.7)",
-            }}
-          />
-        )}
+        {isScreenDark && <View style={styles.modal}></View>}
       </>
     );
   } else {
@@ -98,6 +97,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  modal: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.7)",
+    display: "flex",
+    justifyContent: "center",
   },
 });
 
