@@ -18,10 +18,7 @@ const VideoTutorialPlayer: React.FC = () => {
   };
 
   return (
-    <TouchableWithoutFeedback
-      style={styles.buttonTogglerPlay}
-      onPress={togglePlay}
-    >
+    <>
       <Video
         resizeMode={ResizeMode.STRETCH}
         ref={videoRef}
@@ -30,16 +27,22 @@ const VideoTutorialPlayer: React.FC = () => {
         isLooping
         shouldPlay
       />
-    </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        style={styles.buttonTogglerPlay}
+        onPress={togglePlay}
+      >
+        <></>
+      </TouchableWithoutFeedback>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   video: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
   },
   buttonTogglerPlay: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
   },
 });
 
