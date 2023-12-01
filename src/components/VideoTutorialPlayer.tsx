@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ResizeMode, Video } from "expo-av";
-import { StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
 const VideoTutorialPlayer: React.FC = () => {
   const videoRef = useRef<Video>(null);
@@ -18,7 +18,10 @@ const VideoTutorialPlayer: React.FC = () => {
   };
 
   return (
-    <>
+    <TouchableWithoutFeedback
+      style={styles.buttonTogglerPlay}
+      onPress={togglePlay}
+    >
       <Video
         resizeMode={ResizeMode.STRETCH}
         ref={videoRef}
@@ -27,13 +30,7 @@ const VideoTutorialPlayer: React.FC = () => {
         isLooping
         shouldPlay
       />
-      <TouchableWithoutFeedback
-        style={styles.buttonTogglerPlay}
-        onPress={togglePlay}
-      >
-        <></>
-      </TouchableWithoutFeedback>
-    </>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -42,6 +39,9 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   buttonTogglerPlay: {
+    backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center",
     ...StyleSheet.absoluteFillObject,
   },
 });
