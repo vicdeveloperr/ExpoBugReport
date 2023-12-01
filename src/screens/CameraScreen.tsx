@@ -49,27 +49,25 @@ const CameraScreen = () => {
         style={{ flex: 1 }}
         ref={cameraRef}
       >
-        <ScreenContainer>
-          <View style={styles.cameraContentContainer}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={styles.buttonGoBack}
-            >
-              <FormattedIcon
-                name="back"
-                size="small"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={isRecording ? stopRecording : startRecording}
-            >
-              {isRecording ? (
-                <FormattedIcon name="controller-stop" />
-              ) : (
-                <FormattedIcon name="controller-record" />
-              )}
-            </TouchableOpacity>
-          </View>
+        <ScreenContainer styles={styles.cameraContentContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.buttonGoBack}
+          >
+            <FormattedIcon
+              name="back"
+              size="small"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={isRecording ? stopRecording : startRecording}
+          >
+            {isRecording ? (
+              <FormattedIcon name="controller-stop" />
+            ) : (
+              <FormattedIcon name="controller-record" />
+            )}
+          </TouchableOpacity>
         </ScreenContainer>
       </Camera>
     );
