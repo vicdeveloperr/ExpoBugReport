@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
   const [isRecording, setRecording] = useState(false);
-  const [isScreenDark, setScreenDark] = useState(false); // Nuevo estado
+  const [isScreenDark, setScreenDark] = useState(false);
   const [statusCameraPermission, requestCameraPermission] =
     Camera.useCameraPermissions();
   const [statusMicrophonePermission, requestMicrophonePermission] =
@@ -30,7 +30,7 @@ const CameraScreen = () => {
   const startRecording = async () => {
     if (cameraRef.current) {
       try {
-        setScreenDark(false); // Asegurarse de que la pantalla no esté oscura al iniciar la grabación
+        setScreenDark(false); 
         await new Promise((resolve) => setTimeout(resolve, 3000));
         setRecording(true);
         const { uri } = await cameraRef.current.recordAsync();
@@ -46,7 +46,7 @@ const CameraScreen = () => {
       try {
         await cameraRef.current.stopRecording();
         setRecording(false);
-        setScreenDark(true); // Activar la pantalla oscura al detener la grabación
+        setScreenDark(true);
       } catch (error) {
         console.error("Error al detener la grabación:", error);
       }
