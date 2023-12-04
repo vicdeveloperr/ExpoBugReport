@@ -11,6 +11,7 @@ import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
 import { useNavigation } from "@react-navigation/native";
+import CameraCountdownModal from "../components/CameraCountdownModal";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -31,8 +32,9 @@ const CameraScreen = () => {
   const startRecording = async () => {
     if (cameraRef.current) {
       try {
-        setScreenDark(false);
+        setIsTimerVisible(true);
         await new Promise((resolve) => setTimeout(resolve, 3000));
+        setIsTimerVisible(false);
         setRecording(true);
         const { uri } = await cameraRef.current.recordAsync();
         console.log("Video grabado:", uri);
@@ -83,7 +85,14 @@ const CameraScreen = () => {
             </TouchableOpacity>
           </ScreenContainer>
         </Camera>
-        {isScreenDark && <View style={styles.modal}></View>}
+        {isTimerVisible && (
+          <View style={styles.modal}>
+            <CameraCountdownModal
+              isVisible={isTimerVisible}
+              onClose={() => console.log("Cerró")}
+            />
+          </View>
+        )}
       </>
     );
   } else {
