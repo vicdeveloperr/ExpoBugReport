@@ -87,10 +87,7 @@ const CameraScreen = () => {
         </Camera>
         {isTimerVisible && (
           <View style={styles.modal}>
-            <CameraCountdownModal
-              isVisible={isTimerVisible}
-              onClose={() => console.log("Cerró")}
-            />
+            <CameraCountdownModal />
           </View>
         )}
       </>
