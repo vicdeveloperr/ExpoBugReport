@@ -30,8 +30,9 @@ const CameraScreen = () => {
   const startRecording = async () => {
     if (cameraRef.current) {
       try {
-        setRecording(true);
         setScreenDark(false); // Asegurarse de que la pantalla no esté oscura al iniciar la grabación
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        setRecording(true);
         const { uri } = await cameraRef.current.recordAsync();
         console.log("Video grabado:", uri);
       } catch (error) {
