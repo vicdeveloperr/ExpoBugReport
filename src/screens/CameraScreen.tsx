@@ -20,6 +20,7 @@ const CameraScreen = () => {
     Camera.useCameraPermissions();
   const [statusMicrophonePermission, requestMicrophonePermission] =
     Camera.useMicrophonePermissions();
+  const [isTimerVisible, setIsTimerVisible] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const CameraScreen = () => {
   const startRecording = async () => {
     if (cameraRef.current) {
       try {
-        setScreenDark(false); 
+        setScreenDark(false);
         await new Promise((resolve) => setTimeout(resolve, 3000));
         setRecording(true);
         const { uri } = await cameraRef.current.recordAsync();
