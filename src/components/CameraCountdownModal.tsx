@@ -1,4 +1,5 @@
 import { Modal, View, Text } from "react-native";
+import { useState } from "react";
 
 interface CameraCountdownModalProps {
   isVisible: boolean;
@@ -9,6 +10,8 @@ const CameraCountdownModal: React.FC<CameraCountdownModalProps> = ({
   isVisible,
   onClose,
 }) => {
+  const [countdown, setCountdown] = useState(3);
+
   return (
     <Modal
       visible={isVisible}
