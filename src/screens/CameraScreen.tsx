@@ -7,7 +7,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Camera, CameraType } from "expo-camera";
-import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
 import { useNavigation } from "@react-navigation/native";
