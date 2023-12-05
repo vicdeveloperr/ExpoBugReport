@@ -32,9 +32,12 @@ const CameraScreen = () => {
     if (cameraRef.current) {
       try {
         setIsTimerVisible(true);
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        setIsTimerVisible(false);
-        setRecording(true);
+        
+        function onFinishTimer() {
+          setIsTimerVisible(false);
+          setRecording(true);
+        }
+        
         const { uri } = await cameraRef.current.recordAsync();
         console.log("Video grabado:", uri);
       } catch (error) {
