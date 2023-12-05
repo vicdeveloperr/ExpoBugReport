@@ -26,4 +26,12 @@ export const useCountdownStore = create<countdownStore>((set) => ({
 
     set({ intervalId });
   },
+  resetCountdown: () => {
+    set((state) => {
+      if (state.intervalId) {
+        clearInterval(state.intervalId);
+      }
+      return { countdown: 3, intervalId: undefined };
+    });
+  },
 }));
