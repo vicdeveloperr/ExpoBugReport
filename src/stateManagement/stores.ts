@@ -6,3 +6,7 @@ type countdownStore = {
   resetCountdown: () => void;
   intervalId?: NodeJS.Timeout;
 };
+
+export const useCountdownStore = create<countdownStore>((set) => ({
+  countdown: 3
+}));
