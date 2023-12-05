@@ -11,6 +11,7 @@ import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
 import { useNavigation } from "@react-navigation/native";
 import CameraCountdownModal from "../components/CameraCountdownModal";
+import { useCountdownStore } from "../stateManagement/stores";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -21,6 +22,9 @@ const CameraScreen = () => {
   const [statusMicrophonePermission, requestMicrophonePermission] =
     Camera.useMicrophonePermissions();
   const [isTimerVisible, setIsTimerVisible] = useState(false);
+  const { startCountdown, resetCountdown } = useCountdownStore(
+    (state) => state
+  );
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -32,12 +36,12 @@ const CameraScreen = () => {
     if (cameraRef.current) {
       try {
         setIsTimerVisible(true);
-        
+
         function onFinishTimer() {
           setIsTimerVisible(false);
           setRecording(true);
         }
-        
+
         const { uri } = await cameraRef.current.recordAsync();
         console.log("Video grabado:", uri);
       } catch (error) {
