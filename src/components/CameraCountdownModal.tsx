@@ -1,15 +1,16 @@
 import { Modal, View, Text, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import { primaryColor } from "../styles/colors";
+import { useCountdownStore } from "../stateManagement/stores";
 
 const CameraCountdownModal: React.FC = () => {
-  const [countdown, setCountdown] = useState(3);
+  const { countdown, substractCountdown } = useCountdownStore((state) => state);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
     timer = setInterval(() => {
-      setCountdown((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+      substractCountdown();
     }, 1000);
 
     return () => {
