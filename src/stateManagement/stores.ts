@@ -8,5 +8,22 @@ type countdownStore = {
 };
 
 export const useCountdownStore = create<countdownStore>((set) => ({
-  countdown: 3
+  countdown: 3,
+  startCountdown: (onFinish) => {
+    const intervalId = setInterval(() => {
+      set((state) => {
+        let newValue;
+        if (state.countdown > 0) {
+          newValue = state.countdown - 1;
+        } else {
+          onFinish ? onFinish() : undefined;
+          newValue = 3;
+        }
+
+        return { countdown: newValue };
+      });
+    }, 1000);
+
+    set({ intervalId });
+  },
 }));
