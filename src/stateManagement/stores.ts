@@ -2,10 +2,14 @@ import { create } from "zustand";
 
 type countdownStore = {
   countdown: number;
-  setCountdown: (value: number) => void;
+  substractCountdown: () => void;
 };
 
 export const useCountdownStore = create<countdownStore>((set) => ({
   countdown: 3,
-  setCountdown: (value) => set({ countdown: value }),
+  substractCountdown: () =>
+    set(({ countdown }) => {
+      const newValue = countdown > 0 ? countdown - 1 : 3;
+      return { countdown: newValue };
+    }),
 }));
