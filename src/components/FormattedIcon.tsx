@@ -1,6 +1,6 @@
 import { Entypo } from "@expo/vector-icons";
 import React from "react";
-import { primaryColor } from "../styles/colors";
+import { primaryColor } from "../utils/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 interface FormattedIconProps {
