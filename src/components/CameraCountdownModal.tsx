@@ -19,7 +19,7 @@ const CameraCountdownModal: React.FC = () => {
 
   return (
     <Modal
-      visible={true}
+      visible={countdown > 0 ? true : false}
       animationType="slide"
       transparent
     >
