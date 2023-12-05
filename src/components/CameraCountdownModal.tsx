@@ -4,19 +4,7 @@ import { primaryColor } from "../styles/colors";
 import { useCountdownStore } from "../stateManagement/stores";
 
 const CameraCountdownModal: React.FC = () => {
-  const { countdown, substractCountdown } = useCountdownStore((state) => state);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    timer = setInterval(() => {
-      substractCountdown();
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  const { countdown } = useCountdownStore((state) => state);
 
   return (
     <Modal
