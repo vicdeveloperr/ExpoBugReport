@@ -36,9 +36,9 @@ const CameraScreen = () => {
     if (cameraRef.current) {
       try {
         setIsTimerVisible(true);
-        startCountdown(onFinishTimer);
+        startCountdown(onFinishCountdown);
 
-        function onFinishTimer() {
+        function onFinishCountdown() {
           setIsTimerVisible(false);
           setRecording(true);
         }
