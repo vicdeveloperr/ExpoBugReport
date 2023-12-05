@@ -36,6 +36,7 @@ const CameraScreen = () => {
     if (cameraRef.current) {
       try {
         setIsTimerVisible(true);
+        startCountdown(onFinishTimer);
 
         function onFinishTimer() {
           setIsTimerVisible(false);
@@ -54,6 +55,7 @@ const CameraScreen = () => {
     if (cameraRef.current) {
       try {
         await cameraRef.current.stopRecording();
+        resetCountdown();
         setRecording(false);
         setScreenDark(true);
       } catch (error) {
