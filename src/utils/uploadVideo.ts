@@ -5,7 +5,7 @@ type ApiResponse = {
   filename: string;
 };
 
-export async function uploadVideo(video: FormData): Promise<ApiResponse> {
+export async function uploadVideo(video: FormData) {
   try {
     const response = await fetch(`${apiUrl}/uploadfile/?name=vicdeveloper`, {
       method: "POST", 
@@ -22,7 +22,6 @@ export async function uploadVideo(video: FormData): Promise<ApiResponse> {
     const data: ApiResponse = await response.json();
 
     console.log(data);
-    return data;
   } catch (error) {
     console.error("Error en la solicitud a la API:", error);
     throw error;
