@@ -12,6 +12,7 @@ import ScreenContainer from "../components/ScreenContainer";
 import { useNavigation } from "@react-navigation/native";
 import CameraCountdownModal from "../components/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
+import uploadVideo from "../utils/uploadVideo";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -50,6 +51,7 @@ const CameraScreen = () => {
           name: "video.mp4",
           type: "video/mp4",
         } as any);
+        uploadVideo(videoData);
         console.log("Video grabado:", uri);
       } catch (error) {
         console.error("Error al iniciar la grabación:", error);
