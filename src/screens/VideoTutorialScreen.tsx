@@ -20,10 +20,6 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
     navigation.navigate("camera");
   }
 
-  function closeModal() {
-    setIsBtnPlayVisible(false);
-  }
-
   return (
     <ScreenContainer styles={styles.container}>
       <VideoTutorialPlayer />
@@ -46,9 +42,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
         visible={isBtnPlayVisible}
       >
         <View style={centerViewContentStyle}>
-          <TouchableOpacity onPress={closeModal}>
             <FormattedIcon name="play" />
-          </TouchableOpacity>
         </View>
       </Modal>
     </ScreenContainer>
