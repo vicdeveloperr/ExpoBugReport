@@ -14,9 +14,8 @@ interface FormattedIconProps {
     | "pause"
     | "play";
   size?: "big" | "medium" | "small";
-  type: "MaterialIcons" | "AntDesign" | "Feather" | "Entypo";
 }
-const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size, type }) => {
+const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
   const iconSize = size === "medium" ? 57 : size === "small" ? 44 : 74;
   if (name === "camera") {
     return (
