@@ -2,6 +2,8 @@ import { Entypo } from "@expo/vector-icons";
 import { primaryColor } from "../utils/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+
 interface FormattedIconProps {
   name:
     | "controller-stop"
@@ -32,14 +34,23 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size, type }) => {
         color={primaryColor}
       />
     );
+  } else if (name === "play" || name === "pause") {
+    return (
+      <Feather
+        name={name}
+        size={iconSize}
+        color={primaryColor}
+      />
+    );
+  } else {
+    return (
+      <Entypo
+        name={name}
+        size={iconSize}
+        color={primaryColor}
+      />
+    );
   }
-  return (
-    <Entypo
-      name={name}
-      size={iconSize}
-      color={primaryColor}
-    />
-  );
 };
 
 export default FormattedIcon;
