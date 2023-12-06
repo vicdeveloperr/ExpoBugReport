@@ -38,10 +38,12 @@ const CameraScreen = () => {
   const startRecording = async () => {
     if (cameraRef.current) {
       try {
+        setScreenDark(true);
         setIsTimerVisible(true);
         startCountdown(onFinishCountdown);
 
         function onFinishCountdown() {
+          setScreenDark(false);
           setIsTimerVisible(false);
           setRecording(true);
         }
