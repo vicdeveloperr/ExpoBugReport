@@ -19,6 +19,10 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
     navigation.navigate("camera");
   }
 
+  function closeModal() {
+    setModalVisible(false);
+  }
+
   return (
     <ScreenContainer styles={styles.container}>
       <VideoTutorialPlayer />
