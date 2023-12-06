@@ -1,5 +1,4 @@
 import { Entypo } from "@expo/vector-icons";
-import React from "react";
 import { primaryColor } from "../utils/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -13,8 +12,9 @@ interface FormattedIconProps {
     | "pause"
     | "play";
   size?: "big" | "medium" | "small";
+  type: "MaterialIcons" | "AntDesign" | "Feather" | "Entypo";
 }
-const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
+const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size, type }) => {
   const iconSize = size === "medium" ? 57 : size === "small" ? 44 : 74;
   if (name === "camera") {
     return (
