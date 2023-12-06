@@ -1,5 +1,10 @@
 import { StyleSheet, View } from "react-native";
-const ScreenDark: React.FC = () => {
+
+interface ScreenDarkProps {
+  children: React.ReactNode;
+}
+
+const ScreenDark: React.FC<ScreenDarkProps> = () => {
   return <View style={styles.modal}></View>;
 };
 
