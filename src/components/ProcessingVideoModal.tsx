@@ -3,12 +3,17 @@ import { darkColor } from "../utils/colors";
 
 const ProcessingVideoModal: React.FC = () => {
   return (
-    <Modal visible={true}>
+    <Modal
+      visible={true}
+      transparent={true}
+    >
       <View style={styles.container}>
-        <Text style={[styles.textBold, styles.text]}>
-          Estamos analizando su vídeo
-        </Text>
-        <Text style={[styles.text]}>Aguarde unos instantes...</Text>
+        <View style={styles.textContainer}>
+          <Text style={[styles.textBold, styles.text]}>
+            Estamos analizando su vídeo
+          </Text>
+          <Text style={[styles.text]}>Aguarde unos instantes...</Text>
+        </View>
       </View>
     </Modal>
   );
@@ -16,9 +21,14 @@ const ProcessingVideoModal: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textContainer: {
     backgroundColor: darkColor,
     paddingVertical: 40,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   textBold: {
     fontWeight: "bold",
