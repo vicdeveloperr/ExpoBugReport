@@ -4,8 +4,8 @@ interface ScreenDarkProps {
   children: React.ReactNode;
 }
 
-const ScreenDark: React.FC<ScreenDarkProps> = () => {
-  return <View style={styles.modal}></View>;
+const ScreenDark: React.FC<ScreenDarkProps> = ({ children }) => {
+  return <View style={styles.modal}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
