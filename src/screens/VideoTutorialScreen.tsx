@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { View, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
-import { getStatusBarHeight } from "react-native-status-bar-height";
 
 type VideoTutorialProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -38,6 +37,14 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
+      {/* Botón de pausa */}
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+      >
+        <View></View>
+      </Modal>
     </ScreenContainer>
   );
 };
