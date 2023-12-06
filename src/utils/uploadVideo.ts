@@ -10,7 +10,7 @@ export async function uploadVideo(video: FormData): Promise<ApiResponse> {
     const response = await fetch(`${apiUrl}/uploadfile/?name=vicdeveloper`, {
       method: "POST", 
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "multipart/form-data"
       },
       body: video, 
     });
