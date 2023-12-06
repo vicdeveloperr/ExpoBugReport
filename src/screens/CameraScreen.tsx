@@ -44,6 +44,12 @@ const CameraScreen = () => {
         }
 
         const { uri } = await cameraRef.current.recordAsync();
+        const videoData = new FormData();
+        videoData.append("file", {
+          uri,
+          name: "video.mp4",
+          type: "video/mp4",
+        } as any);
         console.log("Video grabado:", uri);
       } catch (error) {
         console.error("Error al iniciar la grabación:", error);
