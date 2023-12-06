@@ -50,7 +50,8 @@ const CameraScreen = () => {
           uri,
           name: "video.mp4",
           type: "video/mp4",
-        } as any);
+        } as any); // FormData.append espera un Blob como segundo argumento. Pero, igualmente pasarle un objeto con la estructura {uri, name y type} funciona para almacenar datos de vídeo. Por ello, utilizamos el tipo any.
+
         uploadVideo(videoData);
         console.log("Video grabado:", uri);
       } catch (error) {
