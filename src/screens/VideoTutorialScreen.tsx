@@ -13,14 +13,14 @@ type VideoTutorialProps = {
 };
 
 const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
-  const [isModalVisible, setModalVisible] = useState(true);
+  const [isBtnPlayVisible, setIsBtnPlayVisible] = useState(true);
 
   function openCamera() {
     navigation.navigate("camera");
   }
 
   function closeModal() {
-    setModalVisible(false);
+    setIsBtnPlayVisible(false);
   }
 
   return (
@@ -42,7 +42,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
       <Modal
         transparent={true}
         animationType="fade"
-        visible={isModalVisible}
+        visible={isBtnPlayVisible}
       >
         <View style={centerViewContentStyle}>
           <TouchableOpacity onPress={closeModal}>
