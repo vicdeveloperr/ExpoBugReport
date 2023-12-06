@@ -9,7 +9,9 @@ interface FormattedIconProps {
     | "controller-record"
     | "folder-video"
     | "camera"
-    | "back";
+    | "back"
+    | "pause"
+    | "play";
   size?: "big" | "medium" | "small";
 }
 const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
