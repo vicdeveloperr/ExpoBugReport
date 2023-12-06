@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import CameraCountdownModal from "../components/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
 import uploadVideo from "../utils/uploadVideo";
+import ScreenDark from "../components/ScreenDark";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -103,9 +104,9 @@ const CameraScreen = () => {
           </ScreenContainer>
         </Camera>
         {isTimerVisible && (
-          <View style={styles.modal}>
+          <ScreenDark>
             <CameraCountdownModal />
-          </View>
+          </ScreenDark>
         )}
       </>
     );
@@ -122,12 +123,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  modal: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.7)",
-    display: "flex",
-    justifyContent: "center",
   },
 });
 
