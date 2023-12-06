@@ -14,6 +14,7 @@ import CameraCountdownModal from "../components/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
 import uploadVideo from "../utils/uploadVideo";
 import ScreenDark from "../components/ScreenDark";
+import ProcessingVideoModal from "../components/ProcessingVideoModal";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
@@ -103,9 +104,13 @@ const CameraScreen = () => {
             </TouchableOpacity>
           </ScreenContainer>
         </Camera>
-        {isTimerVisible && (
+        {isScreenDark && (
           <ScreenDark>
-            <CameraCountdownModal />
+            {isTimerVisible ? (
+              <CameraCountdownModal />
+            ) : (
+              <ProcessingVideoModal />
+            )}
           </ScreenDark>
         )}
       </>
