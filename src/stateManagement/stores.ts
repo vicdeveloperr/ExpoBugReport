@@ -35,3 +35,14 @@ export const useCountdownStore = create<countdownStore>((set) => ({
     });
   },
 }));
+
+type BtnPlayModalStore = {
+  isBtnPlayVisible: boolean;
+  toggleBtnPlay: () => void;
+};
+
+export const useBtnPlayModalStore = create<BtnPlayModalStore>((set) => ({
+  isBtnPlayVisible: false,
+  toggleBtnPlay: () =>
+    set((state) => ({ isBtnPlayVisible: !state.isBtnPlayVisible })),
+}));
