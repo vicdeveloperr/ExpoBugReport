@@ -43,7 +43,11 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
         animationType="fade"
         visible={isModalVisible}
       >
-        <View></View>
+        <View>
+          <TouchableOpacity onPress={closeModal}>
+            <FormattedIcon name="play" />
+          </TouchableOpacity>
+        </View>
       </Modal>
     </ScreenContainer>
   );
