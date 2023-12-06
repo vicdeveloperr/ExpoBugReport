@@ -7,12 +7,12 @@ type ApiResponse = {
 
 export async function uploadVideo(video: FormData) {
   try {
-    const response = await fetch(`${apiUrl}/uploadfile/?name=vicdeveloper`, {
-      method: "POST", 
+    const response = await fetch(`${apiUrl}/uploadfile`, {
+      method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
       },
-      body: video, 
+      body: video,
     });
 
     if (!response.ok) {
