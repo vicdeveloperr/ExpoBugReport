@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   textContainer: {
     backgroundColor: darkColor,
     paddingVertical: 40,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   textBold: {
     fontWeight: "bold",
