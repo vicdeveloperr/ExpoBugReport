@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { View, Button, TouchableOpacity, StyleSheet } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
@@ -13,6 +13,8 @@ type VideoTutorialProps = {
 };
 
 const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
+  const [isModalVisible, setModalVisible] = useState(true);
+
   function openCamera() {
     navigation.navigate("camera");
   }
