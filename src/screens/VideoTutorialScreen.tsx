@@ -6,6 +6,7 @@ import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
+import centerViewContentStyle from "../utils/centerViewContentStyle";
 
 type VideoTutorialProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -43,7 +44,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
         animationType="fade"
         visible={isModalVisible}
       >
-        <View>
+        <View style={centerViewContentStyle}>
           <TouchableOpacity onPress={closeModal}>
             <FormattedIcon name="play" />
           </TouchableOpacity>
