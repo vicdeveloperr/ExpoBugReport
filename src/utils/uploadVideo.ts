@@ -5,17 +5,14 @@ type ApiResponse = {
   filename: string;
 };
 
-export async function uploadVideo(url: string): Promise<ApiResponse> {
+export async function uploadVideo(video: FormData): Promise<ApiResponse> {
   try {
-    const body = {
-      file: url,
-    };
     const response = await fetch(`${apiUrl}/uploadfile/?name=vicdeveloper`, {
       method: "POST", 
       headers: {
         "Content-Type": "application/json", 
       },
-      body: JSON.stringify(body), 
+      body: video, 
     });
 
     if (!response.ok) {
