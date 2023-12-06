@@ -16,6 +16,7 @@ const VideoTutorialPlayer: React.FC = () => {
         videoRef.current.playAsync();
       }
       setPlaying(!isPlaying);
+      toggleBtnPlay();
     }
   };
 
