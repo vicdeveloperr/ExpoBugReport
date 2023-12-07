@@ -46,3 +46,13 @@ export const useBtnPlayModalStore = create<BtnPlayModalStore>((set) => ({
   toggleBtnPlay: () =>
     set((state) => ({ isBtnPlayVisible: !state.isBtnPlayVisible })),
 }));
+
+interface VideoPlayerStore {
+  isPlaying: boolean;
+  setPlaying: (playing: boolean) => void;
+}
+
+export const useVideoPlayerStore = create<VideoPlayerStore>((set) => ({
+  isPlaying: true,
+  setPlaying: (playing) => set({ isPlaying: playing }),
+}));
