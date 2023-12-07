@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     justifyContent: "center",
+    zIndex: 1
   },
   buttonOpenCameraContainer: {
     width: "100%",
