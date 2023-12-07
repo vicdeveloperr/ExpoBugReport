@@ -42,7 +42,8 @@ const VideoPicker: React.FC = () => {
 const styles = StyleSheet.create({
   button: {
     position: "absolute",
-    marginLeft: 9
+    marginLeft: 9,
+    zIndex: 1,
   },
 });
 
