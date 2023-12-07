@@ -5,9 +5,8 @@ import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
 
 const VideoPicker: React.FC = () => {
-  const [selectedVideo, setSelectedVideo] = useState<
-    ImagePicker.ImagePickerAsset[] | null
-  >(null);
+  const [selectedVideo, setSelectedVideo] =
+    useState<ImagePicker.ImagePickerAsset | null>(null);
 
   const pickVideo = async () => {
     try {
@@ -19,7 +18,7 @@ const VideoPicker: React.FC = () => {
 
       if (!result.canceled) {
         console.log("Información del video seleccionado:", result);
-        setSelectedVideo(result.assets);
+        setSelectedVideo(result.assets[0]);
       }
     } catch (error) {
       console.error("Error al seleccionar el video:", error);
