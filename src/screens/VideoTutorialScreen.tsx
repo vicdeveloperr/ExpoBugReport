@@ -7,7 +7,10 @@ import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 import centerViewContentStyle from "../utils/centerViewContentStyle";
-import { useBtnPlayModalStore } from "../stateManagement/stores";
+import {
+  useBtnPlayModalStore,
+  useVideoPlayerStore,
+} from "../stateManagement/stores";
 
 type VideoTutorialProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -17,6 +20,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
   const { isBtnPlayVisible, toggleBtnPlay } = useBtnPlayModalStore(
     (state) => state
   );
+  const { setPlaying } = useVideoPlayerStore((state) => state);
 
   function openCamera() {
     navigation.navigate("camera");
@@ -24,6 +28,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
 
   function playVideo() {
     toggleBtnPlay();
+    setPlaying(true);
   }
 
   return (
