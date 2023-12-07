@@ -3,6 +3,7 @@ import { View, Button, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
+import uploadVideo from "../utils/uploadVideo";
 
 const VideoPicker: React.FC = () => {
   const [selectedVideo, setSelectedVideo] =
@@ -17,8 +18,10 @@ const VideoPicker: React.FC = () => {
       });
 
       if (!result.canceled) {
+        const video = result.assets[0];
         console.log("Información del video seleccionado:", result);
-        setSelectedVideo(result.assets[0]);
+        setSelectedVideo(video);
+        uploadVideo(video.uri);
       }
     } catch (error) {
       console.error("Error al seleccionar el video:", error);
