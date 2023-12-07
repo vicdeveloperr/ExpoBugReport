@@ -48,7 +48,9 @@ const CameraScreen = () => {
           setRecording(true);
         }
 
-        const { uri } = await cameraRef.current.recordAsync();
+        const { uri } = await cameraRef.current.recordAsync({
+          maxDuration: 10,
+        });
         uploadVideo(uri);
         console.log("Video grabado:", uri);
       } catch (error) {
