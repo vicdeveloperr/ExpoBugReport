@@ -11,6 +11,7 @@ import {
   useBtnPlayModalStore,
   useVideoPlayerStore,
 } from "../stateManagement/stores";
+import ScreenDark from "../components/ScreenDark";
 
 type VideoTutorialProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -45,18 +46,14 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      {/* Botón de pausa */}
-      <Modal
-        transparent={true}
-        animationType="fade"
-        visible={isBtnPlayVisible}
-      >
-        <View style={centerViewContentStyle}>
+      {/* Botón de play */}
+      {isBtnPlayVisible && (
+        <ScreenDark>
           <TouchableOpacity onPress={playVideo}>
             <FormattedIcon name="play" />
           </TouchableOpacity>
-        </View>
-      </Modal>
+        </ScreenDark>
+      )}
     </ScreenContainer>
   );
 };
