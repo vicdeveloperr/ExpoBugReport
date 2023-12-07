@@ -13,7 +13,7 @@ const VideoTutorialPlayer: React.FC = () => {
     if (isPlaying && videoRef.current) {
       videoRef.current.playAsync();
     }
-  }, [isPlaying]);
+  }, [isPlaying, videoRef.current]);
 
   const togglePlay = () => {
     if (videoRef.current) {
