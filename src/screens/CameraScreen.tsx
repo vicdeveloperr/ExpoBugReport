@@ -37,25 +37,28 @@ const CameraScreen = () => {
 
   const startRecording = async () => {
     if (cameraRef.current) {
-      try {
-        setScreenDark(true);
-        setIsTimerVisible(true);
-        startCountdown(onFinishCountdown);
+      setScreenDark(true);
+      setIsTimerVisible(true);
+      startCountdown(onFinishCountdown);
 
-        function onFinishCountdown() {
-          setScreenDark(false);
-          setIsTimerVisible(false);
-          setRecording(true);
-        }
-
-        const { uri } = await cameraRef.current.recordAsync({
-          maxDuration: 10,
-        });
-        uploadVideo(uri);
-        console.log("Video grabado:", uri);
-      } catch (error) {
-        console.error("Error al iniciar la grabación:", error);
+      function onFinishCountdown() {
+        setScreenDark(false);
+        setIsTimerVisible(false);
+        setRecording(true);
       }
+
+      const recordAsyncResponse = await cameraRef.current
+        .recordAsync({
+          maxDuration: 10,
+        })
+        .then(({ uri }) => {
+          stopRecording();
+          uploadVideo(uri);
+          console.log("Video grabado:", uri);
+        })
+        .catch((error) => {
+          console.error("Error al iniciar la grabación:", error);
+        });
     }
   };
 
