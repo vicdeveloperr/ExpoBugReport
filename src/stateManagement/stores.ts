@@ -13,7 +13,7 @@ export const useCountdownStore = create<countdownStore>((set) => ({
     const intervalId = setInterval(() => {
       set((state) => {
         let newValue;
-        if (state.countdown > 0) {
+        if (state.countdown > 1) {
           newValue = state.countdown - 1;
         } else {
           onFinish ? onFinish() : undefined;
