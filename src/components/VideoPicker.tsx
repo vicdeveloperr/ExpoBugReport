@@ -6,9 +6,6 @@ import FormattedIcon from "./FormattedIcon";
 import uploadVideo from "../utils/uploadVideo";
 
 const VideoPicker: React.FC = () => {
-  const [selectedVideo, setSelectedVideo] =
-    useState<ImagePicker.ImagePickerAsset | null>(null);
-
   const pickVideo = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -20,7 +17,6 @@ const VideoPicker: React.FC = () => {
       if (!result.canceled) {
         const video = result.assets[0];
         console.log("Información del video seleccionado:", result);
-        setSelectedVideo(video);
         uploadVideo(video.uri);
       }
     } catch (error) {
