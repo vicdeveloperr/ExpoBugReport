@@ -14,10 +14,16 @@ type VideoTutorialProps = {
 };
 
 const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
-  const { isBtnPlayVisible } = useBtnPlayModalStore((state) => state);
+  const { isBtnPlayVisible, toggleBtnPlay } = useBtnPlayModalStore(
+    (state) => state
+  );
 
   function openCamera() {
     navigation.navigate("camera");
+  }
+
+  function playVideo() {
+    toggleBtnPlay();
   }
 
   return (
@@ -42,7 +48,9 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
         visible={isBtnPlayVisible}
       >
         <View style={centerViewContentStyle}>
+          <TouchableOpacity onPress={playVideo}>
             <FormattedIcon name="play" />
+          </TouchableOpacity>
         </View>
       </Modal>
     </ScreenContainer>
