@@ -68,6 +68,7 @@ const CameraScreen = () => {
 
   const stopRecording = async () => {
     if (cameraRef.current) {
+      cameraRef.current.stopRecording();
       resetCountdown();
       setRecording(false);
       setScreenDark(true);
