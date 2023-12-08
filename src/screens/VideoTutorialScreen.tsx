@@ -49,7 +49,10 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
       {/* Botón de play */}
       {isBtnPlayVisible && (
         <ScreenDark>
-          <TouchableOpacity onPress={playVideo}>
+          <TouchableOpacity
+            style={[styles.buttonPlayVideo, centerViewContentStyle]}
+            onPress={playVideo}
+          >
             <FormattedIcon name="play" />
           </TouchableOpacity>
         </ScreenDark>
@@ -69,12 +72,16 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    zIndex: 1
+    zIndex: 1,
   },
   buttonOpenCameraContainer: {
     width: "100%",
     display: "flex",
     alignItems: "center",
+  },
+  buttonPlayVideo: {
+    width: "100%",
+    height: "100%",
   },
 });
 
