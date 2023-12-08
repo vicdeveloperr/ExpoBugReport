@@ -17,10 +17,10 @@ const VideoPicker: React.FC = () => {
       if (!result.canceled) {
         const video = result.assets[0];
         console.log("Información del video seleccionado:", result);
-        if (video.duration && video.duration > 100000) {
+        if (video.duration && video.duration < 10000) {
           uploadVideo(video.uri);
-        }else {
-         alert("El vídeo seleccionado debe durar menos de 10 segundos.") 
+        } else {
+          alert("El vídeo seleccionado debe durar menos de 10 segundos.");
         }
       }
     } catch (error) {
