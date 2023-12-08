@@ -64,14 +64,9 @@ const CameraScreen = () => {
 
   const stopRecording = async () => {
     if (cameraRef.current) {
-      try {
-        await cameraRef.current.stopRecording();
         resetCountdown();
         setRecording(false);
         setScreenDark(true);
-      } catch (error) {
-        console.error("Error al detener la grabación:", error);
-      }
     }
   };
 
