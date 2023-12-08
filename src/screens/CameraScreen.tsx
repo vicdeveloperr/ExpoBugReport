@@ -33,6 +33,10 @@ const CameraScreen = () => {
   useEffect(() => {
     requestCameraPermission();
     requestMicrophonePermission();
+
+    return () => {
+      resetCountdown();
+    };
   }, []);
 
   const startRecording = async () => {
@@ -64,9 +68,9 @@ const CameraScreen = () => {
 
   const stopRecording = async () => {
     if (cameraRef.current) {
-        resetCountdown();
-        setRecording(false);
-        setScreenDark(true);
+      resetCountdown();
+      setRecording(false);
+      setScreenDark(true);
     }
   };
 
