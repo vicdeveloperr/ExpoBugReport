@@ -12,7 +12,7 @@ import ScreenContainer from "../components/ScreenContainer";
 import { useNavigation } from "@react-navigation/native";
 import CameraCountdownModal from "../components/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
-import uploadVideo from "../utils/uploadVideo";
+import uploadVideo from "../utils/useUploadVideo";
 import ScreenDark from "../components/ScreenDark";
 import ProcessingVideoModal from "../components/ProcessingVideoModal";
 

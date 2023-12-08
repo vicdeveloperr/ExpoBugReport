@@ -3,7 +3,7 @@ import { View, Button, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
-import uploadVideo from "../utils/uploadVideo";
+import uploadVideo from "../utils/useUploadVideo";
 
 const VideoPicker: React.FC = () => {
   const pickVideo = async () => {
