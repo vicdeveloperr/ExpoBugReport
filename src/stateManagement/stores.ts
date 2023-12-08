@@ -56,3 +56,14 @@ export const useVideoPlayerStore = create<VideoPlayerStore>((set) => ({
   isPlaying: true,
   setPlaying: (playing) => set({ isPlaying: playing }),
 }));
+
+// Tienda 'VideoProcessing'
+interface VideoProcessingStore {
+  isVideoProcessing: boolean;
+  setIsVideoProcessing: (status: boolean) => void;
+}
+
+export const useVideoProcessingStore = create<VideoProcessingStore>((set) => ({
+  isVideoProcessing: false,
+  setIsVideoProcessing: (status) => set({ isVideoProcessing: status }),
+}));
