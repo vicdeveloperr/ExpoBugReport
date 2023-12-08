@@ -85,6 +85,7 @@ const CameraScreen = () => {
           <ScreenContainer styles={styles.cameraContentContainer}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
+              disabled={isRecording}
               style={styles.buttonGoBack}
             >
               <FormattedIcon
