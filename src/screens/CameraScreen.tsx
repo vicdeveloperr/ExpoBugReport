@@ -110,7 +110,11 @@ const CameraScreen = () => {
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.goBack()}
+                onPress={() =>
+                  setCameraType(
+                    cameraType === "front" ? CameraType.back : CameraType.front
+                  )
+                }
                 disabled={isRecording}
               >
                 <FormattedIcon
