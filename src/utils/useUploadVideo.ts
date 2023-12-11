@@ -7,16 +7,12 @@ type ApiResponse = {
 };
 
 export async function useUploadVideo(uri: string) {
-  const { setIsVideoProcessing } = useVideoProcessingStore((state) => state);
-
   const videoData = new FormData();
   videoData.append("file", {
     uri,
     name: "video.mp4",
     type: "video/mp4",
   } as any); // FormData.append espera un Blob como segundo argumento. Pero, igualmente pasarle un objeto con la estructura {uri, name y type} funciona para almacenar datos de vídeo. Por ello, utilizamos el tipo any.
-
-  setIsVideoProcessing(true);
 
   try {
     const response = await fetch(`${apiUrl}/uploadfile`, {
