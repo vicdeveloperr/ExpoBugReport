@@ -14,7 +14,7 @@ import CameraCountdownModal from "../components/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
 import uploadVideo from "../utils/useUploadVideo";
 import ScreenDark from "../components/ScreenDark";
-import ProcessingVideoModal from "../components/ProcessingVideoModal";
+import ProcessingVideo from "../components/ProcessingVideo";
 
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
