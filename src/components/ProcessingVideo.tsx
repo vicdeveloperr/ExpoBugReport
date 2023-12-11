@@ -1,7 +1,7 @@
 import { Modal, View, Text, StyleSheet } from "react-native";
 import { darkColor } from "../utils/colors";
 
-const ProcessingVideoModal: React.FC = () => {
+const ProcessingVideo: React.FC = () => {
   return (
     <Modal
       visible={true}
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProcessingVideoModal;
+export default ProcessingVideo;
