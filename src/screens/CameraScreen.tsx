@@ -102,10 +102,18 @@ const CameraScreen = () => {
               <TouchableOpacity
                 onPress={() => navigation.goBack()}
                 disabled={isRecording}
-                style={styles.buttonGoBack}
               >
                 <FormattedIcon
                   name="back"
+                  size="small"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                disabled={isRecording}
+              >
+                <FormattedIcon
+                  name="camera-reverse-outline"
                   size="small"
                 />
               </TouchableOpacity>
