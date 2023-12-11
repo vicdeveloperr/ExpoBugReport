@@ -10,6 +10,7 @@ import centerViewContentStyle from "../utils/centerViewContentStyle";
 import {
   useBtnPlayModalStore,
   useVideoPlayerStore,
+  useVideoProcessingStore,
 } from "../stateManagement/stores";
 import ScreenDark from "../components/ScreenDark";
 
@@ -22,6 +23,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
     (state) => state
   );
   const { setPlaying } = useVideoPlayerStore((state) => state);
+  const { isVideoProcessing } = useVideoProcessingStore((state) => state);
 
   function openCamera() {
     navigation.navigate("camera");
