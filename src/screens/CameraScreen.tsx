@@ -31,7 +31,9 @@ const CameraScreen = () => {
     (state) => state
   );
   const navigation = useNavigation();
-  const { isVideoProcessing } = useVideoProcessingStore((state) => state);
+  const { isVideoProcessing, setIsVideoProcessing } = useVideoProcessingStore(
+    (state) => state
+  );
 
   useEffect(() => {
     requestCameraPermission();
@@ -59,6 +61,7 @@ const CameraScreen = () => {
         .then(({ uri }) => {
           stopRecording();
           uploadVideo(uri);
+          setIsVideoProcessing(true);
           console.log("Video grabado:", uri);
         })
         .catch((error) => {
