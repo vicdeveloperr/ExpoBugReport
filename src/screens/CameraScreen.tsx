@@ -34,6 +34,7 @@ const CameraScreen = () => {
   const { isVideoProcessing, setIsVideoProcessing } = useVideoProcessingStore(
     (state) => state
   );
+  const [cameraType, setCameraType] = useState<CameraType>(CameraType.front);
 
   useEffect(() => {
     requestCameraPermission();
@@ -95,7 +96,7 @@ const CameraScreen = () => {
         <Camera
           style={{ flex: 1 }}
           ref={cameraRef}
-          type={CameraType.front}
+          type={cameraType}
         >
           <ScreenContainer styles={styles.cameraContentContainer}>
             <View style={styles.topButtonsContainer}>
