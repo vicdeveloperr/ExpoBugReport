@@ -44,6 +44,17 @@ const CameraScreen = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (event) => {
+      if (isRecording) {
+        event.preventDefault();
+        alert("Grabación en curso");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [isRecording]);
+
   const startRecording = async () => {
     if (cameraRef.current) {
       setIsTimerVisible(true);
