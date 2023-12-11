@@ -4,7 +4,7 @@ import ScreenDark from "./ScreenDark";
 
 const ProcessingVideo: React.FC = () => {
   return (
-    <ScreenDark>
+    <ScreenDark stylesView={{ zIndex: 1 }}>
       <Modal
         visible={true}
         transparent={true}
