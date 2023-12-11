@@ -1,5 +1,4 @@
 import { apiUrl } from "./apiUrl";
-import { useVideoProcessingStore } from "../stateManagement/stores";
 
 type ApiResponse = {
   status: 200;
