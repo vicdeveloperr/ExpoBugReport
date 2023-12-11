@@ -98,16 +98,18 @@ const CameraScreen = () => {
           type={CameraType.front}
         >
           <ScreenContainer styles={styles.cameraContentContainer}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              disabled={isRecording}
-              style={styles.buttonGoBack}
-            >
-              <FormattedIcon
-                name="back"
-                size="small"
-              />
-            </TouchableOpacity>
+            <View style={styles.topButtonsContainer}>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                disabled={isRecording}
+                style={styles.buttonGoBack}
+              >
+                <FormattedIcon
+                  name="back"
+                  size="small"
+                />
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
               onPress={isRecording ? stopRecording : startRecording}
             >
@@ -140,6 +142,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  topButtonsContainer: {
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
 });
 
