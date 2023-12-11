@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   topButtonsContainer: {
+    width: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
   },
