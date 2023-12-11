@@ -6,7 +6,7 @@ type ApiResponse = {
   filename: string;
 };
 
-export async function useUploadVideo(uri: string) {
+export async function uploadVideo(uri: string) {
   const videoData = new FormData();
   videoData.append("file", {
     uri,
@@ -36,4 +36,4 @@ export async function useUploadVideo(uri: string) {
   }
 }
 
-export default useUploadVideo;
+export default uploadVideo;
