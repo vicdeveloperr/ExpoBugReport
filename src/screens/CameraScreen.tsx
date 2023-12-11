@@ -15,7 +15,7 @@ import {
   useCountdownStore,
   useVideoProcessingStore,
 } from "../stateManagement/stores";
-import uploadVideo from "../utils/useUploadVideo";
+import uploadVideo from "../utils/uploadVideo";
 import ScreenDark from "../components/ScreenDark";
 import ProcessingVideo from "../components/ProcessingVideo";
 
