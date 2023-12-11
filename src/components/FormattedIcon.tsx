@@ -3,6 +3,7 @@ import { primaryColor } from "../utils/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 interface FormattedIconProps {
   name:
@@ -12,7 +13,8 @@ interface FormattedIconProps {
     | "camera"
     | "back"
     | "pause"
-    | "play";
+    | "play"
+    | "camera-reverse-outline";
   size?: "big" | "medium" | "small";
 }
 const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
@@ -37,6 +39,14 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
     return (
       <Feather
         name={name}
+        size={iconSize}
+        color={primaryColor}
+      />
+    );
+  } else if (name === "camera-reverse-outline") {
+    return (
+      <Ionicons
+        name="camera-reverse-outline"
         size={iconSize}
         color={primaryColor}
       />
