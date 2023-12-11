@@ -11,7 +11,10 @@ import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
 import { useNavigation } from "@react-navigation/native";
 import CameraCountdownModal from "../components/CameraCountdownModal";
-import { useCountdownStore } from "../stateManagement/stores";
+import {
+  useCountdownStore,
+  useVideoProcessingStore,
+} from "../stateManagement/stores";
 import uploadVideo from "../utils/useUploadVideo";
 import ScreenDark from "../components/ScreenDark";
 import ProcessingVideo from "../components/ProcessingVideo";
@@ -29,6 +32,7 @@ const CameraScreen = () => {
     (state) => state
   );
   const navigation = useNavigation();
+  const { isVideoProcessing } = useVideoProcessingStore((state) => state);
 
   useEffect(() => {
     requestCameraPermission();
@@ -107,11 +111,7 @@ const CameraScreen = () => {
         </Camera>
         {isScreenDark && (
           <ScreenDark>
-            {isTimerVisible ? (
-              <CameraCountdownModal />
-            ) : (
-              <ProcessingVideoModal />
-            )}
+            {isTimerVisible ? <CameraCountdownModal /> : <ProcessingVideo />}
           </ScreenDark>
         )}
       </>
