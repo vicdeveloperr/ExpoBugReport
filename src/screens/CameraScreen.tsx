@@ -109,9 +109,10 @@ const CameraScreen = () => {
             </TouchableOpacity>
           </ScreenContainer>
         </Camera>
-        {isScreenDark && (
+        {isVideoProcessing && <ProcessingVideo />}
+        {isTimerVisible && (
           <ScreenDark>
-            {isTimerVisible ? <CameraCountdownModal /> : <ProcessingVideo />}
+            <CameraCountdownModal />
           </ScreenDark>
         )}
       </>
