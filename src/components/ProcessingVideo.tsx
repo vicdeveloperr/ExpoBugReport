@@ -1,21 +1,24 @@
 import { Modal, View, Text, StyleSheet } from "react-native";
 import { darkColor } from "../utils/colors";
+import ScreenDark from "./ScreenDark";
 
 const ProcessingVideo: React.FC = () => {
   return (
-    <Modal
-      visible={true}
-      transparent={true}
-    >
-      <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={[styles.textBold, styles.text]}>
-            Estamos analizando su vídeo
-          </Text>
-          <Text style={[styles.text]}>Aguarde unos instantes...</Text>
+    <ScreenDark>
+      <Modal
+        visible={true}
+        transparent={true}
+      >
+        <View style={styles.container}>
+          <View style={styles.textContainer}>
+            <Text style={[styles.textBold, styles.text]}>
+              Estamos analizando su vídeo
+            </Text>
+            <Text style={[styles.text]}>Aguarde unos instantes...</Text>
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </ScreenDark>
   );
 };
 
