@@ -22,7 +22,6 @@ import ProcessingVideo from "../components/ProcessingVideo";
 const CameraScreen = () => {
   const cameraRef = useRef<Camera>(null);
   const [isRecording, setRecording] = useState(false);
-  const [isScreenDark, setScreenDark] = useState(false);
   const [statusCameraPermission, requestCameraPermission] =
     Camera.useCameraPermissions();
   const [statusMicrophonePermission, requestMicrophonePermission] =
@@ -45,12 +44,10 @@ const CameraScreen = () => {
 
   const startRecording = async () => {
     if (cameraRef.current) {
-      setScreenDark(true);
       setIsTimerVisible(true);
       startCountdown(onFinishCountdown);
 
       function onFinishCountdown() {
-        setScreenDark(false);
         setIsTimerVisible(false);
         setRecording(true);
       }
@@ -75,7 +72,6 @@ const CameraScreen = () => {
       cameraRef.current.stopRecording();
       resetCountdown();
       setRecording(false);
-      setScreenDark(true);
     }
   };
 
