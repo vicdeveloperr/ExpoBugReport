@@ -4,8 +4,10 @@ import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
 import uploadVideo from "../utils/uploadVideo";
+import { useVideoProcessingStore } from "../stateManagement/stores";
 
 const VideoPicker: React.FC = () => {
+  const { setIsVideoProcessing } = useVideoProcessingStore((state) => state);
   const pickVideo = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -19,6 +21,7 @@ const VideoPicker: React.FC = () => {
         console.log("Información del video seleccionado:", result);
         if (video.duration && video.duration < 10000) {
           uploadVideo(video.uri);
+          setIsVideoProcessing(true);
         } else {
           alert("El vídeo seleccionado debe durar menos de 10 segundos.");
         }
