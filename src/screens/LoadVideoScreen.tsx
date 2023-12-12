@@ -3,8 +3,12 @@ import { Video, ResizeMode } from "expo-av";
 import ScreenDark from "../components/ScreenDark";
 import ScreenContainer from "../components/ScreenContainer";
 import ActionButton from "../components/ActionButton";
-
-const LoadVideoScreen = () => {
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../navigation/StackNavigator";
+interface LoadVideoScreenProps {
+  navigation: StackNavigationProp<RootStackParamList, "loadVideo">;
+}
+const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Video
