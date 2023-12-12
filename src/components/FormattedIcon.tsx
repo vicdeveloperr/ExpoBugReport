@@ -14,7 +14,8 @@ interface FormattedIconProps {
     | "back"
     | "pause"
     | "play"
-    | "camera-reverse-outline";
+    | "camera-reverse-outline"
+    | "reload";
   size?: "big" | "medium" | "small";
 }
 const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
@@ -51,6 +52,10 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
         color={primaryColor}
       />
     );
+  } else if(name === "reload") {
+    return (
+      <Ionicons name="reload" size={iconSize} color="white" />
+    )
   } else {
     return (
       <Entypo
