@@ -1,4 +1,5 @@
 import { TouchableOpacity, Text } from "react-native";
+import FormattedIcon from "./FormattedIcon";
 
 interface ActionButtonProps {
   name: "continue" | "tryAgaint";
@@ -6,9 +7,21 @@ interface ActionButtonProps {
 }
 
 const ActionButton: React.FC<ActionButtonProps> = ({ name, onPress }) => {
+  const isNameContinue = name === "continue";
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text>{name === "continue" ? "Continuar" : "Volver a intentarlo"}</Text>
+      {isNameContinue ? (
+        <FormattedIcon
+          name="check"
+          size="small"
+        />
+      ) : (
+        <FormattedIcon
+          name="reload"
+          size="small"
+        />
+      )}
+      <Text>{isNameContinue ? "Continuar" : "Volver a intentarlo"}</Text>
     </TouchableOpacity>
   );
 };
