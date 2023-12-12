@@ -9,7 +9,6 @@ import {
 import { Camera, CameraType } from "expo-camera";
 import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
-import { useNavigation } from "@react-navigation/native";
 import CameraCountdownModal from "../components/CameraCountdownModal";
 import {
   useCountdownStore,
@@ -18,8 +17,14 @@ import {
 import uploadVideo from "../utils/uploadVideo";
 import ScreenDark from "../components/ScreenDark";
 import ProcessingVideo from "../components/ProcessingVideo";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../navigation/StackNavigator";
 
-const CameraScreen = () => {
+interface CameraScreenProps {
+  navigation: StackNavigationProp<RootStackParamList, "camera">;
+}
+
+const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   const cameraRef = useRef<Camera>(null);
   const [isRecording, setRecording] = useState(false);
   const [statusCameraPermission, requestCameraPermission] =
@@ -30,7 +35,6 @@ const CameraScreen = () => {
   const { startCountdown, resetCountdown } = useCountdownStore(
     (state) => state
   );
-  const navigation = useNavigation();
   const { isVideoProcessing, setIsVideoProcessing } = useVideoProcessingStore(
     (state) => state
   );
