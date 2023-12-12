@@ -1,6 +1,8 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Video, ResizeMode } from "expo-av";
 import ScreenDark from "../components/ScreenDark";
+import ScreenContainer from "../components/ScreenContainer";
+import ActionButton from "../components/ActionButton";
 
 const LoadVideoScreen = () => {
   return (
@@ -13,7 +15,14 @@ const LoadVideoScreen = () => {
         isLooping
         shouldPlay
       />
-      <ScreenDark></ScreenDark>
+      <ScreenDark>
+        <ScreenContainer>
+            <Text>Video Grabado</Text>
+            <Text>Desea procesarlo?</Text>
+            <ActionButton name="continue" onPress={() => undefined} />
+            <ActionButton name="tryAgaint" onPress={() => undefined} />
+        </ScreenContainer>
+      </ScreenDark>
     </View>
   );
 };
