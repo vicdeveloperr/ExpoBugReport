@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Video, ResizeMode } from "expo-av";
 import ScreenDark from "../components/ScreenDark";
 import ScreenContainer from "../components/ScreenContainer";
@@ -6,25 +6,55 @@ import ActionButton from "../components/ActionButton";
 
 const LoadVideoScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Video
         source={{
           uri: "https://player.vimeo.com/external/467436330.sd.mp4?s=76304706368278640ac086aa2232c50327b2491e&profile_id=165&oauth2_token_id=57447761",
         }}
+        style={styles.video}
         resizeMode={ResizeMode.STRETCH}
         isLooping
         shouldPlay
       />
-      <ScreenDark>
-        <ScreenContainer>
-            <Text>Video Grabado</Text>
-            <Text>Desea procesarlo?</Text>
-            <ActionButton name="continue" onPress={() => undefined} />
-            <ActionButton name="tryAgaint" onPress={() => undefined} />
+      <ScreenDark stylesView={{ alignItems: "stretch" }}>
+        <ScreenContainer styles={{ justifyContent: "space-around" }}>
+          <View>
+            <Text style={styles.text}>Video Grabado</Text>
+            <Text style={[styles.text, styles.subtext]}>Desea procesarlo?</Text>
+          </View>
+          <View>
+            <ActionButton
+              name="continue"
+              onPress={() => undefined}
+            />
+            <ActionButton
+              name="tryAgaint"
+              onPress={() => undefined}
+            />
+          </View>
         </ScreenContainer>
       </ScreenDark>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  video: {
+    width: "100%",
+    height: "100%",
+  },
+  text: {
+    fontSize: 25,
+    color: "#ffffff",
+    textAlign: "center",
+  },
+  subtext: {
+    color: "#ffffff",
+    fontWeight: "100",
+  },
+});
 
 export default LoadVideoScreen;
