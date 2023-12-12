@@ -18,15 +18,17 @@ interface FormattedIconProps {
     | "reload"
     | "check";
   size?: "big" | "medium" | "small";
+  color?: string;
 }
-const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
+const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size, color }) => {
   const iconSize = size === "medium" ? 57 : size === "small" ? 44 : 74;
+  const iconColor = color ? color : primaryColor;
   if (name === "camera") {
     return (
       <MaterialIcons
         name="camera"
         size={iconSize}
-        color={primaryColor}
+        color={iconColor}
       />
     );
   } else if (name === "back") {
@@ -34,7 +36,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
       <AntDesign
         name="back"
         size={iconSize}
-        color={primaryColor}
+        color={iconColor}
       />
     );
   } else if (name === "play" || name === "pause") {
@@ -42,7 +44,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
       <Feather
         name={name}
         size={iconSize}
-        color={primaryColor}
+        color={iconColor}
       />
     );
   } else if (name === "camera-reverse-outline") {
@@ -50,7 +52,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
       <Ionicons
         name="camera-reverse-outline"
         size={iconSize}
-        color={primaryColor}
+        color={iconColor}
       />
     );
   } else if (name === "reload") {
@@ -58,7 +60,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
       <Ionicons
         name="reload"
         size={iconSize}
-        color="white"
+        color={iconColor}
       />
     );
   } else if (name === "check") {
@@ -66,7 +68,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
       <AntDesign
         name="check"
         size={24}
-        color={primaryColor}
+        color={iconColor}
       />
     );
   } else {
@@ -74,7 +76,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
       <Entypo
         name={name}
         size={iconSize}
-        color={primaryColor}
+        color={iconColor}
       />
     );
   }
