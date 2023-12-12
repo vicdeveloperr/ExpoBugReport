@@ -67,7 +67,7 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size, color }) => {
     return (
       <AntDesign
         name="check"
-        size={24}
+        size={iconSize}
         color={iconColor}
       />
     );
