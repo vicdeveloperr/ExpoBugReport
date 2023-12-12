@@ -21,7 +21,7 @@ interface FormattedIconProps {
   color?: string;
 }
 const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size, color }) => {
-  const iconSize = size === "medium" ? 57 : size === "small" ? 44 : 74;
+  const iconSize = size === "medium" ? 57 : size === "small" ? 34 : 74;
   const iconColor = color ? color : primaryColor;
   if (name === "camera") {
     return (
