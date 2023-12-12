@@ -15,7 +15,8 @@ interface FormattedIconProps {
     | "pause"
     | "play"
     | "camera-reverse-outline"
-    | "reload";
+    | "reload"
+    | "check";
   size?: "big" | "medium" | "small";
 }
 const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
@@ -52,10 +53,22 @@ const FormattedIcon: React.FC<FormattedIconProps> = ({ name, size }) => {
         color={primaryColor}
       />
     );
-  } else if(name === "reload") {
+  } else if (name === "reload") {
     return (
-      <Ionicons name="reload" size={iconSize} color="white" />
-    )
+      <Ionicons
+        name="reload"
+        size={iconSize}
+        color="white"
+      />
+    );
+  } else if (name === "check") {
+    return (
+      <AntDesign
+        name="check"
+        size={24}
+        color={primaryColor}
+      />
+    );
   } else {
     return (
       <Entypo
