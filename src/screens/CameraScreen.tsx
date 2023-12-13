@@ -76,8 +76,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
         })
         .then(({ uri }) => {
           stopRecording();
-          uploadVideo(uri);
-          setIsVideoProcessing(true);
+          navigation.navigate("loadVideo");
           console.log("Video grabado:", uri);
         })
         .catch((error) => {
