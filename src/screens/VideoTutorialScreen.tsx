@@ -15,7 +15,7 @@ import {
 import ScreenDark from "../components/ScreenDark";
 import ProcessingVideo from "../components/ProcessingVideo";
 
-type VideoTutorialScreenProps = {
+export type VideoTutorialScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
 };
 
