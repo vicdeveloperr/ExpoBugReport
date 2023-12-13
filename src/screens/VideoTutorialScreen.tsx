@@ -15,11 +15,11 @@ import {
 import ScreenDark from "../components/ScreenDark";
 import ProcessingVideo from "../components/ProcessingVideo";
 
-type VideoTutorialProps = {
+type VideoTutorialScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
 };
 
-const VideoTutorialScreen: React.FC<VideoTutorialProps> = ({ navigation }) => {
+const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({ navigation }) => {
   const { isBtnPlayVisible, toggleBtnPlay } = useBtnPlayModalStore(
     (state) => state
   );
