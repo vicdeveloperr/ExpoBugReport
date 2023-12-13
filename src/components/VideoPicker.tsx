@@ -24,8 +24,7 @@ const VideoPicker: React.FC<VideoPickerProps> = ({ navigation }) => {
         const video = result.assets[0];
         console.log("Información del video seleccionado:", result);
         if (video.duration && video.duration < 10000) {
-          uploadVideo(video.uri);
-          setIsVideoProcessing(true);
+          navigation.navigate("loadVideo");
         } else {
           alert("El vídeo seleccionado debe durar menos de 10 segundos.");
         }
