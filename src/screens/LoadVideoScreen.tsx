@@ -33,7 +33,7 @@ const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
             />
             <ActionButton
               name="tryAgaint"
-              onPress={() => navigation.navigate("camera")}
+              onPress={() => navigation.goBack()}
             />
           </View>
         </ScreenContainer>
