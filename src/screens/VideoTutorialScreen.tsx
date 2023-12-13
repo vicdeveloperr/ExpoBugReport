@@ -19,7 +19,9 @@ export type VideoTutorialScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
 };
 
-const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({ navigation }) => {
+const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
+  navigation,
+}) => {
   const { isBtnPlayVisible, toggleBtnPlay } = useBtnPlayModalStore(
     (state) => state
   );
@@ -39,7 +41,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({ navigation })
     <ScreenContainer styles={styles.container}>
       <VideoTutorialPlayer />
       <View style={styles.buttonsContainer}>
-        <VideoPicker />
+        <VideoPicker navigation={navigation} />
         <View style={styles.buttonOpenCameraContainer}>
           <TouchableOpacity onPress={openCamera}>
             <FormattedIcon
