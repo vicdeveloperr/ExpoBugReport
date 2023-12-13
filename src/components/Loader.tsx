@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ProgressBar from "react-native-progress/Bar";
+import { View, Text } from "react-native";
+import { ScreenContainer } from "react-native-screens";
 
 interface LoaderProps {
   complete: boolean;
@@ -17,6 +19,17 @@ const Loader: React.FC<LoaderProps> = ({ complete }) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  return (
+    <ScreenContainer>
+      <Text>Cargando...</Text>
+      <ProgressBar
+        progress={progress}
+        width={200}
+        height={20}
+      />
+    </ScreenContainer>
+  );
 };
 
 export default Loader;
