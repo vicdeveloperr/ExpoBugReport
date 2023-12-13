@@ -5,8 +5,12 @@ import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
 import uploadVideo from "../utils/uploadVideo";
 import { useVideoProcessingStore } from "../stateManagement/stores";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { VideoTutorialScreenProps } from "../screens/VideoTutorialScreen";
 
-const VideoPicker: React.FC = () => {
+type VideoPickerProps = VideoTutorialScreenProps;
+
+const VideoPicker: React.FC<VideoPickerProps> = ({ navigation }) => {
   const { setIsVideoProcessing } = useVideoProcessingStore((state) => state);
   const pickVideo = async () => {
     try {
