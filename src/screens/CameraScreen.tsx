@@ -19,7 +19,6 @@ import ScreenDark from "../components/ScreenDark";
 import ProcessingVideo from "../components/ProcessingVideo";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
-import Loader from "../components/Loader";
 
 interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
@@ -95,63 +94,57 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   };
 
   if (statusCameraPermission && statusMicrophonePermission) {
-    if (!isVideoProcessing) {
-      return (
-        <>
-          <Camera
-            style={{ flex: 1 }}
-            ref={cameraRef}
-            type={cameraType}
-          >
-            <ScreenContainer styles={styles.cameraContentContainer}>
-              <View style={styles.topButtonsContainer}>
-                <TouchableOpacity
-                  onPress={() => navigation.goBack()}
-                  disabled={isRecording}
-                >
-                  <FormattedIcon
-                    name="back"
-                    size="small"
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() =>
-                    setCameraType(
-                      cameraType === "front"
-                        ? CameraType.back
-                        : CameraType.front
-                    )
-                  }
-                  disabled={isRecording}
-                >
-                  <FormattedIcon
-                    name="camera-reverse-outline"
-                    size="small"
-                  />
-                </TouchableOpacity>
-              </View>
+    return (
+      <>
+        <Camera
+          style={{ flex: 1 }}
+          ref={cameraRef}
+          type={cameraType}
+        >
+          <ScreenContainer styles={styles.cameraContentContainer}>
+            <View style={styles.topButtonsContainer}>
               <TouchableOpacity
-                onPress={isRecording ? stopRecording : startRecording}
+                onPress={() => navigation.goBack()}
+                disabled={isRecording}
               >
-                {isRecording ? (
-                  <FormattedIcon name="controller-stop" />
-                ) : (
-                  <FormattedIcon name="controller-record" />
-                )}
+                <FormattedIcon
+                  name="back"
+                  size="small"
+                />
               </TouchableOpacity>
-            </ScreenContainer>
-          </Camera>
-          {isVideoProcessing && <ProcessingVideo />}
-          {isTimerVisible && (
-            <ScreenDark>
-              <CameraCountdownModal />
-            </ScreenDark>
-          )}
-        </>
-      );
-    } else {
-      return <Loader complete={false} />;
-    }
+              <TouchableOpacity
+                onPress={() =>
+                  setCameraType(
+                    cameraType === "front" ? CameraType.back : CameraType.front
+                  )
+                }
+                disabled={isRecording}
+              >
+                <FormattedIcon
+                  name="camera-reverse-outline"
+                  size="small"
+                />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={isRecording ? stopRecording : startRecording}
+            >
+              {isRecording ? (
+                <FormattedIcon name="controller-stop" />
+              ) : (
+                <FormattedIcon name="controller-record" />
+              )}
+            </TouchableOpacity>
+          </ScreenContainer>
+        </Camera>
+        {isVideoProcessing && <ProcessingVideo />}
+        {isTimerVisible && (
+          <ScreenDark>
+            <CameraCountdownModal />
+          </ScreenDark>
+        )}
+      </>
+    );
   } else {
     return <View></View>;
   }
