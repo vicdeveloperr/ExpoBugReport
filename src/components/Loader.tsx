@@ -14,10 +14,12 @@ interface LoaderProps {
 const Loader: React.FC<LoaderProps> = ({ complete }) => {
   const [progress, setProgress] = useState(0);
 
+  useEffect(() => {
+    setProgress(1);
+  }, [complete]);
+
   useInterval(() => {
-    if (complete) {
-      setProgress(1);
-    } else if (progress < 0.85) {
+    if (progress < 0.85) {
       setProgress((state) => state + 0.1);
     }
   }, 300);
