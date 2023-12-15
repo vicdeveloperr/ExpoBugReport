@@ -29,10 +29,11 @@ const Loader: React.FC<LoaderProps> = ({ complete }) => {
       <ScreenContainer styles={styles.ScreenContainer}>
         <Text style={[styles.text, paragraph]}>Cargando...</Text>
         <ProgressBar
-          progress={progress}
+          indeterminate={true}
           width={null}
-          height={20}
+          height={10}
           color={primaryColor}
+          animationType="timing"
         />
       </ScreenContainer>
     </ScreenDark>
