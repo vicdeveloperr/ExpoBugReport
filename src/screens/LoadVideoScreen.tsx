@@ -5,10 +5,14 @@ import ScreenContainer from "../components/ScreenContainer";
 import ActionButton from "../components/ActionButton";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
+import { useState } from "react";
+
 interface LoadVideoScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "loadVideo">;
 }
 const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <View style={styles.container}>
       <Video
