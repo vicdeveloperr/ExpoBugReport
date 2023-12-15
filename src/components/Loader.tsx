@@ -13,7 +13,11 @@ const Loader: React.FC<LoaderProps> = ({ complete }) => {
   const [progress, setProgress] = useState(0);
 
   useInterval(() => {
-    setProgress(state => (state + 0.05) % 1);
+    if (complete) {
+      setProgress(1);
+    } else if (progress < 0.85) {
+      setProgress((state) => state + 0.1);
+    }
   }, 300);
 
   return (
