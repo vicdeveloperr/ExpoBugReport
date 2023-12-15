@@ -6,6 +6,7 @@ import ActionButton from "../components/ActionButton";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
 import { useState } from "react";
+import Loader from "../components/Loader";
 
 interface LoadVideoScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "loadVideo">;
@@ -14,36 +15,41 @@ const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <View style={styles.container}>
-      <Video
-        source={{
-          uri: "https://player.vimeo.com/external/467436330.sd.mp4?s=76304706368278640ac086aa2232c50327b2491e&profile_id=165&oauth2_token_id=57447761",
-        }}
-        style={styles.video}
-        resizeMode={ResizeMode.STRETCH}
-        isLooping
-        onLoad={() => setIsLoading(false)}
-        shouldPlay
-      />
-      <ScreenDark stylesView={{ alignItems: "stretch" }}>
-        <ScreenContainer styles={{ justifyContent: "space-around" }}>
-          <View>
-            <Text style={styles.text}>Video Grabado</Text>
-            <Text style={[styles.text, styles.subtext]}>Desea procesarlo?</Text>
-          </View>
-          <View>
-            <ActionButton
-              name="continue"
-              onPress={() => undefined}
-            />
-            <ActionButton
-              name="tryAgaint"
-              onPress={() => navigation.goBack()}
-            />
-          </View>
-        </ScreenContainer>
-      </ScreenDark>
-    </View>
+    <>
+      <View style={styles.container}>
+        <Video
+          source={{
+            uri: "https://player.vimeo.com/external/467436330.sd.mp4?s=76304706368278640ac086aa2232c50327b2491e&profile_id=165&oauth2_token_id=57447761",
+          }}
+          style={styles.video}
+          resizeMode={ResizeMode.STRETCH}
+          isLooping
+          onLoad={() => setIsLoading(false)}
+          shouldPlay
+        />
+        <ScreenDark stylesView={{ alignItems: "stretch" }}>
+          <ScreenContainer styles={{ justifyContent: "space-around" }}>
+            <View>
+              <Text style={styles.text}>Video Grabado</Text>
+              <Text style={[styles.text, styles.subtext]}>
+                Desea procesarlo?
+              </Text>
+            </View>
+            <View>
+              <ActionButton
+                name="continue"
+                onPress={() => undefined}
+              />
+              <ActionButton
+                name="tryAgaint"
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          </ScreenContainer>
+        </ScreenDark>
+      </View>
+      {isLoading && <Loader complete={!isLoading} />}
+    </>
   );
 };
 
