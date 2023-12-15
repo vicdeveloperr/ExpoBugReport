@@ -5,7 +5,7 @@ import ScreenContainer from "./ScreenContainer";
 import ScreenDark from "./ScreenDark";
 import { useInterval } from "usehooks-ts";
 import { primaryColor, darkColor } from "../utils/colors";
-import centerViewContentStyle from "../utils/centerViewContentStyle";
+import { paragraph } from "../utils/genericStyles";
 
 interface LoaderProps {
   complete: boolean;
@@ -25,7 +25,7 @@ const Loader: React.FC<LoaderProps> = ({ complete }) => {
   return (
     <ScreenDark stylesView={styles.ScreenDark}>
       <ScreenContainer styles={styles.ScreenContainer}>
-        <Text style={styles.text}>Cargando...</Text>
+        <Text style={[styles.text, paragraph]}>Cargando...</Text>
         <ProgressBar
           progress={progress}
           width={null}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    marginBottom: 9
+    marginBottom: 9,
   },
 });
 
