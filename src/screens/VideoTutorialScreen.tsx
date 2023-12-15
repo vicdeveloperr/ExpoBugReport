@@ -6,7 +6,7 @@ import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
-import centerViewContentStyle from "../utils/centerViewContentStyle";
+import { centerViewContentStyle } from "../utils/genericStyles";
 import {
   useBtnPlayModalStore,
   useVideoPlayerStore,
