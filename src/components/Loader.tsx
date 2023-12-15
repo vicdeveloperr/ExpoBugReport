@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProgressBar from "react-native-progress/Bar";
 import { View, Text } from "react-native";
-import { ScreenContainer } from "react-native-screens";
+import ScreenContainer from "./ScreenContainer";
 import ScreenDark from "./ScreenDark";
 
 interface LoaderProps {
