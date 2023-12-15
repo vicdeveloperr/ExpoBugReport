@@ -22,6 +22,7 @@ const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
         style={styles.video}
         resizeMode={ResizeMode.STRETCH}
         isLooping
+        onLoad={() => setIsLoading(false)}
         shouldPlay
       />
       <ScreenDark stylesView={{ alignItems: "stretch" }}>
