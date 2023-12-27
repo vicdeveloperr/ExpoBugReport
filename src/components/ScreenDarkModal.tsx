@@ -10,12 +10,15 @@ const ScreenDarkModal: React.FC<ScreenDarkProps> = ({
   stylesView,
 }) => {
   return (
-    <Modal
-      visible={true}
-      animationType="fade"
-    >
-      <View style={[styles.modal, stylesView]}>{children}</View>
-    </Modal>
+    <View style={[styles.modal, stylesView]}>
+      <Modal
+        visible={true}
+        animationType="fade"
+        transparent={true}
+      >
+        {children}
+      </Modal>
+    </View>
   );
 };
 
