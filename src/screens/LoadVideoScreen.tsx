@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Video, ResizeMode } from "expo-av";
-import ScreenDark from "../components/ScreenDark";
+import ScreenDark from "../components/ScreenDarkModal";
 import ScreenContainer from "../components/ScreenContainer";
 import ActionButton from "../components/ActionButton";
 import { StackNavigationProp } from "@react-navigation/stack";

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProgressBar from "react-native-progress/Bar";
 import { StyleSheet, Text } from "react-native";
 import ScreenContainer from "./ScreenContainer";
-import ScreenDark from "./ScreenDark";
+import ScreenDark from "./ScreenDarkModal";
 import { useInterval } from "usehooks-ts";
 import { primaryColor, darkColor } from "../utils/colors";
 import { paragraph } from "../utils/genericStyles";

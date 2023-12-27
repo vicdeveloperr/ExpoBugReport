@@ -1,6 +1,6 @@
 import { Modal, View, Text, StyleSheet } from "react-native";
 import { darkColor } from "../utils/colors";
-import ScreenDark from "./ScreenDark";
+import ScreenDark from "./ScreenDarkModal";
 
 const ProcessingVideo: React.FC = () => {
   return (
