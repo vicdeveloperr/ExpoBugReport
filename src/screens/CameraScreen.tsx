@@ -109,7 +109,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
               )
             }
             onRecordingToggle={isRecording ? stopRecording : startRecording}
-            isRecording
+            isRecording={isRecording}
           />
         </Camera>
         {isTimerVisible && <CameraCountdownModal />}
@@ -121,7 +121,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  camera: { flex: 1 }
-})
+  camera: { flex: 1 },
+});
 
 export default CameraScreen;
