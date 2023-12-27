@@ -18,6 +18,7 @@ import uploadVideo from "../utils/uploadVideo";
 import ScreenDark from "../components/ScreenDarkModal";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
+import CameraControls from "../components/camerascreen/CameraControls";
 
 interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
@@ -100,41 +101,16 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
           ref={cameraRef}
           type={cameraType}
         >
-          <ScreenContainer styles={styles.cameraContentContainer}>
-            <View style={styles.topButtonsContainer}>
-              <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                disabled={isRecording}
-              >
-                <FormattedIcon
-                  name="back"
-                  size="small"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  setCameraType(
-                    cameraType === "front" ? CameraType.back : CameraType.front
-                  )
-                }
-                disabled={isRecording}
-              >
-                <FormattedIcon
-                  name="camera-reverse-outline"
-                  size="small"
-                />
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-              onPress={isRecording ? stopRecording : startRecording}
-            >
-              {isRecording ? (
-                <FormattedIcon name="controller-stop" />
-              ) : (
-                <FormattedIcon name="controller-record" />
-              )}
-            </TouchableOpacity>
-          </ScreenContainer>
+          <CameraControls
+            onBackPress={() => navigation.goBack()}
+            onCameraSwitchPress={() =>
+              setCameraType(
+                cameraType === "front" ? CameraType.back : CameraType.front
+              )
+            }
+            onRecordingToggle={isRecording ? stopRecording : startRecording}
+            isRecording
+          />
         </Camera>
         {isTimerVisible && (
           <ScreenDark>
