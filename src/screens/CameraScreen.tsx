@@ -16,7 +16,6 @@ import {
 } from "../stateManagement/stores";
 import uploadVideo from "../utils/uploadVideo";
 import ScreenDark from "../components/ScreenDarkModal";
-import ProcessingVideo from "../components/ProcessingVideo";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/StackNavigator";
 
@@ -137,7 +136,6 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
             </TouchableOpacity>
           </ScreenContainer>
         </Camera>
-        {isVideoProcessing && <ProcessingVideo />}
         {isTimerVisible && (
           <ScreenDark>
             <CameraCountdownModal />
