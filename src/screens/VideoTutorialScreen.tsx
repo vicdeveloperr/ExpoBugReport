@@ -13,7 +13,6 @@ import {
   useVideoProcessingStore,
 } from "../stateManagement/stores";
 import ScreenDark from "../components/ScreenDarkModal";
-import ProcessingVideo from "../components/ProcessingVideo";
 
 export type VideoTutorialScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -62,7 +61,6 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
           </TouchableOpacity>
         </ScreenDark>
       )}
-      {isVideoProcessing && <ProcessingVideo />}
     </ScreenContainer>
   );
 };
