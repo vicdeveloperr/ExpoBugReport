@@ -4,14 +4,14 @@ import ScreenContainer from "../ScreenContainer";
 
 interface CameraControlsProps {
   onBackPress: () => void;
-  onCameraSwitch: () => void;
+  onCameraSwitchPress: () => void;
   onRecordingToggle: () => void;
   isRecording: boolean;
 }
 
 const CameraControls: React.FC<CameraControlsProps> = ({
   onBackPress,
-  onCameraSwitch,
+  onCameraSwitchPress,
   onRecordingToggle,
   isRecording,
 }) => {
@@ -19,7 +19,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
     <ScreenContainer styles={styles.cameraContentContainer}>
       <View style={styles.topButtonsContainer}>
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={onBackPress}
           disabled={isRecording}
         >
           <FormattedIcon
@@ -28,11 +28,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            setCameraType(
-              cameraType === "front" ? CameraType.back : CameraType.front
-            )
-          }
+          onPress={onCameraSwitchPress}
           disabled={isRecording}
         >
           <FormattedIcon
@@ -41,7 +37,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={isRecording ? stopRecording : startRecording}>
+      <TouchableOpacity onPress={onRecordingToggle}>
         {isRecording ? (
           <FormattedIcon name="controller-stop" />
         ) : (
