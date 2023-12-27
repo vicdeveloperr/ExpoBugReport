@@ -49,7 +49,7 @@ const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
           </ScreenContainer>
         </View>
       </View>
-      {isLoading && <Loader complete={!isLoading} />}
+      {isLoading && <Loader />}
     </>
   );
 };
