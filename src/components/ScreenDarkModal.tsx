@@ -12,7 +12,7 @@ const ScreenDarkModal: React.FC<ScreenDarkProps> = ({
   transparent,
 }) => {
   return (
-    <View style={[styles.modal, stylesView]}>
+    <View style={[styles.bgDark, stylesView]}>
       <Modal
         visible={true}
         animationType="fade"
@@ -24,8 +24,8 @@ const ScreenDarkModal: React.FC<ScreenDarkProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  modal: {
+export const styles = StyleSheet.create({
+  bgDark: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.7)",
     display: "flex",
