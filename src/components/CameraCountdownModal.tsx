@@ -1,21 +1,17 @@
-import { Modal, View, Text, StyleSheet } from "react-native";
-import { useState, useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { primaryColor } from "../utils/colors";
 import { useCountdownStore } from "../stateManagement/stores";
+import ScreenDarkModal from "./ScreenDarkModal";
 
 const CameraCountdownModal: React.FC = () => {
   const { countdown } = useCountdownStore((state) => state);
 
   return (
-    <Modal
-      visible={true}
-      animationType="slide"
-      transparent
-    >
+    <ScreenDarkModal transparent>
       <View style={styles.container}>
         <Text style={styles.timer}>{countdown}</Text>
       </View>
-    </Modal>
+    </ScreenDarkModal>
   );
 };
 
