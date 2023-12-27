@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Video, ResizeMode } from "expo-av";
-import ScreenDark from "../components/ScreenDarkModal";
+import { styles as ScreenDarkModalStyles } from "../components/ScreenDarkModal";
 import ScreenContainer from "../components/ScreenContainer";
 import ActionButton from "../components/ActionButton";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -27,7 +27,8 @@ const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
           onLoad={() => setIsLoading(false)}
           shouldPlay
         />
-        <ScreenDark stylesView={{ alignItems: "stretch" }}>
+        <View style={[ScreenDarkModalStyles.bgDark, { alignItems: "stretch" }]}
+         >
           <ScreenContainer styles={{ justifyContent: "space-around" }}>
             <View>
               <Text style={styles.text}>Video Grabado</Text>
@@ -46,7 +47,7 @@ const LoadVideoScreen: React.FC<LoadVideoScreenProps> = ({ navigation }) => {
               />
             </View>
           </ScreenContainer>
-        </ScreenDark>
+        </View>
       </View>
       {isLoading && <Loader complete={!isLoading} />}
     </>
