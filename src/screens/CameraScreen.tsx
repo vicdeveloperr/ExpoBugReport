@@ -97,7 +97,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
     return (
       <>
         <Camera
-          style={{ flex: 1 }}
+          style={styles.camera}
           ref={cameraRef}
           type={cameraType}
         >
@@ -119,5 +119,9 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
     return <View></View>;
   }
 };
+
+const styles = StyleSheet.create({
+  camera: { flex: 1 }
+})
 
 export default CameraScreen;
