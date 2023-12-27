@@ -9,7 +9,7 @@ import {
 import { Camera, CameraType } from "expo-camera";
 import FormattedIcon from "../components/FormattedIcon";
 import ScreenContainer from "../components/ScreenContainer";
-import CameraCountdownModal from "../components/CameraCountdownModal";
+import CameraCountdownModal from "../components/camerascreen/CameraCountdownModal";
 import {
   useCountdownStore,
   useVideoProcessingStore,
