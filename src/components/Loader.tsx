@@ -33,6 +33,8 @@ const Loader: React.FC<LoaderProps> = ({ complete }) => {
             indeterminate={true}
             width={null}
             height={10}
+            borderRadius={0}
+            borderWidth={0}
             color={primaryColor}
             animationType="timing"
           />
@@ -56,6 +58,8 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     backgroundColor: whiteColor,
+    borderRadius: 10,
+    overflow: "hidden",
   },
 });
 
