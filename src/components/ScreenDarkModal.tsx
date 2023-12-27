@@ -3,18 +3,20 @@ import type { StyleProp, ViewStyle } from "react-native";
 interface ScreenDarkProps {
   children: React.ReactNode;
   stylesView?: StyleProp<ViewStyle>;
+  transparent?: boolean;
 }
 
 const ScreenDarkModal: React.FC<ScreenDarkProps> = ({
   children,
   stylesView,
+  transparent,
 }) => {
   return (
     <View style={[styles.modal, stylesView]}>
       <Modal
         visible={true}
         animationType="fade"
-        transparent={true}
+        transparent={transparent !== undefined ? transparent : true}
       >
         {children}
       </Modal>
