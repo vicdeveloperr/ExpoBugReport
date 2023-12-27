@@ -120,20 +120,4 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   }
 };
 
-const styles = StyleSheet.create({
-  buttonGoBack: {
-    alignSelf: "flex-start",
-  },
-  cameraContentContainer: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  topButtonsContainer: {
-    width: "100%",
-    justifyContent: "space-between",
-    flexDirection: "row",
-  },
-});
-
 export default CameraScreen;
