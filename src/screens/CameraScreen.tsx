@@ -112,11 +112,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
             isRecording
           />
         </Camera>
-        {isTimerVisible && (
-          <ScreenDark>
-            <CameraCountdownModal />
-          </ScreenDark>
-        )}
+        {isTimerVisible && <CameraCountdownModal />}
       </>
     );
   } else {
