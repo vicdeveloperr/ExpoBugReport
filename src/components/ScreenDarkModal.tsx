@@ -5,7 +5,7 @@ interface ScreenDarkProps {
   stylesView?: StyleProp<ViewStyle>;
 }
 
-const ScreenDark: React.FC<ScreenDarkProps> = ({ children, stylesView }) => {
+const ScreenDarkModal: React.FC<ScreenDarkProps> = ({ children, stylesView }) => {
   return <View style={[styles.modal, stylesView]}>{children}</View>;
 };
 
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-export default ScreenDark;
+export default ScreenDarkModal;
