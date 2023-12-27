@@ -7,23 +7,7 @@ import { useInterval } from "usehooks-ts";
 import { primaryColor, darkColor, whiteColor } from "../utils/colors";
 import { paragraph } from "../utils/genericStyles";
 
-interface LoaderProps {
-  complete: boolean;
-}
-
-const Loader: React.FC<LoaderProps> = ({ complete }) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    setProgress(1);
-  }, [complete]);
-
-  useInterval(() => {
-    if (progress < 0.85) {
-      setProgress((state) => state + 0.1);
-    }
-  }, 300);
-
+const Loader = () => {
   return (
     <ScreenDarkModal stylesView={styles.ScreenDark}>
       <ScreenContainer styles={styles.ScreenContainer}>
