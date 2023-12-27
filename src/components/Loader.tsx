@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import ProgressBar from "react-native-progress/Bar";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import ScreenContainer from "./ScreenContainer";
 import ScreenDark from "./ScreenDarkModal";
 import { useInterval } from "usehooks-ts";
-import { primaryColor, darkColor } from "../utils/colors";
+import { primaryColor, darkColor, whiteColor } from "../utils/colors";
 import { paragraph } from "../utils/genericStyles";
 
 interface LoaderProps {
@@ -28,13 +28,15 @@ const Loader: React.FC<LoaderProps> = ({ complete }) => {
     <ScreenDark stylesView={styles.ScreenDark}>
       <ScreenContainer styles={styles.ScreenContainer}>
         <Text style={[styles.text, paragraph]}>Cargando...</Text>
-        <ProgressBar
-          indeterminate={true}
-          width={null}
-          height={10}
-          color={primaryColor}
-          animationType="timing"
-        />
+        <View style={styles.progressBarContainer}>
+          <ProgressBar
+            indeterminate={true}
+            width={null}
+            height={10}
+            color={primaryColor}
+            animationType="timing"
+          />
+        </View>
       </ScreenContainer>
     </ScreenDark>
   );
@@ -51,6 +53,9 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     marginBottom: 9,
+  },
+  progressBarContainer: {
+    backgroundColor: whiteColor,
   },
 });
 
