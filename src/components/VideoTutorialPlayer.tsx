@@ -6,7 +6,13 @@ import {
   useVideoPlayerStore,
 } from "../stateManagement/stores";
 
-const VideoTutorialPlayer: React.FC = () => {
+interface VideoTutorialPlayerProps {
+  onLoadComplete: () => void;
+}
+
+const VideoTutorialPlayer: React.FC<VideoTutorialPlayerProps> = ({
+  onLoadComplete,
+}) => {
   const videoRef = useRef<Video>(null);
   const { isPlaying, setPlaying } = useVideoPlayerStore((state) => state);
   const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
@@ -37,6 +43,7 @@ const VideoTutorialPlayer: React.FC = () => {
       <Video
         resizeMode={ResizeMode.STRETCH}
         ref={videoRef}
+        onLoad={onLoadComplete}
         source={{
           uri: "https://player.vimeo.com/external/467436330.sd.mp4?s=76304706368278640ac086aa2232c50327b2491e&profile_id=165&oauth2_token_id=57447761",
         }}
