@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
 import ProgressBar from "react-native-progress/Bar";
 import { StyleSheet, Text, View } from "react-native";
 import ScreenContainer from "./ScreenContainer";
 import ScreenDarkModal from "./ScreenDarkModal";
-import { useInterval } from "usehooks-ts";
 import { primaryColor, darkColor, whiteColor } from "../utils/colors";
 import { paragraph } from "../utils/genericStyles";
 
-const Loader = () => {
+const Loader: React.FC = () => {
   return (
     <ScreenDarkModal stylesView={styles.ScreenDark}>
       <ScreenContainer styles={styles.ScreenContainer}>
