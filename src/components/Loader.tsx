@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   ScreenDark: {
     alignItems: "stretch",
     backgroundColor: darkColor,
+    zIndex: 2,
   },
   ScreenContainer: {
     justifyContent: "center",
