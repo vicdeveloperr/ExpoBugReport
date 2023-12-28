@@ -11,6 +11,7 @@ import {
   useVideoPlayerStore,
 } from "../stateManagement/stores";
 import ScreenDark from "../components/ScreenDarkModal";
+import Loader from "../components/Loader";
 
 export interface VideoTutorialScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -23,7 +24,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
     (state) => state
   );
   const { setPlaying } = useVideoPlayerStore((state) => state);
-
+  
   function openCamera(): void {
     navigation.navigate("camera");
   }
@@ -34,31 +35,34 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   }
 
   return (
-    <ScreenContainer styles={styles.container}>
-      <VideoTutorialPlayer />
-      <View style={styles.buttonsContainer}>
-        <VideoPicker navigation={navigation} />
-        <View style={styles.buttonOpenCameraContainer}>
-          <TouchableOpacity onPress={openCamera}>
-            <FormattedIcon
-              size="big"
-              name="camera"
-            />
-          </TouchableOpacity>
+    <>
+      <ScreenContainer styles={styles.container}>
+        <VideoTutorialPlayer />
+        <View style={styles.buttonsContainer}>
+          <VideoPicker navigation={navigation} />
+          <View style={styles.buttonOpenCameraContainer}>
+            <TouchableOpacity onPress={openCamera}>
+              <FormattedIcon
+                size="big"
+                name="camera"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      {/* Botón de play */}
-      {isBtnPlayVisible && (
-        <ScreenDark>
-          <TouchableOpacity
-            style={[styles.buttonPlayVideo, centerViewContentStyle]}
-            onPress={playVideo}
-          >
-            <FormattedIcon name="play" />
-          </TouchableOpacity>
-        </ScreenDark>
-      )}
-    </ScreenContainer>
+        {/* Botón de play */}
+        {isBtnPlayVisible && (
+          <ScreenDark>
+            <TouchableOpacity
+              style={[styles.buttonPlayVideo, centerViewContentStyle]}
+              onPress={playVideo}
+            >
+              <FormattedIcon name="play" />
+            </TouchableOpacity>
+          </ScreenDark>
+        )}
+      </ScreenContainer>
+      <Loader></Loader>
+    </>
   );
 };
 
