@@ -39,7 +39,11 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   return (
     <>
       <ScreenContainer styles={styles.container}>
-        <VideoTutorialPlayer />
+        <VideoTutorialPlayer
+          onLoadComplete={() => {
+            setIsLoading(false);
+          }}
+        />
         <View style={styles.buttonsContainer}>
           <VideoPicker navigation={navigation} />
           <View style={styles.buttonOpenCameraContainer}>
@@ -63,7 +67,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
           </ScreenDark>
         )}
       </ScreenContainer>
-      {isLoading && <Loader></Loader>}
+      {isLoading && <Loader />}
     </>
   );
 };
