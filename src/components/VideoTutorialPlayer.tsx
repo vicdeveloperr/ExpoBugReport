@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ResizeMode, Video } from "expo-av";
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { useBtnPlayModalStore } from "../stateManagement/stores";
-import { useVideoPlayerStore } from "../stateManagement/stores";
+import { StyleSheet, TouchableWithoutFeedback } from "react-native";
+import {
+  useBtnPlayModalStore,
+  useVideoPlayerStore,
+} from "../stateManagement/stores";
 
 const VideoTutorialPlayer: React.FC = () => {
   const videoRef = useRef<Video>(null);
@@ -10,17 +12,17 @@ const VideoTutorialPlayer: React.FC = () => {
   const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
 
   useEffect(() => {
-    if (isPlaying && videoRef.current) {
-      videoRef.current.playAsync();
+    if (isPlaying && videoRef.current !== null) {
+      void videoRef.current.playAsync();
     }
   }, [isPlaying, videoRef.current]);
 
-  const togglePlay = () => {
-    if (videoRef.current) {
+  const togglePlay: () => void = () => {
+    if (videoRef.current != null) {
       if (isPlaying) {
-        videoRef.current.pauseAsync();
+        void videoRef.current.pauseAsync();
       } else {
-        videoRef.current.playAsync();
+        void videoRef.current.playAsync();
       }
       setPlaying(!isPlaying);
       toggleBtnPlay();
