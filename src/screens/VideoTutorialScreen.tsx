@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { View, Modal, TouchableOpacity, StyleSheet } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../navigation/StackNavigator";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { type StackNavigationProp } from "@react-navigation/stack";
+import { type RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
 import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
@@ -10,13 +9,12 @@ import { centerViewContentStyle } from "../utils/genericStyles";
 import {
   useBtnPlayModalStore,
   useVideoPlayerStore,
-  useVideoProcessingStore,
 } from "../stateManagement/stores";
 import ScreenDark from "../components/ScreenDarkModal";
 
-export type VideoTutorialScreenProps = {
+export interface VideoTutorialScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
-};
+}
 
 const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   navigation,
@@ -25,13 +23,12 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
     (state) => state
   );
   const { setPlaying } = useVideoPlayerStore((state) => state);
-  const { isVideoProcessing } = useVideoProcessingStore((state) => state);
 
-  function openCamera() {
+  function openCamera(): void {
     navigation.navigate("camera");
   }
 
-  function playVideo() {
+  function playVideo(): void {
     toggleBtnPlay();
     setPlaying(true);
   }
