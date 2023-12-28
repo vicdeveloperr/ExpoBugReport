@@ -1,4 +1,5 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { useState } from "react";
 import { type StackNavigationProp } from "@react-navigation/stack";
 import { type RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
@@ -24,7 +25,8 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
     (state) => state
   );
   const { setPlaying } = useVideoPlayerStore((state) => state);
-  
+  const [isLoading, setIsLoading] = useState(true);
+
   function openCamera(): void {
     navigation.navigate("camera");
   }
@@ -61,7 +63,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
           </ScreenDark>
         )}
       </ScreenContainer>
-      <Loader></Loader>
+      {isLoading && <Loader></Loader>}
     </>
   );
 };
