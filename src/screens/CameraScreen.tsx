@@ -1,23 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Camera, CameraType } from "expo-camera";
-import FormattedIcon from "../components/FormattedIcon";
-import ScreenContainer from "../components/ScreenContainer";
 import CameraCountdownModal from "../components/camerascreen/CameraCountdownModal";
-import {
-  useCountdownStore,
-  useVideoProcessingStore,
-} from "../stateManagement/stores";
-import uploadVideo from "../utils/uploadVideo";
-import ScreenDark from "../components/ScreenDarkModal";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../navigation/StackNavigator";
+import { useCountdownStore } from "../stateManagement/stores";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { RootStackParamList } from "../navigation/StackNavigator";
 import CameraControls from "../components/camerascreen/CameraControls";
 
 interface CameraScreenProps {
@@ -35,14 +22,11 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   const { startCountdown, resetCountdown } = useCountdownStore(
     (state) => state
   );
-  const { isVideoProcessing, setIsVideoProcessing } = useVideoProcessingStore(
-    (state) => state
-  );
   const [cameraType, setCameraType] = useState<CameraType>(CameraType.front);
 
   useEffect(() => {
-    requestCameraPermission();
-    requestMicrophonePermission();
+    void requestCameraPermission();
+    void requestMicrophonePermission();
 
     return () => {
       resetCountdown();
@@ -57,43 +41,49 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, [isRecording]);
 
-  const startRecording = async () => {
-    if (cameraRef.current) {
+  const startRecording: () => void = () => {
+    if (cameraRef.current !== null) {
       setIsTimerVisible(true);
       startCountdown(onFinishCountdown);
 
-      function onFinishCountdown() {
+      function onFinishCountdown(): void {
         setIsTimerVisible(false);
         setRecording(true);
       }
 
-      const recordAsyncResponse = await cameraRef.current
-        .recordAsync({
-          maxDuration: 10,
-        })
-        .then(({ uri }) => {
-          stopRecording();
-          navigation.navigate("loadVideo");
-          console.log("Video grabado:", uri);
-        })
-        .catch((error) => {
-          console.error("Error al iniciar la grabación:", error);
-        });
+      void (async () => {
+        if (cameraRef.current !== null) {
+          await cameraRef.current
+            .recordAsync({
+              maxDuration: 10,
+            })
+            .then(({ uri }) => {
+              stopRecording();
+              navigation.navigate("loadVideo");
+              console.log("Video grabado:", uri);
+            })
+            .catch((error) => {
+              console.error("Error al iniciar la grabación:", error);
+            });
+        }
+      })();
     }
   };
 
-  const stopRecording = async () => {
-    if (cameraRef.current) {
+  const stopRecording: () => void = () => {
+    if (cameraRef.current !== null) {
       cameraRef.current.stopRecording();
       resetCountdown();
       setRecording(false);
     }
   };
 
-  if (statusCameraPermission && statusMicrophonePermission) {
+  if (statusCameraPermission != null && statusMicrophonePermission != null) {
     return (
       <>
         <Camera
@@ -102,12 +92,14 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
           type={cameraType}
         >
           <CameraControls
-            onBackPress={() => navigation.goBack()}
-            onCameraSwitchPress={() =>
+            onBackPress={() => {
+              navigation.goBack();
+            }}
+            onCameraSwitchPress={() => {
               setCameraType(
                 cameraType === "front" ? CameraType.back : CameraType.front
-              )
-            }
+              );
+            }}
             onRecordingToggle={isRecording ? stopRecording : startRecording}
             isRecording={isRecording}
           />
