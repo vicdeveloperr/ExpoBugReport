@@ -6,13 +6,14 @@ import {
 } from "expo-camera";
 import type { CameraType } from "expo-camera";
 import { StyleSheet } from "react-native";
-
+import type { CameraScreenProps } from "../../screens/CameraScreen";
 interface CameraViewProps {
   cameraType: CameraType;
   onCameraReady?: (camera: Camera) => void;
   children: React.ReactNode;
   isCameraPermissionGranted: boolean;
   isMicrophonePermissionGranted: boolean;
+  navigation: CameraScreenProps["navigation"];
 }
 
 const CameraView: React.FC<CameraViewProps> = ({
@@ -21,6 +22,7 @@ const CameraView: React.FC<CameraViewProps> = ({
   children,
   isCameraPermissionGranted,
   isMicrophonePermissionGranted,
+  navigation,
 }) => {
   const camRef = useRef<Camera>(null);
   // const [statusCameraPermission, requestCameraPermission] =
@@ -39,7 +41,7 @@ const CameraView: React.FC<CameraViewProps> = ({
       try {
         void requestMicrophonePermissionsAsync();
       } catch (err) {
-        console.log("Falló al conceder permisos al micrófono", err)
+        console.log("Falló al conceder permisos al micrófono", err);
       }
     }
   }, []);
@@ -55,7 +57,7 @@ const CameraView: React.FC<CameraViewProps> = ({
       </Camera>
     );
   } else {
-    return <></>; // Agregar cuadro de diálogo
+    navigation.navigate("videoTutorial");
   }
 };
 
