@@ -25,11 +25,6 @@ const CameraView: React.FC<CameraViewProps> = ({
   navigation,
 }) => {
   const camRef = useRef<Camera>(null);
-  // const [statusCameraPermission, requestCameraPermission] =
-  //   Camera.useCameraPermissions();
-  // const [statusMicrophonePermission, requestMicrophonePermission] =
-  //   Camera.useMicrophonePermissions();
-
   useEffect(() => {
     if (isCameraPermissionGranted) {
       try {
