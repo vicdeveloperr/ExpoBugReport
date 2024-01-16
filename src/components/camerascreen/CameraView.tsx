@@ -1,7 +1,5 @@
 import { useRef, useEffect } from "react";
-import {
-  Camera,
-} from "expo-camera";
+import { Camera } from "expo-camera";
 import type { CameraType } from "expo-camera";
 import { StyleSheet } from "react-native";
 
@@ -23,11 +21,14 @@ const CameraView: React.FC<CameraViewProps> = ({
     Camera.useMicrophonePermissions();
 
   useEffect(() => {
-    void requestCameraPermission();
-    void requestMicrophonePermission();
+    if (statusCameraPermission != null) {
+      void requestCameraPermission();
+    } else if (statusMicrophonePermission != null) {
+      void requestMicrophonePermission();
+    }
   }, []);
 
-  if ((statusCameraPermission != null) && (statusMicrophonePermission != null)) {
+  if (statusCameraPermission != null && statusMicrophonePermission != null) {
     return (
       <Camera
         ref={camRef}
@@ -37,6 +38,18 @@ const CameraView: React.FC<CameraViewProps> = ({
         {children}
       </Camera>
     );
+  } else if (statusCameraPermission != null) {
+    return (
+      <Camera
+        ref={camRef}
+        style={styles.camera}
+        type={cameraType}
+      >
+        {children}
+      </Camera>
+    );
+  } else {
+    return <></>; // Agregar cuadro de diálogo
   }
 };
 
