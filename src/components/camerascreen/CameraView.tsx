@@ -1,5 +1,9 @@
 import { useRef, useEffect } from "react";
-import { Camera } from "expo-camera";
+import {
+  Camera,
+  requestCameraPermissionsAsync,
+  requestMicrophonePermissionsAsync,
+} from "expo-camera";
 import type { CameraType } from "expo-camera";
 import { StyleSheet } from "react-native";
 
@@ -24,13 +28,21 @@ const CameraView: React.FC<CameraViewProps> = ({
   // const [statusMicrophonePermission, requestMicrophonePermission] =
   //   Camera.useMicrophonePermissions();
 
-  // useEffect(() => {
-  //   if (statusCameraPermission != null) {
-  //     void requestCameraPermission();
-  //   } else if (statusMicrophonePermission != null) {
-  //     void requestMicrophonePermission();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (isCameraPermissionGranted) {
+      try {
+        void requestCameraPermissionsAsync();
+      } catch (err) {
+        console.log("Falló al conceder permisos a la cámara", err);
+      }
+    } else if (isMicrophonePermissionGranted) {
+      try {
+        void requestMicrophonePermissionsAsync();
+      } catch (err) {
+        console.log("Falló al conceder permisos al micrófono", err)
+      }
+    }
+  }, []);
 
   if (isCameraPermissionGranted && isMicrophonePermissionGranted) {
     return (
