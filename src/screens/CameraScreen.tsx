@@ -7,7 +7,7 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import type { RootStackParamList } from "../navigation/StackNavigator";
 import CameraControls from "../components/camerascreen/CameraControls";
 
-interface CameraScreenProps {
+export interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
 }
 
