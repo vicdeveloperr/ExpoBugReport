@@ -1,8 +1,12 @@
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import FormattedIcon from "../FormattedIcon";
 import ScreenContainer from "../ScreenContainer";
+import type { CameraScreenProps } from "../../screens/CameraScreen";
+import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
+import { CameraType } from "expo-camera";
 
 interface CameraControlsProps {
+  navigation: CameraScreenProps["navigation"];
   onBackPress: () => void;
   onCameraSwitchPress: () => void;
   onRecordingToggle: () => void;
@@ -14,12 +18,17 @@ const CameraControls: React.FC<CameraControlsProps> = ({
   onCameraSwitchPress,
   onRecordingToggle,
   isRecording,
+  navigation,
 }) => {
+  const { cameraType, setCameraType } = useCameraTypeStore((state) => state);
+
   return (
     <ScreenContainer styles={styles.cameraContentContainer}>
       <View style={styles.topButtonsContainer}>
         <TouchableOpacity
-          onPress={onBackPress}
+          onPress={() => {
+            navigation.goBack();
+          }}
           disabled={isRecording}
         >
           <FormattedIcon
@@ -28,7 +37,11 @@ const CameraControls: React.FC<CameraControlsProps> = ({
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={onCameraSwitchPress}
+          onPress={() => {
+            const newCameraType =
+              cameraType === "front" ? CameraType.back : CameraType.front;
+            setCameraType(newCameraType);
+          }}
           disabled={isRecording}
         >
           <FormattedIcon
