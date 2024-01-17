@@ -1,12 +1,11 @@
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import FormattedIcon from "../FormattedIcon";
 import ScreenContainer from "../ScreenContainer";
-import type { CameraScreenProps } from "../../screens/CameraScreen";
 import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
 import { CameraType } from "expo-camera";
+import { useNavigation } from "@react-navigation/native";
 
 interface CameraControlsProps {
-  navigation: CameraScreenProps["navigation"];
   onRecordingToggle: () => void;
   isRecording: boolean;
 }
@@ -14,9 +13,9 @@ interface CameraControlsProps {
 const CameraControls: React.FC<CameraControlsProps> = ({
   onRecordingToggle,
   isRecording,
-  navigation,
 }) => {
   const { cameraType, setCameraType } = useCameraTypeStore((state) => state);
+  const navigation = useNavigation();
 
   return (
     <ScreenContainer styles={styles.cameraContentContainer}>
