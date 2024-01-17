@@ -7,15 +7,11 @@ import { CameraType } from "expo-camera";
 
 interface CameraControlsProps {
   navigation: CameraScreenProps["navigation"];
-  onBackPress: () => void;
-  onCameraSwitchPress: () => void;
   onRecordingToggle: () => void;
   isRecording: boolean;
 }
 
 const CameraControls: React.FC<CameraControlsProps> = ({
-  onBackPress,
-  onCameraSwitchPress,
   onRecordingToggle,
   isRecording,
   navigation,
@@ -30,6 +26,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
             navigation.goBack();
           }}
           disabled={isRecording}
+          testID="backButton"
         >
           <FormattedIcon
             name="back"
@@ -42,6 +39,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
               cameraType === "front" ? CameraType.back : CameraType.front;
             setCameraType(newCameraType);
           }}
+          testID="cameraSwitchButton"
           disabled={isRecording}
         >
           <FormattedIcon
@@ -50,13 +48,21 @@ const CameraControls: React.FC<CameraControlsProps> = ({
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={onRecordingToggle}>
-        {isRecording ? (
-          <FormattedIcon name="controller-stop" />
-        ) : (
+      {isRecording ? (
+        <TouchableOpacity
+          onPress={onRecordingToggle}
+          testID="stopRecordButton"
+        >
           <FormattedIcon name="controller-record" />
-        )}
-      </TouchableOpacity>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={onRecordingToggle}
+          testID="recordButton"
+        >
+          <FormattedIcon name="controller-stop" />
+        </TouchableOpacity>
+      )}
     </ScreenContainer>
   );
 };
