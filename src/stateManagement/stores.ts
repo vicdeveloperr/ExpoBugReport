@@ -1,4 +1,4 @@
-export * from "./useCameraStore";
+export * from "./useCameraTypeStore";
 
 import { create } from "zustand";
 
