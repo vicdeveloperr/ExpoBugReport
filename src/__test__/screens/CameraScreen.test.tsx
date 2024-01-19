@@ -3,14 +3,14 @@ import { render, screen } from "@testing-library/react-native";
 import CameraScreen from "../../screens/CameraScreen";
 import { useCountdownStore } from "../../stateManagement/stores";
 
+jest.mock("../../components/camerascreen/CameraControls", () => "View");
+jest.mock("../../components/camerascreen/CameraCoundownModal", () => "View");
+jest.mock("../../components/camerascreen/CameraView", () => "View");
+
 jest.mock("expo-camera", () => ({
   Camera: {
-    useCameraPermissions: () => ({
-      status: "granted",
-    }),
-    useMicrophonePermissions: () => ({
-      status: "granted",
-    }),
+    useCameraPermissions: () => ["granted"],
+    useMicrophonePermissions: () => ["granted"],
   },
 }));
 
