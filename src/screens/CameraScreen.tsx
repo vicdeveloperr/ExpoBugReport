@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import { View } from "react-native";
-import { Camera, CameraType } from "expo-camera";
+import React, { useState, useEffect } from "react";
+import { Camera } from "expo-camera";
 import CameraCountdownModal from "../components/camerascreen/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
 import type { StackNavigationProp } from "@react-navigation/stack";
@@ -13,7 +12,6 @@ export interface CameraScreenProps {
 }
 
 const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
-  const cameraRef = useRef<Camera>(null);
   const [isRecording, setRecording] = useState(false);
   const [statusCameraPermission] = Camera.useCameraPermissions();
   const [statusMicrophonePermission] = Camera.useMicrophonePermissions();
@@ -21,7 +19,6 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   const { startCountdown, resetCountdown } = useCountdownStore(
     (state) => state
   );
-  const [cameraType, setCameraType] = useState<CameraType>(CameraType.front);
 
   useEffect(() => {
     return () => {
@@ -43,7 +40,6 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   }, [isRecording]);
 
   const startRecording: () => void = () => {
-    if (cameraRef.current !== null) {
       setIsTimerVisible(true);
       startCountdown(onFinishCountdown);
 
@@ -51,6 +47,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
         setIsTimerVisible(false);
         setRecording(true);
       }
+      
 
       void (async () => {
         if (cameraRef.current !== null) {
@@ -68,7 +65,6 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
             });
         }
       })();
-    }
   };
 
   const stopRecording: () => void = () => {
@@ -79,34 +75,22 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
     }
   };
 
-  if (statusCameraPermission != null && statusMicrophonePermission != null) {
-    return (
-      <>
-        <CameraView
-          cameraType={cameraType}
-          isCameraPermissionGranted={statusCameraPermission != null}
-          isMicrophonePermissionGranted={statusMicrophonePermission != null}
-          navigation={navigation}
-        >
-          <CameraControls
-            onBackPress={() => {
-              navigation.goBack();
-            }}
-            onCameraSwitchPress={() => {
-              setCameraType(
-                cameraType === "front" ? CameraType.back : CameraType.front
-              );
-            }}
-            onRecordingToggle={isRecording ? stopRecording : startRecording}
-            isRecording={isRecording}
-          />
-        </CameraView>
-        {isTimerVisible && <CameraCountdownModal />}
-      </>
-    );
-  } else {
-    return <View></View>;
-  }
+  return (
+    <>
+      <CameraView
+        cameraType={cameraType}
+        isCameraPermissionGranted={statusCameraPermission != null}
+        isMicrophonePermissionGranted={statusMicrophonePermission != null}
+        navigation={navigation}
+      >
+        <CameraControls
+          onRecordingToggle={isRecording ? stopRecording : startRecording}
+          isRecording={isRecording}
+        />
+      </CameraView>
+      {isTimerVisible && <CameraCountdownModal />}
+    </>
+  );
 };
 
 export default CameraScreen;

@@ -16,6 +16,8 @@ interface CameraViewProps {
   navigation: CameraScreenProps["navigation"];
 }
 
+export let camRef: React.RefObject<Camera>;
+
 const CameraView: React.FC<CameraViewProps> = ({
   cameraType,
   onCameraReady,
@@ -24,7 +26,7 @@ const CameraView: React.FC<CameraViewProps> = ({
   isMicrophonePermissionGranted,
   navigation,
 }) => {
-  const camRef = useRef<Camera>(null);
+  camRef = useRef<Camera>(null);
   useEffect(() => {
     if (isCameraPermissionGranted) {
       try {
