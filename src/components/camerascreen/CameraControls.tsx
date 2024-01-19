@@ -6,6 +6,7 @@ import { CameraType } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
 
 interface CameraControlsProps {
+
   onRecordingToggle: () => void;
   isRecording: boolean;
 }
