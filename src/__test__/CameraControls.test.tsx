@@ -8,14 +8,12 @@ import CameraControls from "../components/camerascreen/CameraControls";
 
 describe("CameraControls", () => {
   function renderComponent(isRecording: boolean): void {
-    const navigation = { navigate: jest.fn() };
     render(
       <CameraControls
         isRecording={isRecording}
         onRecordingToggle={() => {
           isRecording = !isRecording;
         }}
-        navigation={navigation}
       />
     );
   }
