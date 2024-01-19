@@ -10,13 +10,13 @@ export default async function recordVideo(
         maxDuration: 10,
       })
       .then(({ uri }: { uri: string }) => {
-        // stopRecording();
         console.log("Video grabado:", uri);
         return uri;
       })
       .catch((error) => {
         const errorMesage = `Error al iniciar la grabación: ${error}`;
         console.error(errorMesage);
+        return errorMesage;
       });
   }
   return "Error al iniciar la cámara";
