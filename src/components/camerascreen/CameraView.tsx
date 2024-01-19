@@ -4,29 +4,29 @@ import {
   requestCameraPermissionsAsync,
   requestMicrophonePermissionsAsync,
 } from "expo-camera";
-import type { CameraType } from "expo-camera";
 import { StyleSheet } from "react-native";
-import type { CameraScreenProps } from "../../screens/CameraScreen";
+import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
+import { useNavigation } from "@react-navigation/native";
+import type { RootStackParamList } from "../../navigation/StackNavigator";
+import type { NavigationProp } from "@react-navigation/native";
 interface CameraViewProps {
-  cameraType: CameraType;
-  onCameraReady?: (camera: Camera) => void;
   children: React.ReactNode;
   isCameraPermissionGranted: boolean;
   isMicrophonePermissionGranted: boolean;
-  navigation: CameraScreenProps["navigation"];
 }
 
 export let camRef: React.RefObject<Camera>;
 
 const CameraView: React.FC<CameraViewProps> = ({
-  cameraType,
-  onCameraReady,
   children,
   isCameraPermissionGranted,
   isMicrophonePermissionGranted,
-  navigation,
 }) => {
   camRef = useRef<Camera>(null);
+
+  const { cameraType } = useCameraTypeStore((state) => state);
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   useEffect(() => {
     if (isCameraPermissionGranted) {
       try {
