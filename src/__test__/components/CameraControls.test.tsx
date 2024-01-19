@@ -4,7 +4,7 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react-native";
-import CameraControls from "../components/camerascreen/CameraControls";
+import CameraControls from "../../components/camerascreen/CameraControls";
 
 describe("CameraControls", () => {
   function renderComponent(isRecording: boolean): void {

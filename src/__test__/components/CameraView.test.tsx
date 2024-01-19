@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react-native";
-import CameraView from "../components/camerascreen/CameraView";
+import CameraView from "../../components/camerascreen/CameraView";
 import { CameraType } from "expo-camera";
 import { View } from "react-native";
 

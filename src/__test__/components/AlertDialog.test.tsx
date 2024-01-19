@@ -1,6 +1,6 @@
 import "@testing-library/react-native/extend-expect";
 import { render, screen } from "@testing-library/react-native";
-import AlertDialog from "../components/AlertDialog";
+import AlertDialog from "../../components/AlertDialog";
 import { PaperProvider } from "react-native-paper";
 import { Text, Button } from "react-native";
 
