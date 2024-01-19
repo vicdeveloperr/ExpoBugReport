@@ -5,7 +5,9 @@ import { useCountdownStore } from "../stateManagement/stores";
 import type { StackNavigationProp } from "@react-navigation/stack";
 import type { RootStackParamList } from "../navigation/StackNavigator";
 import CameraControls from "../components/camerascreen/CameraControls";
-import CameraView from "../components/camerascreen/CameraView";
+import CameraView, { camRef } from "../components/camerascreen/CameraView";
+import recordVideo from "../utils/recordVideo";
+import stopVideoRecording from "../utils/stopVideoRecording";
 
 export interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
@@ -39,40 +41,29 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
     };
   }, [isRecording]);
 
-  const startRecording: () => void = () => {
-      setIsTimerVisible(true);
-      startCountdown(onFinishCountdown);
+  const startRecording: () => Promise<void> = async () => {
+    setIsTimerVisible(true);
+    startCountdown(onFinishCountdown);
 
-      function onFinishCountdown(): void {
-        setIsTimerVisible(false);
-        setRecording(true);
-      }
-      
+    function onFinishCountdown(): void {
+      setIsTimerVisible(false);
+      setRecording(true);
+    }
 
-      void (async () => {
-        if (cameraRef.current !== null) {
-          await cameraRef.current
-            .recordAsync({
-              maxDuration: 10,
-            })
-            .then(({ uri }) => {
-              stopRecording();
-              navigation.navigate("loadVideo");
-              console.log("Video grabado:", uri);
-            })
-            .catch((error) => {
-              console.error("Error al iniciar la grabación:", error);
-            });
-        }
-      })();
+    await recordVideo(camRef)
+      .then(() => {
+        resetCountdown();
+        setRecording(false);
+      })
+      .catch((err: string) => {
+        console.log(err);
+      });
   };
 
   const stopRecording: () => void = () => {
-    if (cameraRef.current !== null) {
-      cameraRef.current.stopRecording();
-      resetCountdown();
-      setRecording(false);
-    }
+    stopVideoRecording(camRef);
+    resetCountdown();
+    setRecording(false);
   };
 
   return (
