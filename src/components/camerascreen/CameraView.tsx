@@ -1,6 +1,7 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Camera } from "expo-camera";
 import { StyleSheet } from "react-native";
+import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
 interface CameraViewProps {
   children: React.ReactNode;
 }
@@ -9,6 +10,8 @@ export let camRef: React.RefObject<Camera>;
 
 const CameraView: React.FC<CameraViewProps> = ({ children }) => {
   camRef = useRef<Camera>(null);
+
+  const { cameraType } = useCameraTypeStore((state) => state);
 
   const [statusCameraPermissions, requestCameraPermissions] =
     Camera.useCameraPermissions();
