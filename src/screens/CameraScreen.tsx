@@ -7,13 +7,16 @@ import CameraControls from "../components/camerascreen/CameraControls";
 import CameraView, { camRef } from "../components/camerascreen/CameraView";
 import recordVideo from "../utils/recordVideo";
 import stopVideoRecording from "../utils/stopVideoRecording";
+import useCameraRecordingStore from "../stateManagement/useCameraRecordingStore";
 
 export interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
 }
 
 const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
-  const [isRecording, setRecording] = useState(false);
+  const { isRecording, setIsRecording } = useCameraRecordingStore(
+    (state) => state
+  );
   const [isTimerVisible, setIsTimerVisible] = useState(false);
   const { startCountdown, resetCountdown } = useCountdownStore(
     (state) => state
@@ -44,13 +47,13 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
 
     function onFinishCountdown(): void {
       setIsTimerVisible(false);
-      setRecording(true);
+      setIsRecording(true);
     }
 
     await recordVideo(camRef)
       .then(() => {
         resetCountdown();
-        setRecording(false);
+        setIsRecording(false);
       })
       .catch((err: string) => {
         console.log(err);
@@ -60,7 +63,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   const stopRecording: () => void = () => {
     stopVideoRecording(camRef);
     resetCountdown();
-    setRecording(false);
+    setIsRecording(false);
   };
 
   return (
@@ -68,7 +71,6 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
       <CameraView>
         <CameraControls
           onRecordingToggle={isRecording ? stopRecording : startRecording}
-          isRecording={isRecording}
         />
       </CameraView>
       {isTimerVisible && <CameraCountdownModal />}
