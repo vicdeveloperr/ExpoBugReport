@@ -40,7 +40,7 @@ const CameraView: React.FC<CameraViewProps> = ({ children }) => {
         {children}
       </Camera>
     );
-  }
+  } // Renderizar cuadro de diálogo sino se conceden los permisos
 };
 
 const styles = StyleSheet.create({
