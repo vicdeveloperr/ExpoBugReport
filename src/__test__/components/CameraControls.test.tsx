@@ -1,25 +1,25 @@
 import React from "react";
-import {
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react-native";
+import { render, screen, waitFor } from "@testing-library/react-native";
 import CameraControls from "../../components/camerascreen/CameraControls";
+import useCameraRecordingStore from "../../stateManagement/useCameraRecordingStore";
+
+jest.mock("../../stateManagement/useCameraRecordingStore", () => jest.fn());
+
+jest.mock("@react-navigation/native", () => ({
+  useNavigation: () => ({ navigate: jest.fn() }),
+}));
+
+function renderCameraControls(isRecording: boolean): void {
+  useCameraRecordingStore.mockReturnValueOnce({
+    isRecording,
+    setIsRecording: jest.fn(),
+  });
+  render(<CameraControls onRecordingToggle={() => {}} />);
+}
 
 describe("CameraControls", () => {
-  function renderComponent(isRecording: boolean): void {
-    render(
-      <CameraControls
-        isRecording={isRecording}
-        onRecordingToggle={() => {
-          isRecording = !isRecording;
-        }}
-      />
-    );
-  }
-
   it("Renderiza correctamente todos los botones", async () => {
-    renderComponent(false);
+    renderCameraControls(false);
     await waitFor(() => {
       expect(screen.getByTestId("backButton")).toBeTruthy();
       expect(screen.getByTestId("cameraSwitchButton")).toBeTruthy();
@@ -28,7 +28,7 @@ describe("CameraControls", () => {
   });
 
   it("En el momento de la grabación, se muestra botón para detener grabación", async () => {
-    renderComponent(true);
+    renderCameraControls(true);
     await waitFor(() => {
       expect(screen.getByTestId("stopRecordButton")).toBeDefined();
     });
