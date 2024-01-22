@@ -4,17 +4,16 @@ import ScreenContainer from "../ScreenContainer";
 import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
 import { CameraType } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
+import useCameraRecordingStore from "../../stateManagement/useCameraRecordingStore";
 
 interface CameraControlsProps {
-
   onRecordingToggle: () => void;
-  isRecording: boolean;
 }
 
 const CameraControls: React.FC<CameraControlsProps> = ({
   onRecordingToggle,
-  isRecording,
 }) => {
+  const { isRecording } = useCameraRecordingStore((state) => state);
   const { cameraType, setCameraType } = useCameraTypeStore((state) => state);
   const navigation = useNavigation();
 
