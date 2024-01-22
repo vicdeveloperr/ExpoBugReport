@@ -53,14 +53,14 @@ const CameraControls: React.FC<CameraControlsProps> = ({
       {isRecording ? (
         <TouchableOpacity
           onPress={onRecordingToggle}
-          testID="stopRecordButton"
+          testID="recordButton"
         >
           <FormattedIcon name="controller-record" />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
           onPress={onRecordingToggle}
-          testID="recordButton"
+          testID="stopRecordButton"
         >
           <FormattedIcon name="controller-stop" />
         </TouchableOpacity>
