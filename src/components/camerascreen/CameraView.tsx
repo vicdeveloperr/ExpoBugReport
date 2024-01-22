@@ -36,6 +36,7 @@ const CameraView: React.FC<CameraViewProps> = ({ children }) => {
         ref={camRef}
         style={styles.camera}
         type={cameraType}
+        testID="CameraView"
       >
         {children}
       </Camera>

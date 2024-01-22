@@ -19,7 +19,10 @@ const CameraControls: React.FC<CameraControlsProps> = ({
 
   return (
     <ScreenContainer styles={styles.cameraContentContainer}>
-      <View style={styles.topButtonsContainer}>
+      <View
+        testID="CameraControls"
+        style={styles.topButtonsContainer}
+      >
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();

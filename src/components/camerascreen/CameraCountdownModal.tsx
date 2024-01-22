@@ -8,7 +8,10 @@ const CameraCountdownModal: React.FC = () => {
 
   return (
     <ScreenDarkModal transparent>
-      <View style={styles.container}>
+      <View
+        testID="CameraCountdownModal"
+        style={styles.container}
+      >
         <Text style={styles.timer}>{countdown}</Text>
       </View>
     </ScreenDarkModal>
