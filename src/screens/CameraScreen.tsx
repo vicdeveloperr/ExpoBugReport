@@ -69,10 +69,8 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   return (
     <>
       <CameraView
-        cameraType={cameraType}
         isCameraPermissionGranted={statusCameraPermission != null}
         isMicrophonePermissionGranted={statusMicrophonePermission != null}
-        navigation={navigation}
       >
         <CameraControls
           onRecordingToggle={isRecording ? stopRecording : startRecording}
