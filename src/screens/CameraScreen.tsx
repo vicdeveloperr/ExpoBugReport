@@ -41,7 +41,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
     };
   }, [isRecording]);
 
-  const startRecording: () => Promise<void> = async () => {
+  const onStartRecording: () => Promise<void> = async () => {
     setIsTimerVisible(true);
     startCountdown(onFinishCountdown);
 
@@ -60,7 +60,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
       });
   };
 
-  const stopRecording: () => void = () => {
+  const onStopRecording: () => void = () => {
     stopVideoRecording(camRef);
     resetCountdown();
     setIsRecording(false);
@@ -70,7 +70,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
     <>
       <CameraView>
         <CameraControls
-          onRecordingToggle={isRecording ? stopRecording : startRecording}
+          onRecordingToggle={isRecording ? onStopRecording : onStartRecording}
         />
       </CameraView>
       {isTimerVisible && <CameraCountdownModal />}
