@@ -2,6 +2,7 @@ import { create } from "zustand/react";
 
 interface CameraStoreState {
   isRecording: boolean;
+  setIsRecording: (isRecording: boolean) => void;
 }
 
 const useCameraRecordingStore = create<CameraStoreState>((set) => ({
