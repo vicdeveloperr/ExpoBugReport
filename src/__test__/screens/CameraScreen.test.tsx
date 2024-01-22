@@ -1,7 +1,12 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react-native";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  act,
+} from "@testing-library/react-native";
 import CameraScreen from "../../screens/CameraScreen";
-import { useCountdownStore } from "../../stateManagement/stores";
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: () => ({ navigate: jest.fn() }),
@@ -33,8 +38,17 @@ describe("<CameraScreen />", () => {
     });
   });
 
-  it("Al iniciar grabación, CameraScreen inicia el temporizador y muestra CameraCountdownModal", () => {
-    const { startCountdown } = useCountdownStore();
-    expect(startCountdown).toHaveBeenCalled();
+  it("Al iniciar grabación, CameraScreen inicia el temporizador y muestra CameraCountdownModal", async () => {
+    await waitFor(() => {
+      const stopRecordingButton = screen.getByTestId("stopRecordButton");
+
+      act(() => {
+        fireEvent(stopRecordingButton, "press");
+      });
+
+      const timer = screen.getByText("3");
+
+      expect(timer).toBeTruthy();
+    });
   });
 });
