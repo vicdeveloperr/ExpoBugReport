@@ -1,30 +1,42 @@
-import { render, screen } from "@testing-library/react-native";
+import { render, screen, waitFor } from "@testing-library/react-native";
 import CameraView from "../../components/camerascreen/CameraView";
-import { CameraType } from "expo-camera";
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+jest.mock("@react-navigation/native", () => ({
+  useNavigation: () => ({
+    navigate: jest.fn(),
+  }),
+}));
 
 describe("<CameraView />", () => {
-  const navigation = { navigate: jest.fn() };
-
-  beforeEach(() => {
+  const { navigate } = useNavigation();
+  function renderCameraView(
+    isCameraPermissionGranted: boolean,
+    isMicrophonePermissionGranted: boolean
+  ): void {
     render(
       <CameraView
-        isCameraPermissionGranted={false}
-        isMicrophonePermissionGranted={false}
-        cameraType={CameraType.front}
-        navigation={navigation}
+        isCameraPermissionGranted={isCameraPermissionGranted}
+        isMicrophonePermissionGranted={isMicrophonePermissionGranted}
       >
-        <View testID="camera"></View>
+        <View testID="camera">Camera</View>
       </CameraView>
     );
-  });
-  
+  }
+
   it("CameraView se renderiza correctamente", async () => {
-    const camera = screen.getByTestId("camera");
-    expect(camera).toBeDefined();
+    renderCameraView(true, true);
+    await waitFor(() => {
+      const camera = screen.getByTestId("camera");
+      expect(camera).toBeDefined();
+    });
   });
 
-  it("Redirigir al usuario a la página principal, si no se conceden los permisos necesarios", () => {
-    expect(navigation.navigate).toHaveBeenCalled();
+  it("Redirigir al usuario a la página principal, si no se conceden los permisos necesarios", async () => {
+    renderCameraView(false, false);
+    await waitFor(() => {
+      expect(navigate).toHaveBeenCalled();
+    });
   });
 });
