@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Camera } from "expo-camera";
 import CameraCountdownModal from "../components/camerascreen/CameraCountdownModal";
 import { useCountdownStore } from "../stateManagement/stores";
 import type { StackNavigationProp } from "@react-navigation/stack";
@@ -15,8 +14,6 @@ export interface CameraScreenProps {
 
 const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   const [isRecording, setRecording] = useState(false);
-  const [statusCameraPermission] = Camera.useCameraPermissions();
-  const [statusMicrophonePermission] = Camera.useMicrophonePermissions();
   const [isTimerVisible, setIsTimerVisible] = useState(false);
   const { startCountdown, resetCountdown } = useCountdownStore(
     (state) => state
@@ -68,10 +65,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
 
   return (
     <>
-      <CameraView
-        isCameraPermissionGranted={statusCameraPermission != null}
-        isMicrophonePermissionGranted={statusMicrophonePermission != null}
-      >
+      <CameraView>
         <CameraControls
           onRecordingToggle={isRecording ? stopRecording : startRecording}
           isRecording={isRecording}
