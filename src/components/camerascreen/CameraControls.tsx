@@ -5,7 +5,8 @@ import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
 import { CameraType } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
 import useCameraRecordingStore from "../../stateManagement/useCameraRecordingStore";
-
+import useCancelAlertVisibility from "../../stateManagement/useCancelAlertVisibility";
+import type { GestureResponderEvent } from "react-native";
 interface CameraControlsProps {
   onRecordingToggle: () => void;
 }
@@ -16,6 +17,19 @@ const CameraControls: React.FC<CameraControlsProps> = ({
   const { isRecording } = useCameraRecordingStore((state) => state);
   const { cameraType, setCameraType } = useCameraTypeStore((state) => state);
   const navigation = useNavigation();
+  const { setIsCancelAlertVisible } = useCancelAlertVisibility(
+    (state) => state
+  );
+
+  type typeHandlerBackButton = (event: GestureResponderEvent) => void;
+  const handlerBackButton: typeHandlerBackButton = (event) => {
+    if (isRecording) {
+      event.preventDefault();
+      setIsCancelAlertVisible(true);
+    } else {
+      navigation.goBack();
+    }
+  };
 
   return (
     <ScreenContainer styles={styles.cameraContentContainer}>
@@ -24,10 +38,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
         style={styles.topButtonsContainer}
       >
         <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}
-          disabled={isRecording}
+          onPress={handlerBackButton}
           testID="backButton"
         >
           <FormattedIcon

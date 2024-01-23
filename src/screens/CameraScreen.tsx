@@ -23,7 +23,6 @@ const listenNavigateBackEvent: typeListenNavigateBackEvent = (
   navigation.addListener("beforeRemove", (event) => {
     if (isRecording) {
       event.preventDefault();
-      alert("Grabación en curso");
     }
   });
 };
