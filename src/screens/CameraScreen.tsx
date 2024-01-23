@@ -6,6 +6,7 @@ import CameraControls from "../components/camerascreen/CameraControls";
 import CameraView from "../components/camerascreen/CameraView";
 import useRecordingEffects from "../components/camerascreen/hooks/useRecordingEffects";
 import useHandlerStates from "../components/camerascreen/hooks/useHandlerStates";
+import CancelAlertRecording from "../components/camerascreen/CancelAlertRecording";
 
 export interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
@@ -28,7 +29,8 @@ const listenNavigateBackEvent: typeListenNavigateBackEvent = (
 };
 
 const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
-  const { resetCountdown, isRecording, isTimerVisible } = useHandlerStates();
+  const { resetCountdown, isRecording, isTimerVisible, isCancelAlertVisible } =
+    useHandlerStates();
 
   const { onStartRecording, onStopRecording } = useRecordingEffects();
 
@@ -52,6 +54,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
         />
       </CameraView>
       {isTimerVisible && <CameraCountdownModal />}
+      {isCancelAlertVisible && <CancelAlertRecording />}
     </>
   );
 };
