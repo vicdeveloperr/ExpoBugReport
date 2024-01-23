@@ -1,14 +1,19 @@
 import AlertDialog from "../AlertDialog";
 import AlertDialogButton from "../AlertDialogButton";
+import useRecordingEffects from "./hooks/useRecordingEffects";
 
 const ActionButtons: React.FC = () => {
+  const { onStopRecording } = useRecordingEffects();
   return (
     <>
       <AlertDialogButton
         containerStyles={{ marginRight: 10 }}
         text="Continuar"
       />
-      <AlertDialogButton text="Detener" />
+      <AlertDialogButton
+        action={onStopRecording}
+        text="Detener"
+      />
     </>
   );
 };
