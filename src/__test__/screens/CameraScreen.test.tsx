@@ -40,7 +40,7 @@ describe("<CameraScreen />", () => {
 
   it("Al iniciar grabación, CameraScreen inicia el temporizador y muestra CameraCountdownModal", async () => {
     await waitFor(() => {
-      const stopRecordingButton = screen.getByTestId("stopRecordButton");
+      const stopRecordingButton = screen.getByTestId("recordButton");
 
       act(() => {
         fireEvent(stopRecordingButton, "press");

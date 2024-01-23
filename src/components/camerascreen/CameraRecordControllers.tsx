@@ -1,18 +1,20 @@
 import useHandlerStates from "./hooks/useHandlerStates";
 import { TouchableOpacity } from "react-native";
 import FormattedIcon from "../FormattedIcon";
+import useRecordingEffects from "./hooks/useRecordingEffects";
 
 const CameraRecordControllers: React.FC = () => {
-  const { isRecording, setIsRecording } = useHandlerStates();
-
-  function togglerRecording(): void {
-    setIsRecording(!isRecording);
-  }
+  const { isRecording } = useHandlerStates();
+  const { onStopRecording, onStartRecording } = useRecordingEffects();
 
   const testIdValue = isRecording ? "stopRecordButton" : "recordButton";
-  const nameValue: "controller-stop" | "controller-record" = isRecording
+  type typeNameValue = "controller-stop" | "controller-record";
+  const nameValue: typeNameValue = isRecording
     ? "controller-stop"
     : "controller-record";
+  const togglerRecording: () => void = isRecording
+    ? onStopRecording
+    : onStartRecording;
 
   return (
     <TouchableOpacity
