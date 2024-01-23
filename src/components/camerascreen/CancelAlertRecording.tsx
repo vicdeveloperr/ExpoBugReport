@@ -4,7 +4,10 @@ import AlertDialogButton from "../AlertDialogButton";
 const ActionButtons: React.FC = () => {
   return (
     <>
-      <AlertDialogButton text="Continuar" />
+      <AlertDialogButton
+        containerStyles={{ marginRight: 10 }}
+        text="Continuar"
+      />
       <AlertDialogButton text="Detener" />
     </>
   );
