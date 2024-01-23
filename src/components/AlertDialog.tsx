@@ -24,7 +24,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
         >
           <Dialog.Title style={styles.dialogTitle}>{title}</Dialog.Title>
           <Dialog.Content>
-            <Text>{description}</Text>
+            <Text style={styles.dialogDescription}>{description}</Text>
           </Dialog.Content>
           <Dialog.Actions>{DialogActions}</Dialog.Actions>
         </Dialog>
@@ -36,6 +36,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
 const styles = StyleSheet.create({
   dialog: { backgroundColor: darkColor },
   dialogTitle: { color: whiteColor },
+  dialogDescription: { color: whiteColor },
 });
 
 export default AlertDialog;
