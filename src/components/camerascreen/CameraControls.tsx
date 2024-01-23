@@ -16,7 +16,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
     useCameraControlsHandlerStates();
 
   const navigation = useNavigation();
-  
+
   type typeHandlerBackButton = (event: GestureResponderEvent) => void;
   const handlerBackButton: typeHandlerBackButton = (event) => {
     if (isRecording) {
@@ -60,16 +60,16 @@ const CameraControls: React.FC<CameraControlsProps> = ({
       {isRecording ? (
         <TouchableOpacity
           onPress={onRecordingToggle}
-          testID="recordButton"
+          testID="stopRecordButton"
         >
-          <FormattedIcon name="controller-record" />
+          <FormattedIcon name="controller-stop" />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
           onPress={onRecordingToggle}
-          testID="stopRecordButton"
+          testID="recordButton"
         >
-          <FormattedIcon name="controller-stop" />
+          <FormattedIcon name="controller-record" />
         </TouchableOpacity>
       )}
     </ScreenContainer>
