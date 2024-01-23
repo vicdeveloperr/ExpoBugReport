@@ -15,7 +15,7 @@ export default async function recordVideo(
       })
       .catch((error) => {
         const errorMesage = `Error al iniciar la grabación: ${error}`;
-        console.error(errorMesage);
+        console.log(errorMesage);
         return errorMesage;
       });
   }
