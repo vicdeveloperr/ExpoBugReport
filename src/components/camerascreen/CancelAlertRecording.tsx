@@ -1,17 +1,30 @@
 import AlertDialog from "../AlertDialog";
 import AlertDialogButton from "../AlertDialogButton";
+import useHandlerStates from "./hooks/useHandlerStates";
 import useRecordingEffects from "./hooks/useRecordingEffects";
 
 const ActionButtons: React.FC = () => {
   const { onStopRecording } = useRecordingEffects();
+  const { setIsCancelAlertVisible } = useHandlerStates();
+
+  function handlerStopButton(): void {
+    setIsCancelAlertVisible(false);
+    onStopRecording();
+  }
+
+  function handlerContinueButton(): void {
+    setIsCancelAlertVisible(false);
+  }
+
   return (
     <>
       <AlertDialogButton
         containerStyles={{ marginRight: 10 }}
         text="Continuar"
+        action={handlerContinueButton}
       />
       <AlertDialogButton
-        action={onStopRecording}
+        action={handlerStopButton}
         text="Detener"
       />
     </>
