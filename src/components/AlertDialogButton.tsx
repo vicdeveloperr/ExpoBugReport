@@ -5,7 +5,7 @@ interface ActionButtonProps {
   text: string;
 }
 
-const ActionButton: React.FC<ActionButtonProps> = ({ text }) => {
+const AlertDialogButton: React.FC<ActionButtonProps> = ({ text }) => {
   return (
     <TouchableOpacity>
       <Text style={styles.text}>{text}</Text>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActionButton;
+export default AlertDialogButton;
