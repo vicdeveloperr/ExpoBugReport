@@ -1,17 +1,17 @@
 import { Dialog, Portal } from "react-native-paper";
 import { darkColor, whiteColor } from "../utils/colors";
 import ScreenDarkModal from "./ScreenDarkModal";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 interface AlertDialogProps {
   DialogActions: React.ReactNode;
-  DialogContent: React.ReactNode;
+  description: string;
   title: string;
 }
 
 const AlertDialog: React.FC<AlertDialogProps> = ({
   DialogActions,
-  DialogContent,
+  description,
   title,
 }) => {
   return (
@@ -23,7 +23,9 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
           visible
         >
           <Dialog.Title style={styles.dialogTitle}>{title}</Dialog.Title>
-          <Dialog.Content>{DialogContent}</Dialog.Content>
+          <Dialog.Content>
+            <Text>{description}</Text>
+          </Dialog.Content>
           <Dialog.Actions>{DialogActions}</Dialog.Actions>
         </Dialog>
       </ScreenDarkModal>
