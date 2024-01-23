@@ -11,10 +11,14 @@ export interface CameraScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "camera">;
 }
 
-const listenNavigateBackEvent: (
+type typeListenNavigateBackEvent = (
   navigation: CameraScreenProps["navigation"],
   isRecording: boolean
-) => void = (navigation, isRecording) => {
+) => void;
+const listenNavigateBackEvent: typeListenNavigateBackEvent = (
+  navigation,
+  isRecording
+) => {
   navigation.addListener("beforeRemove", (event) => {
     if (isRecording) {
       event.preventDefault();
