@@ -4,14 +4,12 @@ import ScreenDarkModal from "./ScreenDarkModal";
 import { StyleSheet } from "react-native";
 
 interface AlertDialogProps {
-  visible: boolean;
   DialogActions: React.ReactNode;
   DialogContent: React.ReactNode;
   title: string;
 }
 
 const AlertDialog: React.FC<AlertDialogProps> = ({
-  visible,
   DialogActions,
   DialogContent,
   title,
@@ -21,8 +19,8 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
       <ScreenDarkModal>
         <Dialog
           style={styles.dialog}
-          visible={visible}
           dismissable={false}
+          visible
         >
           <Dialog.Title style={styles.dialogTitle}>{title}</Dialog.Title>
           <Dialog.Content>{DialogContent}</Dialog.Content>
