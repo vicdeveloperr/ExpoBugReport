@@ -5,14 +5,16 @@ import type { StyleProp, TextStyle } from "react-native";
 interface ActionButtonProps {
   text: string;
   containerStyles?: StyleProp<TextStyle>;
+  action?: () => void;
 }
 
 const AlertDialogButton: React.FC<ActionButtonProps> = ({
   text,
   containerStyles,
+  action
 }) => {
   return (
-    <TouchableOpacity style={containerStyles}>
+    <TouchableOpacity onPress={action} style={containerStyles}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
