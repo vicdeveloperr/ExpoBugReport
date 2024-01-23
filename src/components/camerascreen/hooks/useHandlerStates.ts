@@ -1,18 +1,21 @@
 import useCameraRecordingStore from "../../../stateManagement/useCameraRecordingStore";
 import { useCountdownStore } from "../../../stateManagement/stores";
-import { useState } from "react";
+import useTimerVisibilityStore from "../../../stateManagement/useTimerVisibilyStore";
+import type { TimerVisibilityStore } from "../../../stateManagement/useTimerVisibilyStore";
 
 type typeUseHandlerStates = () => {
   isRecording: boolean;
   setIsRecording: (isRecording: boolean) => void;
   isTimerVisible: boolean;
-  setIsTimerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTimerVisible: TimerVisibilityStore["setIsTimerVisible"];
   startCountdown: (onFinish?: (() => void) | undefined) => void;
   resetCountdown: () => void;
 };
 
 const useHandlerStates: typeUseHandlerStates = () => {
-  const [isTimerVisible, setIsTimerVisible] = useState(false);
+  const { isTimerVisible, setIsTimerVisible } = useTimerVisibilityStore(
+    (state) => state
+  );
   const { setIsRecording, isRecording } = useCameraRecordingStore(
     (state) => state
   );
