@@ -5,13 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { CameraType } from "expo-camera";
 import type { GestureResponderEvent } from "react-native";
 import useCameraControlsHandlerStates from "./hooks/useCameraControlsHandlerStates";
-interface CameraControlsProps {
-  onRecordingToggle: () => void;
-}
+import CameraRecordControllers from "./CameraRecordControllers";
 
-const CameraControls: React.FC<CameraControlsProps> = ({
-  onRecordingToggle,
-}) => {
+const CameraControls: React.FC = () => {
   const { isRecording, setIsCancelAlertVisible, cameraType, setCameraType } =
     useCameraControlsHandlerStates();
 
@@ -57,21 +53,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
           />
         </TouchableOpacity>
       </View>
-      {isRecording ? (
-        <TouchableOpacity
-          onPress={onRecordingToggle}
-          testID="stopRecordButton"
-        >
-          <FormattedIcon name="controller-stop" />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          onPress={onRecordingToggle}
-          testID="recordButton"
-        >
-          <FormattedIcon name="controller-record" />
-        </TouchableOpacity>
-      )}
+      <CameraRecordControllers />
     </ScreenContainer>
   );
 };
