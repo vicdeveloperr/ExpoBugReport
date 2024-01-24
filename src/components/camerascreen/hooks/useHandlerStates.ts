@@ -1,10 +1,10 @@
 import {
   useCameraRecordingStore,
   useCountdownStore,
+  useTimerVisibilityStore,
+  useCancelAlertVisibility,
 } from "../../../stateManagement/";
-import useTimerVisibilityStore from "../../../stateManagement/useTimerVisibilyStore";
 import type { TimerVisibilityStore } from "../../../stateManagement/useTimerVisibilyStore";
-import useCancelAlertVisibility from "../../../stateManagement/useCancelAlertVisibility";
 import type { CancelAlertVisibility } from "../../../stateManagement/useCancelAlertVisibility";
 
 type typeUseHandlerStates = () => {
@@ -12,7 +12,7 @@ type typeUseHandlerStates = () => {
   setIsRecording: (isRecording: boolean) => void;
   isTimerVisible: boolean;
   setIsTimerVisible: TimerVisibilityStore["setIsTimerVisible"];
-  startCountdown: (onFinish?: (() => void) | undefined) => void;
+  startCountdown: (onFinish: () => void) => void;
   resetCountdown: () => void;
   isCancelAlertVisible: boolean;
   setIsCancelAlertVisible: CancelAlertVisibility["setIsCancelAlertVisible"];
