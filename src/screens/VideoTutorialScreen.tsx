@@ -7,8 +7,7 @@ import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 import { centerViewContentStyle } from "../utils/genericStyles";
-import { useBtnPlayModalStore } from "../stateManagement/useBtnPlayModalStore";
-import { useVideoPlayerStore } from "../stateManagement/useVideoPlayerStore";
+import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement/";
 import ScreenDark from "../components/ScreenDarkModal";
 import Loader from "../components/Loader";
 

@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ResizeMode, Video } from "expo-av";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { useBtnPlayModalStore } from "../stateManagement/useBtnPlayModalStore";
-import { useVideoPlayerStore } from "../stateManagement/useVideoPlayerStore";
+import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement/";
 
 interface VideoTutorialPlayerProps {
   onLoadComplete: () => void;
