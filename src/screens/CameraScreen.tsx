@@ -4,22 +4,8 @@ import type { RootStackParamList } from "../navigation/StackNavigator";
 import CameraControls from "../components/camerascreen/CameraControls";
 import CameraView from "../components/camerascreen/CameraView";
 import useHandlerStates from "../components/camerascreen/hooks/useHandlerStates";
-import { useNavigation } from "@react-navigation/native";
-
-type typeListenNavigateBackEvent = (
-  navigation: CameraScreenNavigator,
-  isRecording: boolean
-) => void;
-const listenNavigateBackEvent: typeListenNavigateBackEvent = (
-  navigation,
-  isRecording
-) => {
-  navigation.addListener("beforeRemove", (event) => {
-    if (isRecording) {
-      event.preventDefault();
-    }
-  });
-};
+import { useListenNavigateBackEvent } from "../components/camerascreen/hooks/useListenBackEvent";
+import type { navigationEvent } from "../types/navigationEvent";
 
 export type CameraScreenNavigator = StackNavigationProp<
   RootStackParamList,
@@ -31,19 +17,19 @@ interface CameraScreenProps {
 
 const CameraScreen: React.FC<CameraScreenProps> = ({ children }) => {
   const { resetCountdown, isRecording } = useHandlerStates();
-  const navigation = useNavigation<CameraScreenNavigator>();
+
+  useListenNavigateBackEvent(onNavigateBack);
+  function onNavigateBack(e: navigationEvent): void {
+    if (isRecording) {
+      e.preventDefault();
+    }
+  }
 
   useEffect(() => {
     return () => {
       resetCountdown();
     };
   }, []);
-
-  useEffect(() => {
-    return () => {
-      listenNavigateBackEvent(navigation, isRecording);
-    };
-  }, [isRecording]);
 
   return (
     <>
