@@ -1,6 +1,4 @@
-import { useState } from "react";
-import useCameraRecordingStore from "../../../stateManagement/useCameraRecordingStore";
-import { useCountdownStore } from "../../../stateManagement/stores";
+import useHandlerStates from "./useHandlerStates";
 import recordVideo from "../../../utils/recordVideo";
 import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
@@ -8,15 +6,11 @@ import stopVideoRecording from "../../../utils/stopVideoRecording";
 type typeUseRecordingEffects = () => {
   onStartRecording: () => Promise<void>;
   onStopRecording: () => void;
-  isTimerVisible: boolean;
 };
 
 const useRecordingEffects: typeUseRecordingEffects = () => {
-  const [isTimerVisible, setIsTimerVisible] = useState(false);
-  const { setIsRecording } = useCameraRecordingStore((state) => state);
-  const { startCountdown, resetCountdown } = useCountdownStore(
-    (state) => state
-  );
+  const { setIsTimerVisible, startCountdown, setIsRecording, resetCountdown } =
+    useHandlerStates();
 
   const onStartRecording: () => Promise<void> = async () => {
     setIsTimerVisible(true);
@@ -43,7 +37,7 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
     setIsRecording(false);
   };
 
-  return { onStartRecording, onStopRecording, isTimerVisible };
+  return { onStartRecording, onStopRecording };
 };
 
 export default useRecordingEffects;

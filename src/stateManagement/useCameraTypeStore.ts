@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { CameraType as CameraOrientation } from "expo-camera";
 import type { CameraType } from "expo-camera";
 
-interface cameraTypeStore {
+export interface cameraTypeStore {
   cameraType: CameraType;
   setCameraType: (newCameraType: CameraType) => void;
 }

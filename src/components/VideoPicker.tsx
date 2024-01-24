@@ -4,7 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
 import uploadVideo from "../utils/uploadVideo";
-import { useVideoProcessingStore } from "../stateManagement/stores";
+import { useVideoProcessingStore } from "../stateManagement";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { VideoTutorialScreenProps } from "../screens/VideoTutorialScreen";
 

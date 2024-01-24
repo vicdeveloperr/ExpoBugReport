@@ -1,21 +1,27 @@
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import FormattedIcon from "../FormattedIcon";
 import ScreenContainer from "../ScreenContainer";
-import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
-import { CameraType } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
-import useCameraRecordingStore from "../../stateManagement/useCameraRecordingStore";
+import { CameraType } from "expo-camera";
+import type { GestureResponderEvent } from "react-native";
+import useCameraControlsHandlerStates from "./hooks/useCameraControlsHandlerStates";
+import CameraRecordControllers from "./CameraRecordControllers";
 
-interface CameraControlsProps {
-  onRecordingToggle: () => void;
-}
+const CameraControls: React.FC = () => {
+  const { isRecording, setIsCancelAlertVisible, cameraType, setCameraType } =
+    useCameraControlsHandlerStates();
 
-const CameraControls: React.FC<CameraControlsProps> = ({
-  onRecordingToggle,
-}) => {
-  const { isRecording } = useCameraRecordingStore((state) => state);
-  const { cameraType, setCameraType } = useCameraTypeStore((state) => state);
   const navigation = useNavigation();
+
+  type typeHandlerBackButton = (event: GestureResponderEvent) => void;
+  const handlerBackButton: typeHandlerBackButton = (event) => {
+    if (isRecording) {
+      event.preventDefault();
+      setIsCancelAlertVisible(true);
+    } else {
+      navigation.goBack();
+    }
+  };
 
   return (
     <ScreenContainer styles={styles.cameraContentContainer}>
@@ -24,10 +30,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
         style={styles.topButtonsContainer}
       >
         <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}
-          disabled={isRecording}
+          onPress={handlerBackButton}
           testID="backButton"
         >
           <FormattedIcon
@@ -50,21 +53,7 @@ const CameraControls: React.FC<CameraControlsProps> = ({
           />
         </TouchableOpacity>
       </View>
-      {isRecording ? (
-        <TouchableOpacity
-          onPress={onRecordingToggle}
-          testID="recordButton"
-        >
-          <FormattedIcon name="controller-record" />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          onPress={onRecordingToggle}
-          testID="stopRecordButton"
-        >
-          <FormattedIcon name="controller-stop" />
-        </TouchableOpacity>
-      )}
+      <CameraRecordControllers />
     </ScreenContainer>
   );
 };

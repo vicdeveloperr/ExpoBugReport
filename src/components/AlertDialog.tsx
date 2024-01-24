@@ -1,34 +1,31 @@
 import { Dialog, Portal } from "react-native-paper";
 import { darkColor, whiteColor } from "../utils/colors";
-import ScreenDarkModal from "./ScreenDarkModal";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 interface AlertDialogProps {
-  visible: boolean;
   DialogActions: React.ReactNode;
-  DialogContent: React.ReactNode;
+  description: string;
   title: string;
 }
 
 const AlertDialog: React.FC<AlertDialogProps> = ({
-  visible,
   DialogActions,
-  DialogContent,
+  description,
   title,
 }) => {
   return (
     <Portal>
-      <ScreenDarkModal>
-        <Dialog
-          style={styles.dialog}
-          visible={visible}
-          dismissable={false}
-        >
-          <Dialog.Title style={styles.dialogTitle}>{title}</Dialog.Title>
-          <Dialog.Content>{DialogContent}</Dialog.Content>
-          <Dialog.Actions>{DialogActions}</Dialog.Actions>
-        </Dialog>
-      </ScreenDarkModal>
+      <Dialog
+        style={styles.dialog}
+        dismissable={false}
+        visible
+      >
+        <Dialog.Title style={styles.dialogTitle}>{title}</Dialog.Title>
+        <Dialog.Content>
+          <Text style={styles.dialogDescription}>{description}</Text>
+        </Dialog.Content>
+        <Dialog.Actions>{DialogActions}</Dialog.Actions>
+      </Dialog>
     </Portal>
   );
 };
@@ -36,6 +33,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
 const styles = StyleSheet.create({
   dialog: { backgroundColor: darkColor },
   dialogTitle: { color: whiteColor },
+  dialogDescription: { color: whiteColor },
 });
 
 export default AlertDialog;

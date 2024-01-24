@@ -2,13 +2,12 @@ import "@testing-library/react-native/extend-expect";
 import { render, screen } from "@testing-library/react-native";
 import AlertDialog from "../../components/AlertDialog";
 import { PaperProvider } from "react-native-paper";
-import { Text, Button } from "react-native";
+import { Button } from "react-native";
 
 describe("<AlertDialog />", () => {
   it("AlertDialog se renderiza correctamente", () => {
     const title = "Grabación en curso";
     const content = "Finalice la grabación, antes de abandonar";
-    const alertDialogContent = <Text>{content}</Text>;
     const alertDialogActions = (
       <>
         <Button title="Continuar" />
@@ -19,8 +18,7 @@ describe("<AlertDialog />", () => {
       <PaperProvider>
         <AlertDialog
           title={title}
-          visible={true}
-          DialogContent={alertDialogContent}
+          description={content}
           DialogActions={alertDialogActions}
         />
       </PaperProvider>

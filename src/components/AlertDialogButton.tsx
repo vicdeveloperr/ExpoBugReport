@@ -1,13 +1,20 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { primaryColor } from "../utils/colors";
+import type { StyleProp, TextStyle } from "react-native";
 
 interface ActionButtonProps {
   text: string;
+  containerStyles?: StyleProp<TextStyle>;
+  action?: () => void;
 }
 
-const ActionButton: React.FC<ActionButtonProps> = ({ text }) => {
+const AlertDialogButton: React.FC<ActionButtonProps> = ({
+  text,
+  containerStyles,
+  action
+}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={action} style={containerStyles}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
@@ -19,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActionButton;
+export default AlertDialogButton;
