@@ -11,7 +11,7 @@ export type CameraScreenNavigator = StackNavigationProp<
   RootStackParamList,
   "camera"
 >;
-interface CameraScreenProps {
+export interface CameraScreenProps {
   children?: React.ReactNode;
 }
 
