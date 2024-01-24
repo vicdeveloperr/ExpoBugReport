@@ -15,6 +15,10 @@ jest.mock("../../components/camerascreen/hooks/useHandlerStates", () =>
   })
 );
 
+jest.mock("../../stateManagement/useCountdownStore", () => () => ({
+  countdown: 3,
+}));
+
 describe("<CameraScreenWithTimerAndAlert />", () => {
   beforeEach(() => {
     const props = {
