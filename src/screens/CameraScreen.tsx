@@ -38,8 +38,15 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (event) => {
+      if (isRecording) {
+        event.preventDefault();
+        alert("Grabación en curso");
+      }
+    });
+
     return () => {
-      listenNavigateBackEvent(navigation, isRecording);
+      unsubscribe();
     };
   }, [isRecording]);
 
