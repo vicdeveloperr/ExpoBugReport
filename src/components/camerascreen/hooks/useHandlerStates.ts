@@ -1,5 +1,7 @@
-import useCameraRecordingStore from "../../../stateManagement/useCameraRecordingStore";
-import { useCountdownStore } from "../../../stateManagement/stores";
+import {
+  useCameraRecordingStore,
+  useCountdownStore,
+} from "../../../stateManagement/";
 import useTimerVisibilityStore from "../../../stateManagement/useTimerVisibilyStore";
 import type { TimerVisibilityStore } from "../../../stateManagement/useTimerVisibilyStore";
 import useCancelAlertVisibility from "../../../stateManagement/useCancelAlertVisibility";

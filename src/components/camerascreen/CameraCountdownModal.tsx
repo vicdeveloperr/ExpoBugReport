@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { primaryColor } from "../../utils/colors";
-import { useCountdownStore } from "../../stateManagement/stores";
+import { useCountdownStore } from "../../stateManagement/useCountdownStore";
 import ScreenDarkModal from "../ScreenDarkModal";
 
 const CameraCountdownModal: React.FC = () => {
