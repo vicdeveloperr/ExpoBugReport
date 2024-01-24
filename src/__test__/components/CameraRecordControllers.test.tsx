@@ -1,16 +1,23 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react-native";
 import CameraRecordControllers from "../../components/camerascreen/CameraRecordControllers";
-import useCameraRecordingStore from "../../stateManagement/useCameraRecordingStore";
+import useHandlerStates from "../../components/camerascreen/hooks/useHandlerStates";
 
-jest.mock("../../stateManagement/useCameraRecordingStore", () => jest.fn());
+jest.mock(
+  "../../components/camerascreen/hooks/useRecordingEffects",
+  () => () => ({ onStopRecording: jest.fn(), onStartRecording: jest.fn() })
+);
+
+jest.mock("../../components/camerascreen/hooks/useHandlerStates.ts", () =>
+  jest.fn()
+);
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: () => ({ navigate: jest.fn() }),
 }));
 
 function renderCameraControlsAndIsRecording(isRecording: boolean): void {
-  useCameraRecordingStore.mockReturnValueOnce({
+  useHandlerStates.mockReturnValueOnce({
     isRecording,
     setIsRecording: jest.fn(),
   });
