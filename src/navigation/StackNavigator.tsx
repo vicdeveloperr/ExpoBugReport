@@ -1,15 +1,16 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import CameraScreen from "../screens/CameraScreen";
 import VideoTutorialScreen from "../screens/VideoTutorialScreen";
 import LoadVideoScreen from "../screens/LoadVideoScreen";
+import { CameraScreenWithTimerAndAlert } from "../components/camerascreen/CameraScreenWithTimerAndAlert";
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export type RootStackParamList = {
   camera: undefined;
   videoTutorial: undefined;
   loadVideo: undefined;
-};
+}; // El tipo del RootStackParamList debe ser un type para que el navegador funcione correctamente.
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -22,7 +23,7 @@ const StackNavigator: React.FC = () => {
       >
         <Stack.Screen
           name="camera"
-          component={CameraScreen}
+          component={CameraScreenWithTimerAndAlert}
         />
         <Stack.Screen
           name="videoTutorial"

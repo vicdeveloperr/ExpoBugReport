@@ -1,18 +1,13 @@
 import React, { useEffect } from "react";
-import CameraCountdownModal from "../components/camerascreen/CameraCountdownModal";
 import type { StackNavigationProp } from "@react-navigation/stack";
 import type { RootStackParamList } from "../navigation/StackNavigator";
 import CameraControls from "../components/camerascreen/CameraControls";
 import CameraView from "../components/camerascreen/CameraView";
 import useHandlerStates from "../components/camerascreen/hooks/useHandlerStates";
-import CancelAlertRecording from "../components/camerascreen/CancelAlertRecording";
-
-export interface CameraScreenProps {
-  navigation: StackNavigationProp<RootStackParamList, "camera">;
-}
+import { useNavigation } from "@react-navigation/native";
 
 type typeListenNavigateBackEvent = (
-  navigation: CameraScreenProps["navigation"],
+  navigation: CameraScreenNavigator,
   isRecording: boolean
 ) => void;
 const listenNavigateBackEvent: typeListenNavigateBackEvent = (
@@ -26,9 +21,17 @@ const listenNavigateBackEvent: typeListenNavigateBackEvent = (
   });
 };
 
-const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
-  const { resetCountdown, isRecording, isTimerVisible, isCancelAlertVisible } =
-    useHandlerStates();
+export type CameraScreenNavigator = StackNavigationProp<
+  RootStackParamList,
+  "camera"
+>;
+interface CameraScreenProps {
+  children?: React.ReactNode;
+}
+
+const CameraScreen: React.FC<CameraScreenProps> = ({ children }) => {
+  const { resetCountdown, isRecording } = useHandlerStates();
+  const navigation = useNavigation<CameraScreenNavigator>();
 
   useEffect(() => {
     return () => {
@@ -47,8 +50,7 @@ const CameraScreen: React.FC<CameraScreenProps> = ({ navigation }) => {
       <CameraView>
         <CameraControls />
       </CameraView>
-      {isTimerVisible && <CameraCountdownModal />}
-      {isCancelAlertVisible && <CancelAlertRecording />}
+      {children}
     </>
   );
 };
