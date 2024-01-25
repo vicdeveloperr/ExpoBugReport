@@ -3,26 +3,32 @@ import VideoPicker from "../VideoPicker";
 import FormattedIcon from "../FormattedIcon";
 import { useNavigation } from "@react-navigation/native";
 import type { VideoTutorialScreenProps } from "../../screens/VideoTutorialScreen";
+import { useBtnPlayModalStore } from "../../stateManagement";
+import BtnPlay from "./BtnPlay";
 
 const VideoTutorialControls: React.FC = () => {
   const navigation = useNavigation<VideoTutorialScreenProps["navigation"]>();
+  const { isBtnPlayVisible } = useBtnPlayModalStore((state) => state);
 
   function openCamera(): void {
     navigation.navigate("camera");
   }
 
   return (
-    <View style={styles.buttonsContainer}>
-      <VideoPicker navigation={navigation} />
-      <View style={styles.buttonOpenCameraContainer}>
-        <TouchableOpacity onPress={openCamera}>
-          <FormattedIcon
-            size="big"
-            name="camera"
-          />
-        </TouchableOpacity>
+    <>
+      <View style={styles.buttonsContainer}>
+        <VideoPicker navigation={navigation} />
+        <View style={styles.buttonOpenCameraContainer}>
+          <TouchableOpacity onPress={openCamera}>
+            <FormattedIcon
+              size="big"
+              name="camera"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+      {isBtnPlayVisible && <BtnPlay />}
+    </>
   );
 };
 

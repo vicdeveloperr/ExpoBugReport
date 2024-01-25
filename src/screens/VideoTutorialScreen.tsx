@@ -4,10 +4,8 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import type { RootStackParamList } from "../navigation/StackNavigator";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
-import { useBtnPlayModalStore } from "../stateManagement/";
 import Loader from "../components/Loader";
 import VideoTutorialControls from "../components/videoTutorialScreen/VideoTutorialControls";
-import BtnPlay from "../components/videoTutorialScreen/BtnPlay";
 
 export interface VideoTutorialScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -16,7 +14,6 @@ export interface VideoTutorialScreenProps {
 const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   navigation,
 }) => {
-  const { isBtnPlayVisible } = useBtnPlayModalStore((state) => state);
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -28,7 +25,6 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
           }}
         />
         <VideoTutorialControls />
-        {isBtnPlayVisible && <BtnPlay />}
       </ScreenContainer>
       {isLoading && <Loader />}
     </>
