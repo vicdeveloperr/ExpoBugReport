@@ -1,20 +1,24 @@
 import { StyleSheet } from "react-native";
-import { useState } from "react";
 import type { StackNavigationProp } from "@react-navigation/stack";
 import type { RootStackParamList } from "../navigation/StackNavigator";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 import Loader from "../components/Loader";
 import VideoTutorialControls from "../components/videoTutorialScreen/VideoTutorialControls";
+import { useLoaderVisibilityStore } from "../stateManagement";
 
-export interface VideoTutorialScreenProps {
-  navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
+export type VideoTutorialNavigationObject = StackNavigationProp<
+  RootStackParamList,
+  "videoTutorial"
+>;
+interface VideoTutorialScreenProps {
+  children?: React.ReactNode;
 }
 
 const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
-  navigation,
+  children,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { setIsLoading } = useLoaderVisibilityStore((state) => state);
 
   return (
     <>
@@ -26,7 +30,8 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
         />
         <VideoTutorialControls />
       </ScreenContainer>
-      {isLoading && <Loader />}
+      <Loader />
+      {children}
     </>
   );
 };
