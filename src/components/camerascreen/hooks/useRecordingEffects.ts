@@ -2,6 +2,8 @@ import useHandlerStates from "./useHandlerStates";
 import recordVideo from "../../../utils/recordVideo";
 import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
+import { useNavigation } from "@react-navigation/native";
+import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
 
 type typeUseRecordingEffects = () => {
   onStartRecording: () => Promise<void>;
@@ -11,6 +13,7 @@ type typeUseRecordingEffects = () => {
 const useRecordingEffects: typeUseRecordingEffects = () => {
   const { setIsTimerVisible, startCountdown, setIsRecording, resetCountdown } =
     useHandlerStates();
+  const { navigate } = useNavigation<CameraScreenNavigator>();
 
   const onStartRecording: () => Promise<void> = async () => {
     setIsTimerVisible(true);
@@ -25,6 +28,7 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
       .then(() => {
         resetCountdown();
         setIsRecording(false);
+        navigate("loadVideo");
       })
       .catch((err: string) => {
         console.log(err);
