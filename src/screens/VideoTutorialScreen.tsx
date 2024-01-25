@@ -1,15 +1,15 @@
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { useState } from "react";
-import { type StackNavigationProp } from "@react-navigation/stack";
-import { type RootStackParamList } from "../navigation/StackNavigator";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { RootStackParamList } from "../navigation/StackNavigator";
 import FormattedIcon from "../components/FormattedIcon";
-import VideoPicker from "../components/VideoPicker";
 import ScreenContainer from "../components/ScreenContainer";
 import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 import { centerViewContentStyle } from "../utils/genericStyles";
 import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement/";
 import ScreenDark from "../components/ScreenDarkModal";
 import Loader from "../components/Loader";
+import VideoTutorialControls from "../components/videoTutorialScreen/VideoTutorialControls";
 
 export interface VideoTutorialScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
@@ -24,10 +24,6 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   const { setPlaying } = useVideoPlayerStore((state) => state);
   const [isLoading, setIsLoading] = useState(true);
 
-  function openCamera(): void {
-    navigation.navigate("camera");
-  }
-
   function playVideo(): void {
     toggleBtnPlay();
     setPlaying(true);
@@ -41,17 +37,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
             setIsLoading(false);
           }}
         />
-        <View style={styles.buttonsContainer}>
-          <VideoPicker navigation={navigation} />
-          <View style={styles.buttonOpenCameraContainer}>
-            <TouchableOpacity onPress={openCamera}>
-              <FormattedIcon
-                size="big"
-                name="camera"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <VideoTutorialControls />
         {/* Botón de play */}
         {isBtnPlayVisible && (
           <ScreenDark>
