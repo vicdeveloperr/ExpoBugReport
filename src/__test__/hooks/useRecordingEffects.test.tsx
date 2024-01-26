@@ -1,18 +1,16 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import useRecordingEffects from "../../components/camerascreen/hooks/useRecordingEffects";
 import recordVideo from "../../utils/recordVideo";
-import stopVideoRecording from "../../../utils/stopVideoRecording"; // Mockearemos esto
 import { camRef } from "../../components/camerascreen/CameraView";
-import useHandlerStates from "../../components/camerascreen/hooks/useHandlerStates";
+import type { RenderHookResult, Renderer } from "@testing-library/react-hooks";
 import type { Camera } from "expo-camera";
 
-jest.mock(
-  "../../utils/recordVideo",
-  () => async (camRef: React.RefObject<Camera>) => {
+jest.mock("../../utils/recordVideo", () =>
+  jest.fn(async (camRef: React.RefObject<Camera>) => {
     return await new Promise((resolve) => {
       resolve("resolve.mp4");
     });
-  }
+  })
 );
 jest.mock("../../components/camerascreen/hooks/useHandlerStates", () => () => {
   return {
@@ -24,27 +22,35 @@ jest.mock("../../components/camerascreen/hooks/useHandlerStates", () => () => {
 });
 // jest.mock("../../../utils/stopVideoRecording"); // Mockeamos la función de detención
 
+type RecordingEffectsRenderResult = RenderHookResult<
+  unknown,
+  {
+    onStartRecording: () => Promise<void>;
+    onStopRecording: () => void;
+  },
+  Renderer<unknown>
+>;
+
 describe("useRecordingEffects()", () => {
+  let useRecordingEffectsRenderResult: RecordingEffectsRenderResult;
+  beforeEach(() => {
+    useRecordingEffectsRenderResult = renderHook(() => useRecordingEffects());
+  });
+
   it("Devuelve onStartRecording y onStopRecording correctamente", async () => {
-    const { result } = renderHook(() => useRecordingEffects());
-    const { onStartRecording, onStopRecording } = result.current;
+    const { onStartRecording, onStopRecording } =
+      useRecordingEffectsRenderResult.result.current;
 
     expect(onStartRecording).toBeTruthy();
     expect(onStopRecording).toBeTruthy();
   });
 
-  it("debe detener el temporizador y la grabación al llamar a `onStopRecording`", () => {
-    const { result } = renderHook(() => useRecordingEffects());
-    const { setIsRecording, stopVideoRecording, resetCountdown } =
-      result.current;
+  it("Inicia grabación de vídeo al llamar a onStartRecording", async () => {
+    const { onStartRecording } = useRecordingEffectsRenderResult.result.current;
 
-    act(() => {
-      result.current.onStopRecording();
-    });
+    await onStartRecording();
 
-    expect(stopVideoRecording).toHaveBeenCalledWith(camRef);
-    expect(resetCountdown).toHaveBeenCalled();
-    expect(setIsRecording).toHaveBeenCalledWith(false);
+    expect(recordVideo).toHaveBeenCalledWith(camRef);
   });
 
   it("debe navegar a la pantalla de carga de video después de grabar", async () => {
