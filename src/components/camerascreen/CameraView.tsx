@@ -2,6 +2,9 @@ import { useRef, useEffect } from "react";
 import { Camera } from "expo-camera";
 import { StyleSheet } from "react-native";
 import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
+import { useNavigation } from "@react-navigation/native";
+import type { CameraScreenNavigator } from "../../screens/CameraScreen";
+
 interface CameraViewProps {
   children: React.ReactNode;
 }
@@ -10,6 +13,7 @@ export let camRef: React.RefObject<Camera>;
 
 const CameraView: React.FC<CameraViewProps> = ({ children }) => {
   camRef = useRef<Camera>(null);
+  const { navigate } = useNavigation<CameraScreenNavigator>();
 
   const { cameraType } = useCameraTypeStore((state) => state);
 
@@ -41,7 +45,7 @@ const CameraView: React.FC<CameraViewProps> = ({ children }) => {
         {children}
       </Camera>
     );
-  } // Renderizar cuadro de diálogo sino se conceden los permisos
+  } else navigate("videoTutorial");
 };
 
 const styles = StyleSheet.create({
