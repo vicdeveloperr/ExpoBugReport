@@ -21,7 +21,7 @@ const CameraView: React.FC<CameraViewProps> = ({ children }) => {
     Camera.useCameraPermissions();
 
   const [statusMicrophonePermissions, requestMicrophonePermissions] =
-    Camera.useCameraPermissions();
+    Camera.useMicrophonePermissions();
 
   useEffect(() => {
     if (statusCameraPermissions === null) {
