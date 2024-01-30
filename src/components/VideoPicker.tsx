@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { View, Button, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { Entypo } from "@expo/vector-icons";
 import FormattedIcon from "./FormattedIcon";
-import uploadVideo from "../utils/uploadVideo";
-import { useVideoProcessingStore } from "../stateManagement";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { VideoTutorialScreenProps } from "../screens/VideoTutorialScreen";
+import { TouchableOpacity, StyleSheet } from "react-native";
 
-type VideoPickerProps = VideoTutorialScreenProps;
-
-const VideoPicker: React.FC<VideoPickerProps> = ({ navigation }) => {
-  const { setIsVideoProcessing } = useVideoProcessingStore((state) => state);
+interface VideoPickerProps {
+  onPressAction: () => Promise<void>;
+}
+const VideoPicker: React.FC<VideoPickerProps> = ({ onPressAction }) => {
   const pickVideo = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -37,7 +31,10 @@ const VideoPicker: React.FC<VideoPickerProps> = ({ navigation }) => {
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={() => pickVideo()}
+      onPress={() => {
+        void onPressAction();
+      }}
+      testID="VideoPicker"
     >
       <FormattedIcon
         size="small"
