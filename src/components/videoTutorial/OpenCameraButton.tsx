@@ -10,7 +10,7 @@ const OpenCameraButton: React.FC<OpenCameraButtonProps> = ({
 }) => {
   return (
     <View style={styles.buttonOpenCameraContainer}>
-      <TouchableOpacity onPress={onPressAction}>
+      <TouchableOpacity onPress={onPressAction} testID="OpenCameraButton">
         <FormattedIcon
           size="big"
           name="camera"
