@@ -13,10 +13,12 @@ import Loader from "../components/Loader";
 
 export interface VideoTutorialScreenProps {
   navigation: StackNavigationProp<RootStackParamList, "videoTutorial">;
+  children: React.ReactElement;
 }
 
 const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   navigation,
+  children,
 }) => {
   const { isBtnPlayVisible, toggleBtnPlay } = useBtnPlayModalStore(
     (state) => state
@@ -36,7 +38,8 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   return (
     <>
       <ScreenContainer styles={styles.container}>
-        <VideoTutorialPlayer
+        {children}
+        {/* <VideoTutorialPlayer
           onLoadComplete={() => {
             setIsLoading(false);
           }}
@@ -52,7 +55,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
             </TouchableOpacity>
           </View>
         </View>
-        {/* Botón de play */}
+        
         {isBtnPlayVisible && (
           <ScreenDark>
             <TouchableOpacity
@@ -62,7 +65,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
               <FormattedIcon name="play" />
             </TouchableOpacity>
           </ScreenDark>
-        )}
+        )} */}
       </ScreenContainer>
       {isLoading && <Loader />}
     </>
