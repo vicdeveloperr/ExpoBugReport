@@ -5,15 +5,15 @@ import { centerViewContentStyle } from "../../utils/genericStyles";
 import type { GestureResponderEvent } from "react-native";
 
 interface BtnPlayProps {
-    playVideo: (event: GestureResponderEvent) => void;
+  onPressAction: (event?: GestureResponderEvent) => void;
 }
 
-const BtnPlay: React.FC<BtnPlayProps> = ({playVideo}) => {
+const BtnPlay: React.FC<BtnPlayProps> = ({ onPressAction }) => {
   return (
     <ScreenDarkModal>
       <TouchableOpacity
         style={[styles.buttonPlayVideo, centerViewContentStyle]}
-        onPress={playVideo}
+        onPress={onPressAction}
       >
         <FormattedIcon name="play" />
       </TouchableOpacity>
