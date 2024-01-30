@@ -14,6 +14,7 @@ const BtnPlay: React.FC<BtnPlayProps> = ({ onPressAction }) => {
       <TouchableOpacity
         style={[styles.buttonPlayVideo, centerViewContentStyle]}
         onPress={onPressAction}
+        testID="BtnPlay"
       >
         <FormattedIcon name="play" />
       </TouchableOpacity>
