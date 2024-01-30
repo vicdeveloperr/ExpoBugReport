@@ -2,13 +2,13 @@ import { create } from "zustand";
 
 interface VideoPickerErrorDialogVisibilityStore {
   isVideoPickerErrorDialogVisible: boolean;
-  updateVideoPickerErrorDialogVisibility: (isVisible: boolean) => void;
+  setVideoPickerErrorDialogVisibility: (isVisible: boolean) => void;
 }
 
 const useVideoPickerErrorDialogVisibilityStore =
   create<VideoPickerErrorDialogVisibilityStore>()((set) => ({
     isVideoPickerErrorDialogVisible: false,
-    updateVideoPickerErrorDialogVisibility: (isVisible: boolean) => {
+    setVideoPickerErrorDialogVisibility: (isVisible: boolean) => {
       set(() => ({ isVideoPickerErrorDialogVisible: isVisible }));
     },
   }));
