@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import type { VideoTutorialScreenProps } from "../screens/VideoTutorialScreen";
 import { useVideoPickerErrorDialogVisibilityStore } from "../stateManagement";
 
-const pickVideo: () => Promise<void> = async () => {
+const pickVideoFromGallery: () => Promise<void> = async () => {
   type navigationObject = VideoTutorialScreenProps["navigation"];
   const { navigate } = useNavigation<navigationObject>();
   const { setVideoPickerErrorDialogVisibility } =
@@ -31,4 +31,4 @@ const pickVideo: () => Promise<void> = async () => {
   }
 };
 
-export default pickVideo();
+export default pickVideoFromGallery;
