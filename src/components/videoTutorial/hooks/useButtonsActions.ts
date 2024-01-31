@@ -3,11 +3,17 @@ import {
   useBtnPlayModalStore,
   useVideoPlayerStore,
 } from "../../../stateManagement";
+import type { VideoTutorialNavigationObject } from "../../../screens/VideoTutorialScreen";
 
-export const useButtonsActions = () => {
+type ButtonsActions = () => {
+  openCamera: () => void;
+  playVideo: () => void;
+};
+
+export const useButtonsActions: ButtonsActions = () => {
   const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
   const { setPlaying } = useVideoPlayerStore((state) => state);
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<VideoTutorialNavigationObject>();
 
   function openCamera(): void {
     navigate("camera");
@@ -17,4 +23,6 @@ export const useButtonsActions = () => {
     toggleBtnPlay();
     setPlaying(true);
   }
+
+  return { playVideo, openCamera };
 };
