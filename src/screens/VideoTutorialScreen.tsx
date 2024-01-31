@@ -2,10 +2,17 @@ import { useState } from "react";
 import ScreenContainer from "../components/ScreenContainer";
 import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement/";
 import Loader from "../components/Loader";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { RootStackParamList } from "../navigation/StackNavigator";
 
-export interface VideoTutorialScreenProps {
+interface VideoTutorialScreenProps {
   children: React.ReactElement;
 }
+
+export type VideoTutorialNavigationObject = StackNavigationProp<
+  RootStackParamList,
+  "videoTutorial"
+>;
 
 const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
   children,
