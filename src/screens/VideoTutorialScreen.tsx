@@ -29,33 +29,7 @@ const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
     <>
       <ScreenContainer styles={styles.container}>
         {children}
-        {/* <VideoTutorialPlayer
-          onLoadComplete={() => {
-            setIsLoading(false);
-          }}
-        />
-        <View style={styles.buttonsContainer}>
-          <VideoPicker navigation={navigation} />
-          <View style={styles.buttonOpenCameraContainer}>
-            <TouchableOpacity onPress={openCamera}>
-              <FormattedIcon
-                size="big"
-                name="camera"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
         
-        {isBtnPlayVisible && (
-          <ScreenDark>
-            <TouchableOpacity
-              style={[styles.buttonPlayVideo, centerViewContentStyle]}
-              onPress={playVideo}
-            >
-              <FormattedIcon name="play" />
-            </TouchableOpacity>
-          </ScreenDark>
-        )} */}
       </ScreenContainer>
       {isLoading && <Loader />}
     </>
