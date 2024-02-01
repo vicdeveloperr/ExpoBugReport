@@ -1,13 +1,8 @@
 import * as ImagePicker from "expo-image-picker";
-import { useNavigation } from "@react-navigation/native";
-import { useVideoPickerErrorDialogVisibilityStore } from "../stateManagement";
-import type { VideoTutorialNavigationObject } from "../components/videoTutorial/VideoTutorial";
 
-const pickVideoFromGallery: () => Promise<void> = async () => {
-  const { navigate } = useNavigation<VideoTutorialNavigationObject>();
-  const { setVideoPickerErrorDialogVisibility } =
-    useVideoPickerErrorDialogVisibilityStore();
+type video = ImagePicker.ImagePickerAsset;
 
+const pickVideoFromGallery: () => Promise<video | unknown> = async () => {
   try {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Videos,
@@ -20,13 +15,13 @@ const pickVideoFromGallery: () => Promise<void> = async () => {
       console.log("Información del video seleccionado:", result);
 
       if (video.duration != null && video.duration < 10000) {
-        navigate("loadVideo");
+        return video;
       } else {
-        setVideoPickerErrorDialogVisibility(true);
+        throw new Error("El video seleccionado dura más de 10 segundos");
       }
     }
-  } catch (error) {
-    console.error("Error al seleccionar el video:", error);
+  } catch (err) {
+    return err;
   }
 };
 
