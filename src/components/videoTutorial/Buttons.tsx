@@ -5,15 +5,13 @@ import OpenCameraButton from "./OpenCameraButton";
 import { View, StyleSheet } from "react-native";
 import pickVideoFromGallery from "../../utils/pickVideoFromGallery";
 import {
-  useBtnPlayModalStore,
   useVideoTutorialLoadingState,
 } from "../../stateManagement";
 import { useButtonsActions } from "./hooks/useButtonsActions";
 
 const Buttons: React.FC = () => {
-  const { isBtnPlayVisible } = useBtnPlayModalStore((state) => state);
   const { setIsLoading } = useVideoTutorialLoadingState();
-  const {openCamera, playVideo} = useButtonsActions();
+  const { openCamera, playVideo } = useButtonsActions();
 
   return (
     <>
@@ -26,7 +24,7 @@ const Buttons: React.FC = () => {
         <VideoPicker onPressAction={pickVideoFromGallery} />
         <OpenCameraButton onPressAction={openCamera} />
       </View>
-      {isBtnPlayVisible && <BtnPlay onPressAction={playVideo} />}
+      <BtnPlay onPressAction={playVideo} />
     </>
   );
 };
