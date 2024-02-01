@@ -1,11 +1,10 @@
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
-import type { VideoTutorialScreenProps } from "../screens/VideoTutorialScreen";
 import { useVideoPickerErrorDialogVisibilityStore } from "../stateManagement";
+import type { VideoTutorialNavigationObject } from "../components/videoTutorial/VideoTutorial";
 
 const pickVideoFromGallery: () => Promise<void> = async () => {
-  type navigationObject = VideoTutorialScreenProps["navigation"];
-  const { navigate } = useNavigation<navigationObject>();
+  const { navigate } = useNavigation<VideoTutorialNavigationObject>();
   const { setVideoPickerErrorDialogVisibility } =
     useVideoPickerErrorDialogVisibilityStore();
 
