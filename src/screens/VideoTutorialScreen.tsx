@@ -1,39 +1,21 @@
-import ScreenContainer from "../components/ScreenContainer";
-import Loader from "../components/Loader";
-import type { StackNavigationProp } from "@react-navigation/stack";
-import type { RootStackParamList } from "../navigation/StackNavigator";
-import { StyleSheet } from "react-native";
+import Buttons from "../components/videoTutorial/Buttons";
+import VideoTutorial from "../components/videoTutorial/VideoTutorial";
+import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 import { useVideoTutorialLoadingState } from "../stateManagement";
 
-interface VideoTutorialScreenProps {
-  children: React.ReactElement;
-}
-
-export type VideoTutorialNavigationObject = StackNavigationProp<
-  RootStackParamList,
-  "videoTutorial"
->;
-
-const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
-  children,
-}) => {
-  const { isLoading } = useVideoTutorialLoadingState((state) => state);
+const VideoTutorialScreen: React.FC = () => {
+  const { setIsLoading } = useVideoTutorialLoadingState();
 
   return (
-    <>
-      <ScreenContainer styles={styles.container}>{children}</ScreenContainer>
-      {isLoading && <Loader />}
-    </>
+    <VideoTutorial>
+      <VideoTutorialPlayer
+        onLoadComplete={() => {
+          setIsLoading(false);
+        }}
+      />
+      <Buttons />
+    </VideoTutorial>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    position: "relative",
-    paddingTop: 0,
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-});
 
 export default VideoTutorialScreen;
