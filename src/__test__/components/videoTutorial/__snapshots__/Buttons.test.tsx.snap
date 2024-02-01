@@ -1,96 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Buttons /> Renderiza todo correctamente 1`] = `
-[
-  <View
-    pointerEvents="box-none"
-    style={
-      [
-        {
-          "overflow": "hidden",
-        },
-        {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-      ]
+<View
+  style={
+    {
+      "display": "flex",
+      "justifyContent": "center",
+      "width": "100%",
+      "zIndex": 1,
     }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "marginLeft": 9,
+        "opacity": 1,
+        "position": "absolute",
+        "zIndex": 1,
+      }
+    }
+    testID="VideoPicker"
   >
-    <ViewManagerAdapter_ExpoVideoView
-      accessibilityState={
-        {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
-        }
-      }
-      accessible={true}
-      focusable={true}
-      onClick={[Function]}
-      onError={[Function]}
-      onFullscreenUpdate={[Function]}
-      onLoad={[Function]}
-      onLoadStart={[Function]}
-      onReadyForDisplay={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      onStatusUpdate={[Function]}
-      resizeMode="mock"
-      source={
-        {
-          "headers": undefined,
-          "overridingExtension": null,
-          "uri": "https://player.vimeo.com/external/467436330.sd.mp4?s=76304706368278640ac086aa2232c50327b2491e&profile_id=165&oauth2_token_id=57447761",
-        }
-      }
-      status={
-        {
-          "isLooping": true,
-          "shouldPlay": true,
-        }
-      }
-      style={
-        [
-          {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          undefined,
-        ]
-      }
-      videoStyle={
-        [
-          {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          undefined,
-        ]
-      }
-    />
-  </View>,
+    <Text />
+  </View>
   <View
     style={
       {
+        "alignItems": "center",
         "display": "flex",
-        "justifyContent": "center",
         "width": "100%",
-        "zIndex": 1,
       }
     }
   >
@@ -124,63 +90,13 @@ exports[`<Buttons /> Renderiza todo correctamente 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "marginLeft": 9,
           "opacity": 1,
-          "position": "absolute",
-          "zIndex": 1,
         }
       }
-      testID="VideoPicker"
+      testID="OpenCameraButton"
     >
       <Text />
     </View>
-    <View
-      style={
-        {
-          "alignItems": "center",
-          "display": "flex",
-          "width": "100%",
-        }
-      }
-    >
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "opacity": 1,
-          }
-        }
-        testID="OpenCameraButton"
-      >
-        <Text />
-      </View>
-    </View>
-  </View>,
-]
+  </View>
+</View>
 `;
