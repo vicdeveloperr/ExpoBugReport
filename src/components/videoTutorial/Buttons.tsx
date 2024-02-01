@@ -4,12 +4,14 @@ import BtnPlay from "./BtnPlay";
 import OpenCameraButton from "./OpenCameraButton";
 import { View, StyleSheet } from "react-native";
 import pickVideoFromGallery from "../../utils/pickVideoFromGallery";
-import {
-  useVideoTutorialLoadingState,
-} from "../../stateManagement";
+import { useVideoTutorialLoadingState } from "../../stateManagement";
 import { useButtonsActions } from "./hooks/useButtonsActions";
 
-const Buttons: React.FC = () => {
+interface ButtonsProps {
+  children?: React.ReactNode;
+}
+
+const Buttons: React.FC<ButtonsProps> = ({ children }) => {
   const { setIsLoading } = useVideoTutorialLoadingState();
   const { openCamera, playVideo } = useButtonsActions();
 
@@ -25,6 +27,7 @@ const Buttons: React.FC = () => {
         <OpenCameraButton onPressAction={openCamera} />
       </View>
       <BtnPlay onPressAction={playVideo} />
+      {children}
     </>
   );
 };
