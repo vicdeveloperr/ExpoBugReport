@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native";
 import { useVideoTutorialLoadingState } from "../../stateManagement";
 
 interface VideoTutorialProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 export type VideoTutorialNavigationObject = StackNavigationProp<
