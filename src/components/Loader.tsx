@@ -5,25 +5,32 @@ import ScreenDarkModal from "./ScreenDarkModal";
 import { primaryColor, darkColor, whiteColor } from "../utils/colors";
 import { paragraph } from "../utils/genericStyles";
 
-const Loader: React.FC = () => {
-  return (
-    <ScreenDarkModal stylesView={styles.ScreenDark}>
-      <ScreenContainer styles={styles.ScreenContainer}>
-        <Text style={[styles.text, paragraph]}>Cargando...</Text>
-        <View style={styles.progressBarContainer}>
-          <ProgressBar
-            indeterminate={true}
-            width={null}
-            height={10}
-            borderRadius={0}
-            borderWidth={0}
-            color={primaryColor}
-            animationType="timing"
-          />
-        </View>
-      </ScreenContainer>
-    </ScreenDarkModal>
-  );
+interface LoaderProps {
+  isLoading: boolean;
+}
+
+const Loader: React.FC<LoaderProps> = ({ isLoading }) => {
+  if (isLoading) {
+    return (
+      <ScreenDarkModal stylesView={styles.ScreenDark}>
+        <ScreenContainer styles={styles.ScreenContainer}>
+          <Text style={[styles.text, paragraph]}>Cargando...</Text>
+          <View style={styles.progressBarContainer}>
+            <ProgressBar
+              testID="progressBar"
+              indeterminate={true}
+              width={null}
+              height={10}
+              borderRadius={0}
+              borderWidth={0}
+              color={primaryColor}
+              animationType="timing"
+            />
+          </View>
+        </ScreenContainer>
+      </ScreenDarkModal>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
