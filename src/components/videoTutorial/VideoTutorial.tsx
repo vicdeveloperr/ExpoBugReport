@@ -1,7 +1,8 @@
 import { Video, ResizeMode } from "expo-av";
 import type { Video as VideoType } from "expo-av";
 import { StyleSheet } from "react-native";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useVideoPlayerStore } from "../../stateManagement";
 
 interface VideoTutorialProps {
   onLoadComplete?: () => void;
@@ -12,6 +13,16 @@ interface VideoTutorialProps {
 
 export let videoRef: React.RefObject<VideoType>;
 
+function useVideoAutoInit(): void {
+  const { isPlaying } = useVideoPlayerStore((state) => state);
+
+  useEffect(() => {
+    if (!isPlaying && videoRef.current !== null) {
+      void videoRef.current.playAsync();
+    }
+  }, [isPlaying, videoRef.current]);
+}
+
 export const VideoTutorial: React.FC<VideoTutorialProps> = ({
   onLoadComplete,
   onLoadInit,
@@ -19,6 +30,10 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({
   videoParameters,
 }) => {
   videoRef = useRef<VideoType>(null);
+
+  useEffect(() => {
+    useVideoAutoInit();
+  }, []);
 
   return (
     <Video
