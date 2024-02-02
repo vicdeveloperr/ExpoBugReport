@@ -3,18 +3,12 @@ import { ResizeMode, Video } from "expo-av";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement/";
 
-interface VideoTutorialPlayerProps {
-  onLoadComplete?: () => void;
-  onLoadInit?: () => void;
-  videoParameters?: Record<string, any>;
-}
 
 const VideoTutorialPlayer: React.FC<VideoTutorialPlayerProps> = ({
   onLoadComplete,
   onLoadInit,
   videoParameters,
 }) => {
-  const videoRef = useRef<Video>(null);
   const { isPlaying, setPlaying } = useVideoPlayerStore((state) => state);
   const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
 
@@ -41,27 +35,12 @@ const VideoTutorialPlayer: React.FC<VideoTutorialPlayerProps> = ({
       style={styles.buttonTogglerPlay}
       onPress={togglePlay}
     >
-      <Video
-        {...videoParameters}
-        resizeMode={ResizeMode.STRETCH}
-        ref={videoRef}
-        onLoadStart={onLoadInit}
-        onLoad={onLoadComplete}
-        source={{
-          uri: "https://player.vimeo.com/external/467436330.sd.mp4?s=76304706368278640ac086aa2232c50327b2491e&profile_id=165&oauth2_token_id=57447761",
-        }}
-        style={styles.video}
-        isLooping
-        shouldPlay
-      />
+      
     </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
-  video: {
-    ...StyleSheet.absoluteFillObject,
-  },
   buttonTogglerPlay: {
     backgroundColor: "transparent",
     justifyContent: "center",
