@@ -1,14 +1,11 @@
 import { useEffect, useRef } from "react";
 import { ResizeMode, Video } from "expo-av";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement/";
+import { useBtnPlayModalStore, useVideoPlayerStore } from "../stateManagement";
 
-
-const VideoTutorialPlayer: React.FC<VideoTutorialPlayerProps> = ({
-  onLoadComplete,
-  onLoadInit,
-  videoParameters,
-}) => {
+export const VideoTutorialController: React.FC<
+  VideoTutorialControllerProps
+> = ({ onLoadComplete, onLoadInit, videoParameters }) => {
   const { isPlaying, setPlaying } = useVideoPlayerStore((state) => state);
   const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
 
@@ -34,9 +31,7 @@ const VideoTutorialPlayer: React.FC<VideoTutorialPlayerProps> = ({
     <TouchableWithoutFeedback
       style={styles.buttonTogglerPlay}
       onPress={togglePlay}
-    >
-      
-    </TouchableWithoutFeedback>
+    ></TouchableWithoutFeedback>
   );
 };
 

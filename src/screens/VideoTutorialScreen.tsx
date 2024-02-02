@@ -1,5 +1,5 @@
 import Buttons from "../components/videoTutorial/Buttons";
-import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
+import VideoTutorialPlayer from "../components/VideoTutorialController";
 import { useVideoTutorialLoadingState } from "../stateManagement";
 import ScreenContainer from "../components/ScreenContainer";
 import Loader from "../components/Loader";
