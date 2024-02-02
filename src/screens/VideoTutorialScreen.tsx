@@ -6,7 +6,7 @@ import Loader from "../components/Loader";
 import { StyleSheet } from "react-native";
 
 const VideoTutorialScreen: React.FC = () => {
-  const { setIsLoading } = useVideoTutorialLoadingState();
+  const { setIsLoading, isLoading } = useVideoTutorialLoadingState();
 
   return (
     <>
@@ -18,7 +18,7 @@ const VideoTutorialScreen: React.FC = () => {
         />
         <Buttons />
       </ScreenContainer>
-      <Loader />
+      <Loader isLoading={isLoading} />
     </>
   );
 };
