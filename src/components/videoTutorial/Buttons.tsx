@@ -2,7 +2,6 @@ import VideoPicker from "../VideoPicker";
 import BtnPlay from "./BtnPlay";
 import OpenCameraButton from "./OpenCameraButton";
 import { View, StyleSheet } from "react-native";
-import pickVideoFromGallery from "../../utils/pickVideoFromGallery";
 import { useButtonsActions } from "./hooks/useButtonsActions";
 
 interface ButtonsProps {
@@ -10,12 +9,12 @@ interface ButtonsProps {
 }
 
 const Buttons: React.FC<ButtonsProps> = ({ children }) => {
-  const { openCamera, playVideo } = useButtonsActions();
+  const { openCamera, playVideo, pickVideo } = useButtonsActions();
 
   return (
     <>
       <View style={styles.buttonsContainer}>
-        <VideoPicker onPressAction={pickVideoFromGallery} />
+        <VideoPicker onPressAction={pickVideo} />
         <OpenCameraButton onPressAction={openCamera} />
       </View>
       <BtnPlay onPressAction={playVideo} />

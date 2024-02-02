@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import {
   useBtnPlayModalStore,
+  useVideoPickerErrorDialogVisibilityStore,
   useVideoPlayerStore,
 } from "../../../stateManagement";
 import type { VideoTutorialNavigationObject } from "../VideoTutorial";
 import pickVideoFromGallery from "../../../utils/pickVideoFromGallery";
+import type { video } from "../../../utils/pickVideoFromGallery";
 
 type ButtonsActions = () => {
   openCamera: () => void;
@@ -16,6 +18,8 @@ export const useButtonsActions: ButtonsActions = () => {
   const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
   const { setPlaying } = useVideoPlayerStore((state) => state);
   const { navigate } = useNavigation<VideoTutorialNavigationObject>();
+  const { setVideoPickerErrorDialogVisibility } =
+    useVideoPickerErrorDialogVisibilityStore((state) => state);
 
   function openCamera(): void {
     navigate("camera");
@@ -28,11 +32,12 @@ export const useButtonsActions: ButtonsActions = () => {
 
   async function pickVideo(): Promise<void> {
     await pickVideoFromGallery()
-      .then(() => {
+      .then((video: video) => {
         navigate("loadVideo");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        console.log("Mostró cuadro de diálogo");
+        setVideoPickerErrorDialogVisibility(true);
       });
   }
 
