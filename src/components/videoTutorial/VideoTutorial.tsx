@@ -13,14 +13,10 @@ interface VideoTutorialProps {
 
 export let videoRef: React.RefObject<VideoType>;
 
-function useVideoAutoInit(): void {
-  const { isPlaying } = useVideoPlayerStore((state) => state);
-
-  useEffect(() => {
-    if (!isPlaying && videoRef.current !== null) {
-      void videoRef.current.playAsync();
-    }
-  }, [isPlaying, videoRef.current]);
+function videoAutoInit(isPlaying: boolean): void {
+  if (!isPlaying && videoRef.current !== null) {
+    void videoRef.current.playAsync();
+  }
 }
 
 export const VideoTutorial: React.FC<VideoTutorialProps> = ({
@@ -29,11 +25,12 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({
   sourceUri,
   videoParameters,
 }) => {
+  const { isPlaying } = useVideoPlayerStore((state) => state);
   videoRef = useRef<VideoType>(null);
 
   useEffect(() => {
-    useVideoAutoInit();
-  }, []);
+    videoAutoInit(isPlaying);
+  }, [isPlaying, videoRef.current]);
 
   return (
     <Video
