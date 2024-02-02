@@ -1,9 +1,10 @@
 import Buttons from "../components/videoTutorial/Buttons";
-import VideoTutorialPlayer from "../components/VideoTutorialController";
 import { useVideoTutorialLoadingState } from "../stateManagement";
 import ScreenContainer from "../components/ScreenContainer";
 import Loader from "../components/Loader";
 import { StyleSheet } from "react-native";
+import { VideoTutorialController } from "../components/VideoTutorialController";
+import { VideoTutorial } from "../components/videoTutorial/VideoTutorial";
 
 const VideoTutorialScreen: React.FC = () => {
   const { setIsLoading, isLoading } = useVideoTutorialLoadingState();
@@ -11,11 +12,9 @@ const VideoTutorialScreen: React.FC = () => {
   return (
     <>
       <ScreenContainer styles={styles.container}>
-        <VideoTutorialPlayer
-          onLoadComplete={() => {
-            setIsLoading(false);
-          }}
-        />
+        <VideoTutorialController>
+          <VideoTutorial sourceUri="https://www.pexels.com/es-es/video/hombre-persona-deporte-pelota-5586534/" />
+        </VideoTutorialController>
         <Buttons />
       </ScreenContainer>
       <Loader isLoading={isLoading} />
