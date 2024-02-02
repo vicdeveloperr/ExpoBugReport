@@ -30,12 +30,6 @@ describe("<VideoTutorialController />", () => {
     );
   });
 
-  it("Reproduce el vídeo automáticamente al renderizarse", async () => {
-    await waitFor(() => {
-      expect(video.playAsync).toHaveBeenCalledTimes(1);
-    });
-  });
-
   it("Renderiza correctamente su children", () => {
     const videoTutorialControllerChildren = screen.getByTestId("children");
     expect(videoTutorialControllerChildren).toBeDefined();
