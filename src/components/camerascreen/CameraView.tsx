@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import { Camera } from "expo-camera";
 import { StyleSheet } from "react-native";
 import useCameraTypeStore from "../../stateManagement/useCameraTypeStore";
+
 interface CameraViewProps {
   children: React.ReactNode;
 }
@@ -17,31 +18,27 @@ const CameraView: React.FC<CameraViewProps> = ({ children }) => {
     Camera.useCameraPermissions();
 
   const [statusMicrophonePermissions, requestMicrophonePermissions] =
-    Camera.useCameraPermissions();
+    Camera.useMicrophonePermissions();
 
   useEffect(() => {
     if (statusCameraPermissions === null) {
       void requestCameraPermissions();
-    } else if (statusMicrophonePermissions === null) {
+    }
+    if (statusMicrophonePermissions === null) {
       void requestMicrophonePermissions();
     }
   }, []);
 
-  if (
-    statusCameraPermissions !== null &&
-    statusMicrophonePermissions !== null
-  ) {
-    return (
-      <Camera
-        ref={camRef}
-        style={styles.camera}
-        type={cameraType}
-        testID="CameraView"
-      >
-        {children}
-      </Camera>
-    );
-  } // Renderizar cuadro de diálogo sino se conceden los permisos
+  return (
+    <Camera
+      ref={camRef}
+      style={styles.camera}
+      type={cameraType}
+      testID="CameraView"
+    >
+      {children}
+    </Camera>
+  );
 };
 
 const styles = StyleSheet.create({

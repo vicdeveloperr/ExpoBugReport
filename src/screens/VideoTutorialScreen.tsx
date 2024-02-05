@@ -1,37 +1,23 @@
-import { StyleSheet } from "react-native";
-import type { StackNavigationProp } from "@react-navigation/stack";
-import type { RootStackParamList } from "../navigation/StackNavigator";
+import Buttons from "../components/videoTutorial/Buttons";
+import { useVideoTutorialLoadingState } from "../stateManagement";
 import ScreenContainer from "../components/ScreenContainer";
-import VideoTutorialPlayer from "../components/VideoTutorialPlayer";
 import Loader from "../components/Loader";
-import VideoTutorialControls from "../components/videoTutorialScreen/VideoTutorialControls";
-import { useLoaderVisibilityStore } from "../stateManagement";
+import { StyleSheet } from "react-native";
+import { VideoTutorialController } from "../components/VideoTutorialController";
+import { VideoTutorial } from "../components/videoTutorial/VideoTutorial";
 
-export type VideoTutorialNavigationObject = StackNavigationProp<
-  RootStackParamList,
-  "videoTutorial"
->;
-interface VideoTutorialScreenProps {
-  children?: React.ReactNode;
-}
-
-const VideoTutorialScreen: React.FC<VideoTutorialScreenProps> = ({
-  children,
-}) => {
-  const { setIsLoading } = useLoaderVisibilityStore((state) => state);
+const VideoTutorialScreen: React.FC = () => {
+  const { setIsLoading, isLoading } = useVideoTutorialLoadingState();
 
   return (
     <>
       <ScreenContainer styles={styles.container}>
-        <VideoTutorialPlayer
-          onLoadComplete={() => {
-            setIsLoading(false);
-          }}
-        />
-        <VideoTutorialControls />
+        <VideoTutorialController>
+          <VideoTutorial sourceUri="https://www.pexels.com/es-es/video/hombre-persona-deporte-pelota-5586534/" />
+        </VideoTutorialController>
+        <Buttons />
       </ScreenContainer>
-      <Loader />
-      {children}
+      <Loader isLoading={isLoading} />
     </>
   );
 };

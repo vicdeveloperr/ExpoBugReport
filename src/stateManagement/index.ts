@@ -6,4 +6,5 @@ export { default as useCameraRecordingStore } from "./useCameraRecordingStore";
 export { default as useCameraTypeStore } from "./useCameraTypeStore";
 export { default as useCancelAlertVisibility } from "./useCancelAlertVisibility";
 export { default as useTimerVisibilityStore } from "./useTimerVisibilyStore";
-export { default as useLoaderVisibilityStore } from "./useLoaderVisibilityStore";
+export { default as useVideoPickerErrorDialogVisibilityStore } from "./useVideoPickerErrorDialogVisibilityStore";
+export { default as useVideoTutorialLoadingState } from "./useVideoTutorialLoadingState";
