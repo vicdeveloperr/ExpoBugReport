@@ -10,20 +10,6 @@ interface VideoTutorialControllerProps {
 export const VideoTutorialController: React.FC<
   VideoTutorialControllerProps
 > = ({ onPressAction, children }) => {
-  // const { isPlaying, setPlaying } = useVideoPlayerStore((state) => state);
-  // const { toggleBtnPlay } = useBtnPlayModalStore((state) => state);
-
-  // const togglePlay: () => void = () => {
-  //   if (videoRef.current != null) {
-  //     if (isPlaying) {
-  //       void videoRef.current.pauseAsync();
-  //     } else {
-  //       void videoRef.current.playAsync();
-  //     }
-  //     setPlaying(!isPlaying);
-  //     toggleBtnPlay();
-  //   }
-  // };
 
   return (
     <TouchableWithoutFeedback
@@ -33,6 +19,7 @@ export const VideoTutorialController: React.FC<
       {children}
     </TouchableWithoutFeedback>
   );
+  
 };
 
 const styles = StyleSheet.create({
