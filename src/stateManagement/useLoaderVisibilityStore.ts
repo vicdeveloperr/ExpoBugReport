@@ -6,7 +6,7 @@ interface LoaderVisibilityStore {
 }
 
 const useLoaderVisibilityStore = create<LoaderVisibilityStore>((set) => ({
-  isLoading: false,
+  isLoading: true,
   setIsLoading: (statusLoading) => {
     set({ isLoading: statusLoading });
   },
