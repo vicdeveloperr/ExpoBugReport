@@ -13,6 +13,11 @@ jest.mock("../../utils/recordVideo", () =>
     });
   })
 );
+
+jest.mock("@react-navigation/native", () => ({
+  useNavigation: () => ({ navigate: jest.fn() }),
+}));
+
 jest.mock("../../components/camerascreen/hooks/useHandlerStates", () => () => {
   return {
     setIsTimerVisible: jest.fn(),
