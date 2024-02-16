@@ -5,11 +5,11 @@ import Loader from "../components/Loader";
 import { StyleSheet } from "react-native";
 import { VideoTutorialController } from "../components/VideoTutorialController";
 import { VideoTutorial } from "../components/videoTutorial/VideoTutorial";
-import { useVideoTutorialControllerAction } from "../components/videoTutorial/hooks/useVideoTutorialControllerAction";
+import { useVideoTutorialActions } from "../components/videoTutorial/hooks/useVideoTutorialActions";
 
 const VideoTutorialScreen: React.FC = () => {
   const { isLoading } = useVideoTutorialLoadingState();
-  const { togglePlay } = useVideoTutorialControllerAction();
+  const { togglePlay } = useVideoTutorialActions();
 
   return (
     <>

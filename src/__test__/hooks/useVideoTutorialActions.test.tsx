@@ -1,13 +1,15 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { useVideoTutorialControllerAction } from '../../components/videoTutorial/hooks/useVideoTutorialControllerAction';
+import { renderHook } from "@testing-library/react-hooks";
+import { useVideoTutorialActions } from "../../components/videoTutorial/hooks/useVideoTutorialActions";
 
-jest.mock("../../stateManagement/useBtnPlayModalStore", () => jest.fn(() => ({
-  isPlaying: true,
-  setIsPlaying: jest.fn()
-})))
+jest.mock("../../stateManagement/useBtnPlayModalStore", () =>
+  jest.fn(() => ({
+    isPlaying: true,
+    setIsPlaying: jest.fn(),
+  }))
+);
 jest.mock("../../stateManagement/useVideoPlayerStore", () => () => ({
-  toggleBtnPlay: jest.fn()
-}))
+  toggleBtnPlay: jest.fn(),
+}));
 
 const mockedVideoRef = {
   current: {
@@ -15,28 +17,28 @@ const mockedVideoRef = {
     playAsync: jest.fn(),
   },
 };
-jest.mock('../../components/videoTutorial/VideoTutorial', () => ({
-  videoRef: mockedVideoRef
-}))
+jest.mock("../../components/videoTutorial/VideoTutorial", () => ({
+  videoRef: mockedVideoRef,
+}));
 
-describe('useVideoTutorialControllerAction()', () => {
-  it('Retorna la función togglePlay()', () => {
-    const { result } = renderHook(() => useVideoTutorialControllerAction());
+describe("useVideoTutorialControllerAction()", () => {
+  it("Retorna la función togglePlay()", () => {
+    const { result } = renderHook(() => useVideoTutorialActions());
     const togglePlay = result.current.togglePlay;
-    
+
     expect(togglePlay).toBeInstanceOf(Function);
   });
 
-  it('Retorna la función onVideoLoadComplete()', () => {
-    const { result } = renderHook(() => useVideoTutorialControllerAction());
+  it("Retorna la función onVideoLoadComplete()", () => {
+    const { result } = renderHook(() => useVideoTutorialActions());
     const onVideoLoadComplete = result.current.onVideoLoadComplete;
-    
+
     expect(onVideoLoadComplete).toBeInstanceOf(Function);
   });
 
   // it('togglePlay invoca playAsync(), cuando isPlaying == false', () => {
   //   act(() => {
-  //     togglePlay(); 
+  //     togglePlay();
   //   });
 
   //   expect(mockedVideoRef.current.playAsync).toHaveBeenCalledTimes(1);
@@ -46,7 +48,7 @@ describe('useVideoTutorialControllerAction()', () => {
   //   renderUseVideoTutorialControllerActionWithIsPlayingIn(true);
 
   //   act(() => {
-  //     togglePlay(); 
+  //     togglePlay();
   //   });
 
   //   expect(mockedVideoRef.current.pauseAsync).toHaveBeenCalled()
