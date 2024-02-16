@@ -6,7 +6,7 @@ interface VideoTutorialLoadingState {
 }
 
 const useVideoTutorialLoadingState = create<VideoTutorialLoadingState>((set) => ({
-  isLoading: false,
+  isLoading: true,
   setIsLoading: (loading) => { set(() => ({ isLoading: loading })); },
 }));
 
