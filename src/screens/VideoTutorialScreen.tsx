@@ -15,7 +15,7 @@ const VideoTutorialScreen: React.FC = () => {
     <>
       <ScreenContainer styles={styles.container}>
         <VideoTutorialController onPressAction={togglePlay}>
-          <VideoTutorial sourceUri="https://www.pexels.com/es-es/video/hombre-persona-deporte-pelota-5586534/" />
+          <VideoTutorial sourceUri="https://player.vimeo.com/external/454804335.hd.mp4?s=3b45d2b6dcad98317fab4904f4645710a8f9a3cc&profile_id=174&oauth2_token_id=57447761" />
         </VideoTutorialController>
         <Buttons />
       </ScreenContainer>
