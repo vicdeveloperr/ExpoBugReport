@@ -27,6 +27,13 @@ describe('useVideoTutorialControllerAction()', () => {
     expect(togglePlay).toBeInstanceOf(Function);
   });
 
+  it('Retorna la función onVideoLoadComplete()', () => {
+    const { result } = renderHook(() => useVideoTutorialControllerAction());
+    const onVideoLoadComplete = result.current.onVideoLoadComplete;
+    
+    expect(onVideoLoadComplete).toBeInstanceOf(Function);
+  });
+
   // it('togglePlay invoca playAsync(), cuando isPlaying == false', () => {
   //   act(() => {
   //     togglePlay(); 
