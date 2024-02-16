@@ -4,7 +4,6 @@ import ScreenContainer from "./ScreenContainer";
 import ScreenDarkModal from "./ScreenDarkModal";
 import { primaryColor, darkColor, whiteColor } from "../utils/colors";
 import { paragraph } from "../utils/genericStyles";
-import { useLoaderVisibilityStore } from "../stateManagement";
 
 interface LoaderProps {
   isLoading: boolean;
