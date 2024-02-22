@@ -1,6 +1,13 @@
-type typeExtractVideoFrames = (framesExtractor: () => string[]) => string[] 
+import { tFramesExtractor } from "../domain/types";
+type typeExtractVideoFrames = (
+  framesExtractor: tFramesExtractor,
+  uri: string
+) => Promise<string[] | void>;
 
-export const extractVideoFrames: typeExtractVideoFrames = (framesExtractor) => {
-    const result = framesExtractor();
-    return result;
-}
+export const extractVideoFrames: typeExtractVideoFrames = async (
+  framesExtractor,
+  uri
+) => {
+  const result = await framesExtractor(uri);
+  return result;
+};
