@@ -14,7 +14,7 @@ export const framesExtractor: tFramesExtractor = async (uri) => {
             number: 5,
             file_name: "my_frame_%t_%s",
           },
-          function (error, files) {
+          (error, files) => {
             if (!error) {
               console.log("Frames: " + files);
               return files;
@@ -26,7 +26,6 @@ export const framesExtractor: tFramesExtractor = async (uri) => {
         console.log("Error: " + err);
       });
   } catch (e) {
-    console.log(e.code);
-    console.log(e.msg);
+    console.log(e);
   }
 };
