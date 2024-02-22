@@ -8,11 +8,11 @@ export const framesExtractor: tFramesExtractor = async (uri) => {
     await process
       .then((video) => {
         video.fnExtractFrameToJPG(
-          "./",
+          "../../data",
           {
             frame_rate: 1,
             number: 5,
-            file_name: "my_frame_%t_%s",
+            file_name: "frame_%t_%s",
           },
           (error, files) => {
             if (!error) {
