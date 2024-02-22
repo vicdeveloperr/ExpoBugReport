@@ -1,6 +1,5 @@
 import FFmpeg from "ffmpeg";
-
-type tFramesExtractor = (uri: string) => Promise<string[] | void>;
+import { tFramesExtractor } from "../domain/types";
 
 export const framesExtractor: tFramesExtractor = async (uri) => {
   try {
