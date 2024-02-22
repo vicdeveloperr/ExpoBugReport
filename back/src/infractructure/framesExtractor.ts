@@ -1,13 +1,12 @@
 import FFmpeg from "ffmpeg";
 
-type tFramesExtractor = (uri: string) => string[] | void;
+type tFramesExtractor = (uri: string) => Promise<string[] | void>;
 
-export const framesExtractor: tFramesExtractor = (uri) => {
+export const framesExtractor: tFramesExtractor = async (uri) => {
   try {
     var process = new FFmpeg(uri);
-    process
+    await process
       .then((video) => {
-        // Callback mode
         video.fnExtractFrameToJPG(
           "./",
           {
