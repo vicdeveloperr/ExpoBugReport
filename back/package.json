@@ -6,9 +6,11 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "elysia": "latest",
+    "ffmpeg": "^0.0.4"
   },
   "devDependencies": {
+    "@types/ffmpeg": "^1.0.7",
     "bun-types": "latest"
   },
   "module": "src/index.js"
