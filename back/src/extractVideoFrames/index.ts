@@ -7,15 +7,8 @@ type tBody = { video: Video };
 export const extractFrames = new Elysia().post(
   "/extractVideoFrames",
   ({ body }) => {
-    const result = extractVideoFrames(framesExtractor(body.video));
+    // const result = extractVideoFrames(framesExtractor(body.video));
 
-    return (
-      result,
-      {
-        body: t.Object({
-          video: t.File({ type: "video" }),
-        }),
-      }
-    );
+    return body.video;
   }
 );
