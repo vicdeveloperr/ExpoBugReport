@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "elysia": "latest",
-    "ffmpeg": "^0.0.4"
+    "ffmpeg": "^0.0.4",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "@types/ffmpeg": "^1.0.7",
+    "@types/multer": "^1.4.11",
     "bun-types": "latest"
   },
   "module": "src/index.js"
