@@ -1,28 +1,45 @@
-import { expect, it, mock } from "bun:test";
-import app from "./";
+import { describe, expect, it, mock } from "bun:test";
+import analyzeVideo from "./analyzeVideo";
 import { getApiUrl } from "../../analyzeVideo/infractructure/getApiUrl.js";
 
 const apiUrl = getApiUrl();
 
 mock.module("../../analyzeVideo/application/useAnalyzeVideo.ts", () => mock());
 
-it("POST /analyzeVideo", async () => {
-  const videoToAnalyze = new FormData();
-  const requestBody = {
-    video: videoToAnalyze,
-    movement: "allen iverson cross",
-  };
-  const req = new Request(`${apiUrl}/analyzeVideo`, {
-    body: JSON.stringify(requestBody),
-    method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+describe("POST /analyzeVideo", () => {
+  it("Retorna status 200 y análisis generado por la IA, si el cuerpo de la solicitud es correcto", async () => {
+    const videoToAnalyze = new FormData();
+    const requestBody = {
+      video: videoToAnalyze,
+      movement: "allen iverson cross",
+    };
+    const req = new Request(`${apiUrl}/analyzeVideo`, {
+      body: JSON.stringify(requestBody),
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const res = await analyzeVideo.request(req);
+    expect(res.status).toBe(200);
+    expect(res.json()).toBe({
+      message: "",
+    });
   });
 
-  const res = await app.request(req);
-  expect(res.status).toBe(200);
-  expect(res.json()).toBe({
-    message: "",
+  it("Retorna 400 y un mensaje de que el video no ha podido ser procesado, si el cuerpo de la solicitud no es el esperado", async () => {
+    const req = new Request(`${apiUrl}/analyzeVideo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const res = await analyzeVideo.request(req);
+    expect(res.status).toBe(200);
+    expect(res.json()).toBe({
+      message: "",
+    });
   });
 });
