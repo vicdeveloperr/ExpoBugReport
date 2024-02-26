@@ -2,7 +2,10 @@ import ollama from "ollama";
 import { tModelConsultor } from "../domain/types";
 import { framesExtractor } from "./framesExtractor";
 
-export const modelConsultor: tModelConsultor = async (videoUri) => {
+export const modelConsultor: tModelConsultor = async (
+  videoUri,
+  movementToImprove
+) => {
   const frames = await framesExtractor(videoUri);
   const imagesToProcess = frames ? frames : undefined;
 
@@ -11,7 +14,7 @@ export const modelConsultor: tModelConsultor = async (videoUri) => {
     messages: [
       {
         role: "user",
-        content: "Describe this image:",
+        content: `I want to improve the next movement: ${movementToImprove}`,
         images: imagesToProcess,
       },
     ],

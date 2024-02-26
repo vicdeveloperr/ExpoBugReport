@@ -8,6 +8,9 @@ export interface Video extends FormData {
 
 export type tFramesExtractor = (uri: string) => Promise<string[] | void>;
 
-export type tModelConsultor = (videoUri: string) => Promise<ChatResponse>;
+export type tModelConsultor = (
+  videoUri: string,
+  movementToImprove: string
+) => Promise<ChatResponse>;
 
 export type movements = "allen iverson cross";
