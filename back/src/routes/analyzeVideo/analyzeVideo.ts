@@ -1,12 +1,13 @@
 import { Hono } from "hono";
 import { useAnalyzeVideo } from "../../analyzeVideo/application/useAnalyzeVideo";
 import { modelConsultor } from "../../analyzeVideo/infractructure/modelConsultor";
+import { middlewareValidator } from "../../middlewares/analyzeVideo/middlewareValidator";
 
 const analyzeVideo = new Hono();
 
-analyzeVideo.post("/", async (c) => {
-  const request = await c.req.parseBody();
-  const analysis = await useAnalyzeVideo(modelConsultor, "", request.movement);
+analyzeVideo.post("/", middlewareValidator, async (c) => {
+  const { body } = await c.req.valid("form");
+  const analysis = await useAnalyzeVideo(modelConsultor, "", body.movement);
 
   return c.json(analysis);
 });
