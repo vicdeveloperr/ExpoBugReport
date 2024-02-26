@@ -1,19 +1,26 @@
 import { useAnalyzeVideo } from "./useAnalyzeVideo";
-import { describe, it, jest, expect } from "bun:test";
+import { describe, it, mock, expect } from "bun:test";
 
-const promise: Promise<string[]> = new Promise((resolve) => {
-  resolve(["url", "url", "url", "url"]);
+const promise: Promise<string> = new Promise((resolve) => {
+  resolve("");
 });
-const consultModel = jest.fn(() => promise);
+const consultModel = mock(() => promise);
+
+async function callUseAnalyzeVideo() {
+  const result = await useAnalyzeVideo(consultModel, "");
+  return result;
+}
 
 describe("useAnalyzeVideo()", () => {
   it("Retorna análisis del vídeo en forma de texto", async () => {
-    const result = await useAnalyzeVideo(consultModel);
-    expect(result).toBe("Análisis");
+    const result = await callUseAnalyzeVideo();
+    expect(result).toEqual({
+      message: "",
+    });
   });
 
-  it("Ejecuta función pasada como argumento", () => {
-    useAnalyzeVideo(consultModel);
+  it("Ejecuta función pasada como argumento", async () => {
+    await callUseAnalyzeVideo();
     expect(consultModel).toHaveBeenCalled();
   });
 });
