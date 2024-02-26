@@ -1,13 +1,10 @@
 import { useAnalyzeVideo } from "./useAnalyzeVideo";
 import { describe, it, mock, expect } from "bun:test";
 
-const promise: Promise<string> = new Promise((resolve) => {
-  resolve("");
-});
-const consultModel = mock(() => promise);
+const consultModel = mock();
 
 async function callUseAnalyzeVideo() {
-  const result = await useAnalyzeVideo(consultModel, "");
+  const result = await useAnalyzeVideo(consultModel, "", "allen iverson cross");
   return result;
 }
 
