@@ -1,7 +1,6 @@
 import { describe, expect, it, mock } from "bun:test";
 import analyzeVideo from "./analyzeVideo";
 import { getApiUrl } from "../../analyzeVideo/infractructure/getApiUrl.js";
-import { error } from "elysia";
 
 const apiUrl = getApiUrl();
 
