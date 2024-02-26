@@ -1,6 +1,6 @@
 import { describe, expect, it, mock } from "bun:test";
-import analyzeVideo from "./analyzeVideo";
 import { getApiUrl } from "../../analyzeVideo/infractructure/getApiUrl.js";
+import app from "../../index";
 
 const apiUrl = getApiUrl();
 
@@ -21,7 +21,7 @@ describe("POST /analyzeVideo", () => {
       },
     });
 
-    const res = await analyzeVideo.request(req);
+    const res = await app.request(req);
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({
       message: "",
@@ -38,7 +38,7 @@ describe("POST /analyzeVideo", () => {
 
     const errorMsg =
       "El vídeo no ha podido ser analizado. Por favor, vuelva a intentarlo";
-    const res = await analyzeVideo.request(req);
+    const res = await app.request(req);
     expect(res.status).toBe(200);
     expect(await res.text()).toBe(errorMsg);
   });
