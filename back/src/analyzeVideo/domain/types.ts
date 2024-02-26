@@ -1,3 +1,5 @@
+import { ChatResponse } from "ollama";
+
 export interface Video extends FormData {
   uri: string;
   name: string;
@@ -6,4 +8,4 @@ export interface Video extends FormData {
 
 export type tFramesExtractor = (uri: string) => Promise<string[] | void>;
 
-export type tModelConsultor = (videoUri: string) => Promise<string>
+export type tModelConsultor = (videoUri: string) => Promise<ChatResponse>;
