@@ -1,12 +1,15 @@
 import { validator } from "hono/validator";
-import { schema } from "./schema";
 
-export const middlewareValidator = validator("form", (value, c) => {
-  const parsed = schema.safeParse(value);
-  if (!parsed.success) {
+interface Body {
+  video: FormData;
+  movement: "allen iverson cross";
+}
+export const middlewareValidator = validator("json", (value, c) => {
+  const body: Body = value["body"];
+  if (body.video != null && body.movement != null) {
     const message =
       "El vídeo no ha podido ser analizado. Por favor, vuelva a intentarlo";
     return c.text(message, 400);
   }
-  return parsed.data;
+  return body;
 });
