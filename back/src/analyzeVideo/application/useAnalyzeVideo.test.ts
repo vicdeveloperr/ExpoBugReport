@@ -1,7 +1,15 @@
+import { resolve } from "bun";
 import { useAnalyzeVideo } from "./useAnalyzeVideo";
 import { describe, it, mock, expect } from "bun:test";
 
-const consultModel = mock();
+const promise = new Promise((resolve) => {
+  resolve({
+    message: {
+      content: "",
+    },
+  });
+});
+const consultModel = mock((videoUrl, movement) => promise);
 
 async function callUseAnalyzeVideo() {
   const result = await useAnalyzeVideo(consultModel, "", "allen iverson cross");
