@@ -1,6 +1,6 @@
 import { Elysia, t } from "elysia";
 import { Video } from "./domain/types";
-import { extractVideoFrames } from "./application/extractVideoFrames";
+import { extractVideoFrames } from "./application/useAnalyzeVideo";
 import { framesExtractor } from "./infractructure/framesExtractor";
 
 type tBody = { video: Video };

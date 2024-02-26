@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { extractFrames } from "./extractVideoFrames";
+import { extractFrames } from "./analyzeVideo";
 
 const app = new Elysia()
   .get("/", () => "Hello Elysia")

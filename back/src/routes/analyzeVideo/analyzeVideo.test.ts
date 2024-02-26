@@ -1,6 +1,6 @@
 import { expect, it, mock } from "bun:test";
 import app from "./index.ts";
-import { getApiUrl } from "../../extractVideoFrames/infractructure/getApiUrl.js";
+import { getApiUrl } from "../../analyzeVideo/infractructure/getApiUrl.js";
 
 const apiUrl = getApiUrl();
 

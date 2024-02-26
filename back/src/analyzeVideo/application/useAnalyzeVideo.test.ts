@@ -1,4 +1,4 @@
-import { extractVideoFrames } from "./extractVideoFrames";
+import { extractVideoFrames } from "./useAnalyzeVideo";
 import { describe, it, jest, expect } from "bun:test";
 
 const promise: Promise<string[]> = new Promise((resolve) => {
@@ -6,7 +6,7 @@ const promise: Promise<string[]> = new Promise((resolve) => {
 });
 const framesExtractor = jest.fn(() => promise);
 
-describe("extractVideoFrames()", () => {
+describe("analyze()", () => {
   it("Retorna array con los frames del vídeo", async () => {
     const result = await extractVideoFrames(framesExtractor, "");
     expect(result?.length).toBe(4);
