@@ -1,5 +1,5 @@
 import { expect, it, mock } from "bun:test";
-import app from "./index.ts";
+import app from "./";
 import { getApiUrl } from "../../analyzeVideo/infractructure/getApiUrl.js";
 
 const apiUrl = getApiUrl();
@@ -8,8 +8,12 @@ mock.module("../../analyzeVideo/application/useAnalyzeVideo.ts", () => mock());
 
 it("POST /analyzeVideo", async () => {
   const videoToAnalyze = new FormData();
-  const req = new Request(apiUrl, {
-    body: videoToAnalyze,
+  const requestBody = {
+    video: videoToAnalyze,
+    movement: "allen iverson cross",
+  };
+  const req = new Request(`${apiUrl}/analyzeVideo`, {
+    body: JSON.stringify(requestBody),
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
