@@ -1,13 +1,19 @@
-import { tFramesExtractor } from "../domain/types";
-type typeExtractVideoFrames = (
-  framesExtractor: tFramesExtractor,
-  uri: string
-) => Promise<string[] | void>;
+import { tModelConsultor } from "../domain/types";
 
-export const extractVideoFrames: typeExtractVideoFrames = async (
-  framesExtractor,
+interface Result {
+  message: string;
+}
+type tUseAnalyzeVideo = (
+  modelConsultor: tModelConsultor,
+  uri: string
+) => Promise<Result>;
+
+export const useAnalyzeVideo: tUseAnalyzeVideo = async (
+  modelConsultor,
   uri
 ) => {
-  const result = await framesExtractor(uri);
-  return result;
+  const result = await modelConsultor(uri);
+  return {
+    message: result,
+  };
 };
