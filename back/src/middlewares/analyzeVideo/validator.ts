@@ -1,10 +1,10 @@
-import { validator } from "hono/validator";
+import { validator as honoValidator } from "hono/validator";
 
 interface Body {
   video: FormData;
   movement: "allen iverson cross";
 }
-export const validator = validator("json", (value, c) => {
+export const validator = honoValidator("json", (value, c) => {
   const body: Body = value["body"];
   if (body.video != null && body.movement != null) {
     const message =
