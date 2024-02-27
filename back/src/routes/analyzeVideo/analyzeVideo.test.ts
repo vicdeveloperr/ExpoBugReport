@@ -1,5 +1,5 @@
 import { describe, expect, it, mock } from "bun:test";
-import { getApiUrl } from "../../analyzeVideo/infractructure/getApiUrl.js";
+import { getApiUrl } from "../../utils/getApiUrl.js";
 import app from "../../index";
 
 const apiUrl = getApiUrl();
