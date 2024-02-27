@@ -1,6 +1,9 @@
 import app from "../..";
 import { bodyValidator, paramsValidator } from "./validator";
+import { mainEnpointUrl } from "../../utils/mainEnpointUrl";
 
-app.post("/analyzeVideo/:movement", bodyValidator);
+app.post(`${mainEnpointUrl}:movement`, bodyValidator);
 
-app.post("/analyzevideo/:movement", paramsValidator);
+app.post(`${mainEnpointUrl}:movement`, paramsValidator);
+
+export default app;
