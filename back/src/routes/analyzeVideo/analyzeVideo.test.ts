@@ -9,7 +9,7 @@ mock.module("../../analyzeVideo/application/useAnalyzeVideo.ts", () => mock());
 describe("POST /analyzeVideo", () => {
   it("Retorna status 200 y análisis generado por la IA, si el cuerpo de la solicitud es correcto", async () => {
     const videoToAnalyze = new FormData();
-    videoToAnalyze.append("file", {
+    videoToAnalyze.append("video", {
       uri: "",
       name: "video.mp4",
       type: "video/mp4",
