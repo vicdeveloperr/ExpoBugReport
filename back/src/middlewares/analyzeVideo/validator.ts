@@ -19,6 +19,6 @@ export const paramsValidator = honoValidator("param", (value, c) => {
     return c.text("Movimiento no especificado o incorrecto", 400);
   }
   return {
-    param,
+    movement: param,
   };
 });
