@@ -14,9 +14,11 @@ export const bodyValidator = honoValidator("form", async (value, c) => {
 });
 
 export const paramsValidator = honoValidator("param", (value, c) => {
-  const params = value["movement"];
-  if (typeof params != "string") {
-    return c.text("Movimiento no especificado", 400);
+  const param = value["movement"];
+  if (param !== "allen iverson cross") {
+    return c.text("Movimiento no especificado o incorrecto", 400);
   }
-  return params;
+  return {
+    param,
+  };
 });

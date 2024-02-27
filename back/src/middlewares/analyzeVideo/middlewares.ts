@@ -1,7 +1,6 @@
-import { handlerVideo } from "./handlerVideo";
 import app from "../..";
+import { bodyValidator, paramsValidator } from "./validator";
 
-app.post("/analyzeVideo", async (c, next) => {
-  handlerVideo("video");
-  await next();
-});
+app.post("/analyzeVideo/:movement", bodyValidator);
+
+app.post("/analyzevideo/:movement", paramsValidator);
