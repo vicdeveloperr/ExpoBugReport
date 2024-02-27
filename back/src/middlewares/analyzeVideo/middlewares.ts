@@ -1,9 +1,17 @@
-import app from "../..";
 import { bodyValidator, paramsValidator } from "./validator";
 import { mainEnpointUrl } from "../../utils/mainEnpointUrl";
+import { Hono } from "hono";
 
-app.post(`${mainEnpointUrl}:movement`, bodyValidator);
+const analyzeVideoValidatorMiddlewares = new Hono();
 
-app.post(`${mainEnpointUrl}:movement`, paramsValidator);
+analyzeVideoValidatorMiddlewares.post(
+  `${mainEnpointUrl}:movement`,
+  bodyValidator
+);
 
-export default app;
+analyzeVideoValidatorMiddlewares.post(
+  `${mainEnpointUrl}:movement`,
+  paramsValidator
+);
+
+export default analyzeVideoValidatorMiddlewares;
