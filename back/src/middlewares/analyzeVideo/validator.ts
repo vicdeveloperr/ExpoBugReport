@@ -1,4 +1,9 @@
 import { validator as honoValidator } from "hono/validator";
+import { movements } from "../../analyzeVideo/domain/types";
+
+type tParamValidatorReturn = {
+  movement: movements;
+};
 
 export const bodyValidator = honoValidator("form", async (value, c) => {
   const body = value["body"];
@@ -14,11 +19,11 @@ export const bodyValidator = honoValidator("form", async (value, c) => {
 });
 
 export const paramsValidator = honoValidator("param", (value, c) => {
-  const param = value["movement"];
+  const param: movements | string = value["movement"];
   if (param !== "allen iverson cross") {
     return c.text("Movimiento no especificado o incorrecto", 400);
   }
   return {
     movement: param,
-  };
+  } as tParamValidatorReturn;
 });
