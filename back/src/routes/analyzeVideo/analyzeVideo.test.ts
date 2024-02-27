@@ -39,7 +39,7 @@ describe("POST /analyzeVideo", () => {
     const errorMsg =
       "El vídeo no ha podido ser analizado. Por favor, vuelva a intentarlo";
     const res = await app.request(req);
-    expect(res.status).toBe(200);
     expect(await res.text()).toBe(errorMsg);
+    expect(res.status).toBe(200);
   });
 });

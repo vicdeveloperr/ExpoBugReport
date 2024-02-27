@@ -6,7 +6,7 @@ import { middlewareValidator } from "../../middlewares/analyzeVideo/middlewareVa
 const analyzeVideo = new Hono();
 
 analyzeVideo.post("/", middlewareValidator, async (c) => {
-  const { body } = await c.req.valid("form");
+  const body = await c.req.valid("json");
   const analysis = await useAnalyzeVideo(modelConsultor, "", body.movement);
 
   return c.json(analysis);
