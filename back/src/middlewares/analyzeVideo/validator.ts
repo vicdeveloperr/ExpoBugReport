@@ -4,7 +4,7 @@ interface Body {
   video: FormData;
   movement: "allen iverson cross";
 }
-export const middlewareValidator = validator("json", (value, c) => {
+export const validator = validator("json", (value, c) => {
   const body: Body = value["body"];
   if (body.video != null && body.movement != null) {
     const message =
