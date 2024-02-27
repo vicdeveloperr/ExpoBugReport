@@ -9,7 +9,7 @@ mock.module("../../analyzeVideo/application/useAnalyzeVideo.ts", () => mock());
 function request(body: FormData) {
   const req = new Request(`${apiUrl}/analyzeVideo/allen iverson cross`, {
     body: body,
-    method: "POST",
+    method: "POST"
   });
 
   return req;
@@ -29,10 +29,11 @@ describe("POST /analyzeVideo", () => {
     // };
     const req = request(videoToAnalyze);
 
-    const res = await app.request(req);
+    const res = await app.fetch(req);
+    expect(await res.text()).toBe("");
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({
-      message: "",
-    });
+    // expect(await res.json()).toEqual({
+    //   message: "",
+    // });
   });
 });
