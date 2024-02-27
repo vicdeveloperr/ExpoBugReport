@@ -7,6 +7,7 @@ const analyzeVideo = new Hono();
 
 analyzeVideo.post("/", paramsValidator, async (c) => {
   const { movement } = await c.req.valid("param");
+  const { video } = await c.req.parseBody();
   const analysis = await useAnalyzeVideo(modelConsultor, "", movement);
 
   return c.json(analysis);
