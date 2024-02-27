@@ -1,13 +1,13 @@
 import { Hono } from "hono";
 import { useAnalyzeVideo } from "../../analyzeVideo/application/useAnalyzeVideo";
 import { modelConsultor } from "../../analyzeVideo/infractructure/modelConsultor";
-import { validator } from "../../middlewares/analyzeVideo/validator";
+import { paramsValidator } from "../../middlewares/analyzeVideo/validator";
 
 const analyzeVideo = new Hono();
 
-analyzeVideo.post("/", validator, async (c) => {
-  const body = await c.req.valid("json");
-  const analysis = await useAnalyzeVideo(modelConsultor, "", body?.movement);
+analyzeVideo.post("/", paramsValidator, async (c) => {
+  const { movement } = await c.req.valid("param");
+  const analysis = await useAnalyzeVideo(modelConsultor, "", movement);
 
   return c.json(analysis);
 });
