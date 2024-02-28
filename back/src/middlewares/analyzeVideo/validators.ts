@@ -6,15 +6,15 @@ type tParamValidatorReturn = {
 };
 
 export const bodyValidator = honoValidator("form", async (value, c) => {
-  const body = value["body"];
+  const video = value["video"];
 
-  if (!body || !(body instanceof File)) {
+  if (!video || !(video instanceof File)) {
     const message =
       "El vídeo no ha podido ser analizado. Por favor, vuelva a intentarlo";
     return c.text(message, 400);
   }
   return {
-    body: body,
+    video,
   };
 });
 
