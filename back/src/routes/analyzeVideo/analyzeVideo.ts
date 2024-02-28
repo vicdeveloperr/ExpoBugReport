@@ -15,8 +15,6 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
 
   if (!(form instanceof Response)) {
     const path = `../../../assets/${form.video.name}`;
-    const buffer = await form.video.arrayBuffer();
-    await writeFile(path, Buffer.from(buffer));
     const analysis = await useAnalyzeVideo(modelConsultor, path, movement);
     return c.json(analysis);
   }
