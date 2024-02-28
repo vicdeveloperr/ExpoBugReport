@@ -5,16 +5,16 @@ interface Result {
 }
 type tUseAnalyzeVideo = (
   modelConsultor: tModelConsultor,
-  uri: string,
+  video: File,
   movementToImprove: movements
 ) => Promise<Result>;
 
 export const useAnalyzeVideo: tUseAnalyzeVideo = async (
   modelConsultor,
-  uri,
+  video,
   movementToImprove
 ) => {
-  const result = await modelConsultor(uri, movementToImprove);
+  const result = await modelConsultor(video, movementToImprove);
   return {
     message: result.message.content,
   };

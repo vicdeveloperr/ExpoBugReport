@@ -15,7 +15,7 @@ const consultModel = mock((videoUrl, movement) => promise);
 async function callUseAnalyzeVideo() {
   const result = await useAnalyzeVideo(
     consultModel,
-    new File(),
+    new File([], ""),
     "allen iverson cross"
   );
   return result;
