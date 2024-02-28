@@ -8,7 +8,7 @@ type tParamValidatorReturn = {
 export const bodyValidator = honoValidator("form", async (value, c) => {
   const body = value["body"];
 
-  if (!body || typeof body !== "string") {
+  if (!body || !(body instanceof File)) {
     const message =
       "El vídeo no ha podido ser analizado. Por favor, vuelva a intentarlo";
     return c.text(message, 400);
