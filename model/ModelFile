@@ -1,4 +1,4 @@
-FROM llava
+FROM llava:34b
 
 # Parameters
 PARAMETER temperature 0.8
