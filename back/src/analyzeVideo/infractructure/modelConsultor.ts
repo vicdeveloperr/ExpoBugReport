@@ -18,7 +18,9 @@ export const modelConsultor: tModelConsultor = async (
     messages: [
       {
         role: "user",
-        content: `I want to improve the next movement: ${movementToImprove}`,
+        content: `I want to improve the next movement: ${movementToImprove}.
+        
+        Let's go step by step, and analyze each of the images in the video.`,
         images: imagesToProcess,
       },
     ],
