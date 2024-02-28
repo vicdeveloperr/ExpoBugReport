@@ -3,7 +3,7 @@ import { tModelConsultor } from "../domain/types";
 import { framesExtractor } from "./framesExtractor";
 
 export const modelConsultor: tModelConsultor = async (
-  videoUri,
+  video,
   movementToImprove
 ) => {
   const frames = await framesExtractor(videoUri);
