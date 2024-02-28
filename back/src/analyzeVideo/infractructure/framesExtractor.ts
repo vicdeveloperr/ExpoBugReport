@@ -1,6 +1,5 @@
 import FFmpeg from "ffmpeg";
 import { tFramesExtractor } from "../domain/types";
-import { dataStoragePath } from "../../utils/dataStoragePath";
 
 export const framesExtractor: tFramesExtractor = async (uri) => {
   try {
@@ -8,7 +7,7 @@ export const framesExtractor: tFramesExtractor = async (uri) => {
     await process
       .then((video) => {
         video.fnExtractFrameToJPG(
-          dataStoragePath,
+          "../../../data",
           {
             frame_rate: 1,
             number: 3,
