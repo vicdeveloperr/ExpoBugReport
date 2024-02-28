@@ -5,8 +5,6 @@ import {
   bodyValidator,
   paramsValidator,
 } from "../../middlewares/analyzeVideo/validators";
-import path from "path";
-import { dataStoragePath } from "../../utils/dataStoragePath";
 
 const analyzeVideo = new Hono();
 
@@ -15,8 +13,11 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
   const form = await c.req.valid("form");
 
   if (!(form instanceof Response)) {
-    const videoPath = path.join(dataStoragePath, form.video.name);
-    const analysis = await useAnalyzeVideo(modelConsultor, videoPath, movement);
+    const analysis = await useAnalyzeVideo(
+      modelConsultor,
+      form.video,
+      movement
+    );
     return c.json(analysis);
   }
 });
