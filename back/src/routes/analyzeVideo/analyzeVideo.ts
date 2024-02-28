@@ -1,19 +1,22 @@
 import { Hono } from "hono";
 import { useAnalyzeVideo } from "../../analyzeVideo/application/useAnalyzeVideo";
 import { modelConsultor } from "../../analyzeVideo/infractructure/modelConsultor";
-import { paramsValidator } from "../../middlewares/analyzeVideo/validators";
+import {
+  bodyValidator,
+  paramsValidator,
+} from "../../middlewares/analyzeVideo/validators";
 import { writeFile } from "fs/promises";
 
 const analyzeVideo = new Hono();
 
-analyzeVideo.post("/", paramsValidator, async (c) => {
+analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
   const { movement } = await c.req.valid("param");
-  const { video } = await c.req.parseBody();
+  const { body } = await c.req.valid("form");
   const analysis = await useAnalyzeVideo(modelConsultor, "", movement);
 
-  if (video instanceof File) {
-    const path = `../../../assets/${video.name}`;
-    const buffer = await video.arrayBuffer();
+  if (body instanceof File) {
+    const path = `../../../assets/${body.name}`;
+    const buffer = await body.arrayBuffer();
     await writeFile(path, Buffer.from(buffer));
   }
   return c.json(analysis);

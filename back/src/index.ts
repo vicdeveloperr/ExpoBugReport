@@ -6,6 +6,5 @@ import analyzeVideoValidatorMiddlewares from "./middlewares/analyzeVideo/analyze
 const app = new Hono();
 
 app.route(`${mainEnpointUrl}:movement`, analyzeVideo);
-app.route(`${mainEnpointUrl}:movement`, analyzeVideoValidatorMiddlewares);
 
 export default app;
