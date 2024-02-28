@@ -11,12 +11,12 @@ const analyzeVideo = new Hono();
 
 analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
   const { movement } = await c.req.valid("param");
-  const { body } = await c.req.valid("form");
+  const form = await c.req.valid("form");
   const analysis = await useAnalyzeVideo(modelConsultor, "", movement);
 
-  if (body instanceof File) {
-    const path = `../../../assets/${body.name}`;
-    const buffer = await body.arrayBuffer();
+  if (!(form instanceof Response)) {
+    const path = `../../../assets/${form.video.name}`;
+    const buffer = await form.video.arrayBuffer();
     await writeFile(path, Buffer.from(buffer));
   }
   return c.json(analysis);
