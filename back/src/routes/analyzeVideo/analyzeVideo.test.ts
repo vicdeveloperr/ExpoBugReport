@@ -1,13 +1,15 @@
 import { describe, expect, it, mock } from "bun:test";
 import { getApiUrl } from "../../utils/getApiUrl.js";
 import app from "../../index";
+import { mainEnpointUrl } from "../../utils/mainEnpointUrl.js";
 
 const apiUrl = getApiUrl();
 
 mock.module("../../analyzeVideo/application/useAnalyzeVideo.ts", () => mock());
 
-function request(body: FormData) {
-  const req = new Request(`${apiUrl}/analyzeVideo/allen iverson cross`, {
+function request(body: FormData, param?: string) {
+  const movementParam = param ? param : "allen iverson cross";
+  const req = new Request(apiUrl + mainEnpointUrl + movementParam, {
     body: body,
     method: "POST",
   });
@@ -24,6 +26,15 @@ describe("POST /analyzeVideo", () => {
     expect(await res.text()).toBe(
       "El vídeo no ha podido ser analizado. Por favor, vuelva a intentarlo"
     );
+    expect(res.status).toBe(400);
+  });
+
+  it("Retorna status 400 y mensaje de error, si el movimiento pasado por parámetro no es correcto", async () => {
+    const videoToAnalyze = new FormData();
+    const req = request(videoToAnalyze, "gambeteo messi");
+
+    const res = await app.fetch(req);
+    expect(await res.text()).toBe("Movimiento no especificado o incorrecto");
     expect(res.status).toBe(400);
   });
 });
