@@ -13,7 +13,11 @@ const promise: Promise<ChatResponse> = new Promise((resolve) => {
 const consultModel = mock((videoUrl, movement) => promise);
 
 async function callUseAnalyzeVideo() {
-  const result = await useAnalyzeVideo(consultModel, "", "allen iverson cross");
+  const result = await useAnalyzeVideo(
+    consultModel,
+    new File(),
+    "allen iverson cross"
+  );
   return result;
 }
 
