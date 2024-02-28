@@ -1,4 +1,4 @@
-import { bodyValidator, paramsValidator } from "./validator";
+import { bodyValidator, paramsValidator } from "./validators";
 import { mainEnpointUrl } from "../../utils/mainEnpointUrl";
 import { Hono } from "hono";
 

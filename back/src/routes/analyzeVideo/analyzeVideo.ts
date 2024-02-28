@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { useAnalyzeVideo } from "../../analyzeVideo/application/useAnalyzeVideo";
 import { modelConsultor } from "../../analyzeVideo/infractructure/modelConsultor";
-import { paramsValidator } from "../../middlewares/analyzeVideo/validator";
+import { paramsValidator } from "../../middlewares/analyzeVideo/validators";
 import { writeFile } from "fs/promises";
 
 const analyzeVideo = new Hono();
