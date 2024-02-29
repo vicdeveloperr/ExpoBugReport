@@ -4,7 +4,7 @@ import path from "path";
 
 export const framesExtractor: tFramesExtractor = async (uri) => {
   try {
-    const storageData = path.resolve(__dirname, "./data");
+    const storageData = path.resolve(__dirname, "../../../data");
     var process = new FFmpeg(uri);
     await process
       .then((video) => {
