@@ -8,9 +8,8 @@ export const modelConsultor: tModelConsultor = async (
   video,
   movementToImprove
 ) => {
-  const videoPath = path.resolve("../../../data", video.name);
   await saveVideo(video);
-  const frames = await framesExtractor(videoPath);
+  const frames = await framesExtractor(video.name);
   const imagesToProcess = frames ? frames : undefined;
 
   const response = await ollama.chat({
