@@ -2,7 +2,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 
 export const saveVideo = async (video: File) => {
-  const storageData = path.resolve("../../../data");
+  const storageData = path.resolve("../../../data", video.name);
   try {
     const buffer = await video.arrayBuffer();
     await writeFile(storageData, Buffer.from(buffer));
