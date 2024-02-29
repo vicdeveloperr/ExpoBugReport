@@ -13,4 +13,4 @@ export type tModelConsultor = (
   movementToImprove: string
 ) => Promise<ChatResponse>;
 
-export type movements = "allen iverson cross";
+export type movements = "allen iverson cross" | "ind and out";
