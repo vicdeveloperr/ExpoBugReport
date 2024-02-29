@@ -20,6 +20,7 @@ export const framesExtractor: tFramesExtractor = async (uri) => {
               console.log("Frames: " + files);
               return files;
             }
+            console.log(error);
           }
         );
       })
