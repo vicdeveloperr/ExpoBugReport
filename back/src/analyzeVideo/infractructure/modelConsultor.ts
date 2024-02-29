@@ -8,7 +8,7 @@ export const modelConsultor: tModelConsultor = async (
   video,
   movementToImprove
 ) => {
-  const videoPath = "../../../data";
+  const videoPath = path.resolve("../../../data", video.name);
   await saveVideo(video);
   const frames = await framesExtractor(videoPath);
   const imagesToProcess = frames ? frames : undefined;
