@@ -1,10 +1,9 @@
 import path from "path";
 
 export const saveVideo = async (video: File) => {
-  const videoPath = path.resolve("../../../data/video.mp4");
+  const videoPath = path.resolve("../../../data");
   try {
-    const buffer = await video.arrayBuffer();
-    await Bun.write(videoPath, Buffer.from(buffer));
+    await Bun.write(video.name, video);
   } catch (err) {
     console.log(err);
   }
