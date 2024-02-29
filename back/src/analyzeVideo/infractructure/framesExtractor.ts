@@ -1,13 +1,15 @@
 import FFmpeg from "ffmpeg";
 import { tFramesExtractor } from "../domain/types";
+import path from "path";
 
 export const framesExtractor: tFramesExtractor = async (uri) => {
   try {
+    const storageData = path.resolve("../../../data");
     var process = new FFmpeg(uri);
     await process
       .then((video) => {
         video.fnExtractFrameToJPG(
-          "../../../data",
+          storageData,
           {
             frame_rate: 1,
             number: 3,
