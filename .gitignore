@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/google-cloud-sdk
+google-cloud-sdk
 
 # Expo
 .expo/
