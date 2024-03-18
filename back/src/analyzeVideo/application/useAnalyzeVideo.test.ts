@@ -22,10 +22,10 @@ async function callUseAnalyzeVideo() {
 }
 
 describe("useAnalyzeVideo()", () => {
-  it("Retorna análisis del vídeo en forma de texto", async () => {
+  it("Retorna análisis del vídeo en forma de audio", async () => {
     const result = await callUseAnalyzeVideo();
     expect(result).toEqual({
-      message: "",
+      audio: "audio.mp3",
     });
   });
 
