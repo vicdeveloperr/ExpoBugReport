@@ -6,6 +6,7 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^5.1.0",
     "ffmpeg": "^0.0.4",
     "fs": "^0.0.1-security",
     "hono": "^4.0.7",
