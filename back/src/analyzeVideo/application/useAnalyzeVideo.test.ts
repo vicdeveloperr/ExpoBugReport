@@ -2,13 +2,12 @@ import { resolve } from "bun";
 import { useAnalyzeVideo } from "./useAnalyzeVideo";
 import { describe, it, mock, expect } from "bun:test";
 import { ChatResponse } from "ollama";
+import { AnalyzeVideoResult } from "../domain/types";
 
-const promise: Promise<ChatResponse> = new Promise((resolve) => {
+const promise: Promise<AnalyzeVideoResult> = new Promise((resolve) => {
   resolve({
-    message: {
-      content: "",
-    },
-  } as ChatResponse);
+    audio: "audio.mp3",
+  });
 });
 const consultModel = mock((videoUrl, movement) => promise);
 
