@@ -34,7 +34,7 @@ describe("POST /analyzeVideo", () => {
     const req = request(videoToAnalyze, "gambeteo messi");
 
     const res = await app.fetch(req);
-    expect(await res.text()).toBe("Movimiento no especificado o incorrecto");
+    expect(await res.text()).toBe("Movimiento especificado incorrecto");
     expect(res.status).toBe(400);
   });
 
