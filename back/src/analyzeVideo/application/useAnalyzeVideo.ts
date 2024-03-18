@@ -1,13 +1,14 @@
-import { movements, tModelConsultor } from "../domain/types";
+import {
+  movements,
+  tModelConsultor,
+  AnalyzeVideoResult,
+} from "../domain/types";
 
-interface Result {
-  message: string;
-}
 type tUseAnalyzeVideo = (
   modelConsultor: tModelConsultor,
   video: File,
   movementToImprove: movements
-) => Promise<Result>;
+) => Promise<AnalyzeVideoResult>;
 
 export const useAnalyzeVideo: tUseAnalyzeVideo = async (
   modelConsultor,
@@ -15,7 +16,5 @@ export const useAnalyzeVideo: tUseAnalyzeVideo = async (
   movementToImprove
 ) => {
   const result = await modelConsultor(video, movementToImprove);
-  return {
-    message: result.message.content,
-  };
+  return result;
 };
