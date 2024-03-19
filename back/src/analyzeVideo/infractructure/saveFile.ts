@@ -9,8 +9,7 @@ import { storageDataPath } from "./storageDataPath";
 
 export const saveFile: tSaveFile = async (file, path) => {
   try {
-    const filePath = pathJoin(storageDataPath, path);
-    await Bun.write(filePath, file);
+    await Bun.write(path, file);
   } catch (err) {
     console.log(err);
   }
