@@ -2,14 +2,14 @@ import ollama from "ollama";
 import { tModelConsultor } from "../domain/types";
 import { framesExtractor } from "./framesExtractor";
 import path from "path";
-import { saveVideo } from "./saveVideo";
+import { saveFile } from "./saveFile";
 
 export const modelConsultor: tModelConsultor = async (
   video,
   movementToImprove
 ) => {
-  await saveVideo(video);
   const videoPath = path.resolve(video.name);
+  await saveFile(video, videoPath);
   const frames = await framesExtractor(videoPath);
   const imagesToProcess = frames ? frames : undefined;
 

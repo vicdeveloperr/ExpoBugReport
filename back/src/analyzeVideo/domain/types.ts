@@ -15,6 +15,6 @@ export interface AnalyzeVideoResult {
 export type tModelConsultor = (
   video: File,
   movementToImprove: string
-) => Promise<AnalyzeVideoResult>;
+) => Promise<ChatResponse>;
 
 export type movements = "allen iverson cross" | "ind and out";
