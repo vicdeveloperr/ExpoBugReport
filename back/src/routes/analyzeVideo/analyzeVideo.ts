@@ -1,10 +1,10 @@
 import { Hono } from "hono";
 import { useAnalyzeVideo } from "../../analyzeVideo/application/useAnalyzeVideo";
-import { modelConsultor } from "../../analyzeVideo/infractructure/modelConsultor";
 import {
   bodyValidator,
   paramsValidator,
 } from "../../middlewares/analyzeVideo/validators";
+import { responseGenerator } from "../../analyzeVideo/infractructure/responseGenerator";
 
 const analyzeVideo = new Hono();
 
@@ -14,7 +14,7 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
 
   if (!(form instanceof Response)) {
     const analysis = await useAnalyzeVideo(
-      modelConsultor,
+      responseGenerator,
       form.video,
       movement
     );
