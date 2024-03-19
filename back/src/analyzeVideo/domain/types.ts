@@ -15,7 +15,7 @@ export interface AnalyzeVideoResult {
 export type tResponseGenerator = (
   video: File,
   movementToImprove: string
-) => Promise<AnalyzeVideoResult>;
+) => Promise<AnalyzeVideoResult | undefined>;
 
 export type tModelConsultor = (
   video: File,
