@@ -2,7 +2,7 @@ import { TextToSpeechClient } from "@google-cloud/text-to-speech";
 import type { google } from "@google-cloud/text-to-speech/build/protos/protos";
 import { saveFile } from "./saveFile";
 
-type tSpeechGenerator = (text: string) => Promise<string | unknown>;
+type tSpeechGenerator = (text: string) => Promise<string | void>;
 
 export const speechGenerator: tSpeechGenerator = async (text) => {
   const client = new TextToSpeechClient();
@@ -22,6 +22,6 @@ export const speechGenerator: tSpeechGenerator = async (text) => {
       return path;
     }
   } catch (err) {
-    return err;
+    console.log(err);
   }
 };
