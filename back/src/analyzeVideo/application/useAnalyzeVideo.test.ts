@@ -9,11 +9,11 @@ const promise: Promise<AnalyzeVideoResult> = new Promise((resolve) => {
     audio: "audio.mp3",
   });
 });
-const consultModel = mock((videoUrl, movement) => promise);
+const dependencie = mock((videoUrl, movement) => promise);
 
 async function callUseAnalyzeVideo() {
   const result = await useAnalyzeVideo(
-    consultModel,
+    dependencie,
     new File([], ""),
     "allen iverson cross"
   );
@@ -30,6 +30,6 @@ describe("useAnalyzeVideo()", () => {
 
   it("Ejecuta función pasada como argumento", async () => {
     await callUseAnalyzeVideo();
-    expect(consultModel).toHaveBeenCalled();
+    expect(dependencie).toHaveBeenCalled();
   });
 });
