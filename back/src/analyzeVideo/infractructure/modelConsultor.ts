@@ -3,13 +3,14 @@ import { tModelConsultor } from "../domain/types";
 import { framesExtractor } from "./framesExtractor";
 import path from "path";
 import { saveFile } from "./saveFile";
+import { storageDataPath } from "./storageDataPath";
 
 export const modelConsultor: tModelConsultor = async (
   video,
   movementToImprove
 ) => {
-  const videoPath = path.resolve(video.name);
-  await saveFile(video, videoPath);
+  const videoPath = path.join(storageDataPath, video.name);
+  await saveFile(video, video.name);
   const frames = await framesExtractor(videoPath);
   const imagesToProcess = frames ? frames : undefined;
 
