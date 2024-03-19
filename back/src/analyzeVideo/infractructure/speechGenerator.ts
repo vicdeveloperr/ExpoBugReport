@@ -3,6 +3,7 @@ import type { google } from "@google-cloud/text-to-speech/build/protos/protos";
 import { saveFile } from "./saveFile";
 import { join as pathJoin } from "path";
 import { storageDataPath } from "./storageDataPath";
+import uniqid from "uniqid";
 
 type tSpeechGenerator = (text: string) => Promise<string | void>;
 
@@ -18,8 +19,8 @@ export const speechGenerator: tSpeechGenerator = async (text) => {
   try {
     const [response] = await client.synthesizeSpeech(request);
     if (response.audioContent) {
-      // TO-DO: Generar path único para cada audio
-      const path = pathJoin(storageDataPath, "output.mp3");
+      const filename = uniqid("speech-");
+      const path = pathJoin(storageDataPath, `${filename}.mp3`);
       await saveFile(response.audioContent, path);
       console.log("Audio content written to file: output.mp3");
       return path;
