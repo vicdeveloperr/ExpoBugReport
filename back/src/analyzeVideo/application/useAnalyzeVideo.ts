@@ -8,7 +8,7 @@ type tUseAnalyzeVideo = (
   responseGenerator: tResponseGenerator,
   video: File,
   movementToImprove: movements
-) => Promise<AnalyzeVideoResult>;
+) => Promise<AnalyzeVideoResult | string>;
 
 export const useAnalyzeVideo: tUseAnalyzeVideo = async (
   responseGenerator,
@@ -16,5 +16,5 @@ export const useAnalyzeVideo: tUseAnalyzeVideo = async (
   movementToImprove
 ) => {
   const result = await responseGenerator(video, movementToImprove);
-  return result;
+  return result ? result : "Ha ocurrido un error al generar la respueta";
 };
