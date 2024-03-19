@@ -21,13 +21,17 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
   const form = await c.req.valid("form");
 
   if (!(form instanceof Response)) {
-    const { audioUrl } = await useAnalyzeVideo(
+    const result = await useAnalyzeVideo(
       responseGenerator,
       form.video,
       movement
     );
 
-    return c.redirect(audioUrl);
+    if (typeof result != "string") {
+      return c.redirect(result.audioUrl);
+    }
+
+    return c.text(result);
   }
 });
 
