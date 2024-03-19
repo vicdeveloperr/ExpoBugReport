@@ -26,7 +26,7 @@ export const speechGenerator: tSpeechGenerator = async (text) => {
       await saveFile(response.audioContent, path);
       console.log(`Audio guardado como ${filename}`);
 
-      return id;
+      return path;
     }
   } catch (err) {
     console.log(err);
