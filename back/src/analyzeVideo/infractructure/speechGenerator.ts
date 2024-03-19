@@ -16,6 +16,7 @@ export const speechGenerator: tSpeechGenerator = async (text) => {
   try {
     const [response] = await client.synthesizeSpeech(request);
     if (response.audioContent) {
+      // TO-DO: Generar path único para cada audio
       const path = "output.mp3";
       await saveFile(response.audioContent, "output.mp3");
       console.log("Audio content written to file: output.mp3");
