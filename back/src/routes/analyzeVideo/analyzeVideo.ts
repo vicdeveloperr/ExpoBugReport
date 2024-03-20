@@ -28,7 +28,9 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
     );
 
     if (typeof result != "string") {
-      return c.redirect(result.audioUrl);
+      const file = Bun.file(result.audioUrl)
+      const res = new Response(file);
+      return res;
     }
 
     return c.text(result);
