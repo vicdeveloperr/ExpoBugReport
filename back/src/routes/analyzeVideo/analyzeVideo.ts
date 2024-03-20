@@ -9,13 +9,6 @@ import { responseGenerator } from "../../analyzeVideo/infractructure/responseGen
 
 const analyzeVideo = new Hono();
 
-// Middleware para servir archivo estáticos
-analyzeVideo.post(
-  "/",
-  serveStatic({
-    root: "../../data",
-  })
-);
 analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
   const { movement } = await c.req.valid("param");
   const form = await c.req.valid("form");
@@ -28,7 +21,7 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
     );
 
     if (typeof result != "string") {
-      const file = Bun.file(result.audioUrl)
+      const file = Bun.file(result.audioUrl);
       const res = new Response(file);
       return res;
     }
