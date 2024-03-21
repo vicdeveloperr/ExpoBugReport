@@ -1,14 +1,19 @@
-import { View, StyleSheet } from "react-native";
-import { Shadow } from "react-native-shadow-2";
+import { StyleSheet, Animated } from "react-native";
+import { useEffect, useRef } from "react";
+import { AnimatedShadow, fadeIn, fadeOut } from "./hooks/animation";
 
 export const SpeechAnimation: React.FC = () => {
+  const fadeValue = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    fadeIn(fadeValue);
+  });
+
   return (
-    <Shadow
+    <AnimatedShadow
       startColor="#000"
-      style={styles.content}
+      style={[styles.content, { opacity: fadeValue }]}
       distance={15}
-    >
-    </Shadow>
+    ></AnimatedShadow>
   );
 };
 
