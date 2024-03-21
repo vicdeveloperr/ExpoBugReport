@@ -1,27 +1,24 @@
 import { useRef } from "react";
 import { Animated } from "react-native";
+import type { Animated as AnimatedType } from "react-native";
 import { Shadow } from "react-native-shadow-2";
+
+type fadeAnimation = (initValue: AnimatedType.Value) => void;
 
 export const AnimatedShadow = Animated.createAnimatedComponent(Shadow);
 
-export const useAnimation = () => {
-  const fadeValue = useRef(new Animated.Value(0)).current;
+export const fadeIn: fadeAnimation = (initValue) => {
+  Animated.timing(initValue, {
+    toValue: 1,
+    duration: 2000,
+    useNativeDriver: true,
+  });
+};
 
-  const fadeIn = () => {
-    return Animated.timing(fadeValue, {
-      toValue: 1,
-      duration: 2000,
-      useNativeDriver: true,
-    });
-  };
-
-  const fadeOut = () => {
-    return Animated.timing(fadeValue, {
-      toValue: 0,
-      duration: 2000,
-      useNativeDriver: true,
-    });
-  };
-
-  return { fadeOut, fadeIn, fadeValue };
+export const fadeOut: fadeAnimation = (initValue) => {
+  Animated.timing(initValue, {
+    toValue: 0,
+    duration: 2000,
+    useNativeDriver: true,
+  });
 };
