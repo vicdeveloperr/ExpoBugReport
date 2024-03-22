@@ -7,18 +7,21 @@ export const AnimatedSpeech = () => {
 
   useEffect(() => {
     if (!isAnimationActive) {
-      Animated.sequence([
-        Animated.timing(fadeValue, {
-          toValue: 0,
-          duration: 2000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(fadeValue, {
-          toValue: 1,
-          duration: 2000,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(fadeValue, {
+            toValue: 0,
+            duration: 2000,
+            useNativeDriver: true,
+          }),
+          Animated.timing(fadeValue, {
+            toValue: 1,
+            duration: 2000,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+
       setAnimationActive(false);
     }
   });
