@@ -1,7 +1,7 @@
 import {
   VideoTutorial,
   videoRef,
-} from "../../../components/videoTutorial/VideoTutorial";
+} from "../../../components/videoTutorial/VideoFullScreen";
 import renderer from "react-test-renderer";
 import { render } from "@testing-library/react-native";
 

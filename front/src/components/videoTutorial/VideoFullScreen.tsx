@@ -19,7 +19,7 @@ function videoAutoInit(isPlaying: boolean): void {
   }
 }
 
-export const VideoTutorial: React.FC<VideoTutorialProps> = ({
+export const VideoFullScreen: React.FC<VideoTutorialProps> = ({
   onLoadComplete,
   onLoadInit,
   sourceUri,

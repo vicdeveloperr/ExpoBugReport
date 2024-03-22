@@ -4,7 +4,7 @@ import {
   useVideoPickerErrorDialogVisibilityStore,
   useVideoPlayerStore,
 } from "../../../stateManagement";
-import type { VideoTutorialNavigationObject } from "../VideoTutorial";
+import type { VideoTutorialNavigationObject } from "../VideoFullScreen";
 import pickVideoFromGallery from "../../../utils/pickVideoFromGallery";
 import type { video } from "../../../utils/pickVideoFromGallery";
 

@@ -1,4 +1,4 @@
-import { videoRef } from "../VideoTutorial";
+import { videoRef } from "../VideoFullScreen";
 import {
   useVideoPlayerStore,
   useBtnPlayModalStore,
