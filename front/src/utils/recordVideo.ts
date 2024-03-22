@@ -1,11 +1,12 @@
 import type { Camera } from "expo-camera";
 
-export default async function recordVideo(
+export default async function useRecordVideo(
   camRef: React.RefObject<Camera>
 ): Promise<string> {
   const camera = camRef.current;
+
   if (camera != null) {
-    return await camera
+    const recorded = await camera
       .recordAsync({
         maxDuration: 10,
       })
@@ -18,6 +19,8 @@ export default async function recordVideo(
         console.log(errorMesage);
         return errorMesage;
       });
+
+    return recorded;
   }
   return "Error al iniciar la cámara";
 }
