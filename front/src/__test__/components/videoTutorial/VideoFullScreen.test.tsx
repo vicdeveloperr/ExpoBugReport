@@ -1,5 +1,5 @@
 import {
-  VideoTutorial,
+  VideoFullScreen,
   videoRef,
 } from "../../../components/videoTutorial/VideoFullScreen";
 import renderer from "react-test-renderer";
@@ -11,13 +11,13 @@ jest.mock("../../../stateManagement/useVideoPlayerStore", () => () => ({
 
 describe("<VideoTutorial />", () => {
   it("Renderiza el componente VideoTutorial con la estructura esperada", () => {
-    const tree = renderer.create(<VideoTutorial sourceUri="" />).toJSON();
+    const tree = renderer.create(<VideoFullScreen sourceUri="" />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it("Define valor de videoRef correctamente", () => {
-    render(<VideoTutorial sourceUri="" />);
+    render(<VideoFullScreen sourceUri="" />);
 
     expect(videoRef).toBeDefined();
   });
