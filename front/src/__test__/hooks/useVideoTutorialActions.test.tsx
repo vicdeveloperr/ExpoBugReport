@@ -17,7 +17,7 @@ const mockedVideoRef = {
     playAsync: jest.fn(),
   },
 };
-jest.mock("../../components/videoTutorial/VideoTutorial", () => ({
+jest.mock("../../components/videoTutorial/VideoFullScreen", () => ({
   videoRef: mockedVideoRef,
 }));
 
