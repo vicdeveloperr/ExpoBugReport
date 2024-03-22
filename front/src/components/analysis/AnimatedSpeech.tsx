@@ -1,0 +1,38 @@
+import { useEffect, useRef, useState } from "react";
+import { Animated, StyleSheet } from "react-native";
+
+export const AnimatedSpeech = () => {
+  const fadeValue = useRef(new Animated.Value(1)).current;
+  const [isAnimationActive, setAnimationActive] = useState(true);
+
+  useEffect(() => {
+    if (!isAnimationActive) {
+      Animated.sequence([
+        Animated.timing(fadeValue, {
+          toValue: 0,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeValue, {
+          toValue: 1,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+      ]);
+      setAnimationActive(false);
+    }
+  });
+  return (
+    <Animated.View
+      style={[styles.content, { opacity: fadeValue }]}
+    ></Animated.View>
+  );
+};
+
+const styles = StyleSheet.create({
+  content: {
+    width: 150,
+    height: 150,
+    backgroundColor: "#fff",
+  },
+});
