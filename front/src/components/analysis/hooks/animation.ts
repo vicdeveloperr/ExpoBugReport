@@ -15,7 +15,7 @@ export const fadeIn: fadeAnimation = (initValue) => {
   });
 };
 
-export const fadeOut: fadeAnimation = (initValue) => {
+export const useFadeOut: fadeAnimation = (initValue) => {
   Animated.timing(initValue, {
     toValue: 0,
     duration: 2000,
