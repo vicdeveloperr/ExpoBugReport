@@ -1,23 +1,16 @@
-import { StyleSheet, Animated } from "react-native";
-import { useEffect, useRef } from "react";
-import { AnimatedShadow, fadeIn, useFadeOut } from "./hooks/animation";
+import { StyleSheet } from "react-native";
+import { AnimatedSpeech } from "./AnimatedSpeech";
+import { Shadow } from "react-native-shadow-2";
 
-interface SpeechAnimationProps {
-  fadeValue: Animated.Value;
-}
-export const SpeechAnimation: React.FC<SpeechAnimationProps> = ({
-  fadeValue,
-}) => {
+export const SpeechAnimation: React.FC = () => {
   return (
-    <AnimatedShadow
+    <Shadow
       startColor="#000"
       style={[styles.container]}
       distance={15}
     >
-      <Animated.View
-        style={[styles.content, { opacity: fadeValue }]}
-      ></Animated.View>
-    </AnimatedShadow>
+      <AnimatedSpeech />
+    </Shadow>
   );
 };
 
@@ -28,10 +21,5 @@ const styles = StyleSheet.create({
     height: 110,
     borderWidth: 10,
     borderColor: "#000",
-  },
-  content: {
-    width: 150,
-    height: 150,
-    backgroundColor: "#fff",
   },
 });

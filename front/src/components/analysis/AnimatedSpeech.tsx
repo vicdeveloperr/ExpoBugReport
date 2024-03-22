@@ -3,7 +3,7 @@ import { Animated, StyleSheet } from "react-native";
 
 export const AnimatedSpeech = () => {
   const fadeValue = useRef(new Animated.Value(1)).current;
-  const [isAnimationActive, setAnimationActive] = useState(true);
+  const [isAnimationActive, setAnimationActive] = useState(false);
 
   useEffect(() => {
     if (!isAnimationActive) {
@@ -18,7 +18,7 @@ export const AnimatedSpeech = () => {
           duration: 2000,
           useNativeDriver: true,
         }),
-      ]);
+      ]).start();
       setAnimationActive(false);
     }
   });
