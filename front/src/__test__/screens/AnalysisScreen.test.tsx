@@ -17,7 +17,7 @@ describe("<AnalysisScreen />", () => {
   it("Muestra preguntas recomendadas", () => {
     const { getByTestId } = renderComponent();
 
-    expect(getByTestId("RecomendAnswers")).toBeTruthy();
+    expect(getByTestId("RecomendedQuestions")).toBeTruthy();
   });
   it("Muestra botones de navegación", () => {
     const { getByTestId } = renderComponent();
