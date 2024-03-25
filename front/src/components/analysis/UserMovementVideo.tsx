@@ -1,11 +1,11 @@
 import { useRecordedStore } from "../../stateManagement";
-import Loader from "../Loader";
+import useLoaderVisibilityStore from "../../stateManagement/useLoaderVisibilityStore";
 import ScreenDarkModal from "../ScreenDarkModal";
 import { VideoFullScreen } from "../videoTutorial/VideoFullScreen";
-import { useState } from "react";
+import { View } from "react-native";
 
 export const UserMovementVideo = () => {
-  const [isLoading, setLoading] = useState(true);
+  const { setIsLoading } = useLoaderVisibilityStore((state) => state);
   const { recorded } = useRecordedStore((state) => state);
 
   return (
@@ -13,10 +13,10 @@ export const UserMovementVideo = () => {
       <ScreenDarkModal>
         <VideoFullScreen
           sourceUri={recorded}
-          onLoadComplete={() => setLoading(false)}
+          onLoadComplete={() => setIsLoading(false)}
         />
       </ScreenDarkModal>
-      <Loader isLoading={isLoading} />
+      <View testID="UserMovementVideo"></View>
     </>
   );
 };
