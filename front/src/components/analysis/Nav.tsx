@@ -2,7 +2,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { medium } from "../../utils/iconSizes";
 import { primaryColor } from "../../utils/colors";
 import { View } from "react-native";
-import { AnimatedSpeech } from "./AnimatedSpeech";
+import { SpeechAnimation } from "./SpeechAnimation";
 
 type NavType = () => React.ReactNode;
 
@@ -14,7 +14,7 @@ export const Nav: NavType = () => {
         size={medium}
         color={primaryColor}
       />
-      <AnimatedSpeech />
+      <SpeechAnimation />
       <AntDesign
         name="back"
         size={medium}
