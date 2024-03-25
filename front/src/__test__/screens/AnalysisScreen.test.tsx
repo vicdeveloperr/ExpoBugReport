@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react-native";
+import { AnalysisScreen } from "../../screens/AnalysisScreen";
 
 const renderComponent = () => {
   const selectors = render(<AnalysisScreen />);

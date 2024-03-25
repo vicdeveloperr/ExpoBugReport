@@ -1,3 +1,9 @@
+import { UserMovementVideo } from "../components/analysis/UserMovementVideo";
+
 export const AnalysisScreen = () => {
-  return <></>;
+  return (
+    <>
+      <UserMovementVideo />
+    </>
+  );
 };
