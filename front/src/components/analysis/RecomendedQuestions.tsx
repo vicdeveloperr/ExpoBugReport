@@ -2,6 +2,10 @@ import { Text, View } from "react-native";
 
 type RecomendedQuestionsType = (questions: string[]) => React.ReactNode;
 
+const Container = (children: React.ReactNode) => {
+  return <View testID="RecomendedQuestions">{children}</View>;
+};
+
 const RecomendedQuestions: RecomendedQuestionsType = (questions) => {
   const elements = questions.map((question) => {
     return (
@@ -11,5 +15,5 @@ const RecomendedQuestions: RecomendedQuestionsType = (questions) => {
     );
   });
 
-  return elements;
+  return <Container>{elements}</Container>;
 };
