@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
 interface RecordedStore {
-  recorded: string | null;
+  recorded: string;
   setRecorded: (newRecorded: string) => void;
 }
 
 const useRecordedStore = create<RecordedStore>((set) => ({
-  recorded: null,
+  recorded: "",
   setRecorded: (newRecorded) => {
     set({ recorded: newRecorded });
   },
