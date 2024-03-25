@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
 import useRecordingEffects from "../../components/camerascreen/hooks/useRecordingEffects";
-import recordVideo from "../../utils/recordVideo";
+import recordVideo from "../../utils/useRecordVideo";
 import { camRef } from "../../components/camerascreen/CameraView";
 import type { RenderHookResult, Renderer } from "@testing-library/react-hooks";
 import type { Camera } from "expo-camera";
