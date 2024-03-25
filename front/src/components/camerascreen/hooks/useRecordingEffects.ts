@@ -1,5 +1,5 @@
 import useHandlerStates from "./useHandlerStates";
-import recordVideo from "../../../utils/useRecordVideo";
+import useRecordVideo from "../../../utils/useRecordVideo";
 import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
 import { useNavigation } from "@react-navigation/native";
@@ -24,15 +24,19 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
       setIsRecording(true);
     }
 
-    await recordVideo(camRef)
-      .then(() => {
-        resetCountdown();
-        setIsRecording(false);
-        navigate("loadVideo");
-      })
-      .catch((err: string) => {
-        console.log(err);
-      });
+    if (camRef.current != null) {
+      await useRecordVideo(camRef.current)
+        .then(() => {
+          resetCountdown();
+          setIsRecording(false);
+          navigate("loadVideo");
+        })
+        .catch((err: string) => {
+          console.log(err);
+        });
+    } else {
+      console.log("Falló al iniciar cámara. Verifique los permisos")
+    }
   };
 
   const onStopRecording: () => void = () => {
