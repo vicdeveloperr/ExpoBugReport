@@ -1,32 +1,38 @@
+import { movementsAvailable } from "../types/movementsAvailable";
 import { apiUrl } from "./apiUrl";
+import uniqid from "uniqid";
 
 type ApiResponse = {
   status: 200;
   filename: string;
 };
 
-export async function uploadVideo(uri: string) {
+export async function getVideoAnalysis(
+  uri: string,
+  movementWantImprove: movementsAvailable
+) {
   const videoData = new FormData();
-  videoData.append("file", {
+  const id = uniqid(`${movementWantImprove}--`);
+  videoData.append("video", {
     uri,
-    name: "video.mp4",
+    name: `${id}.mp4`,
     type: "video/mp4",
   } as any); // FormData.append espera un Blob como segundo argumento. Pero, igualmente pasarle un objeto con la estructura {uri, name y type} funciona para almacenar datos de vídeo. Por ello, utilizamos el tipo any.
 
   try {
-    const response = await fetch(`${apiUrl}/uploadfile`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: videoData,
-    });
+    const response = await fetch(
+      `${apiUrl}/analyzeVideo/${movementWantImprove}`,
+      {
+        method: "POST",
+        body: videoData,
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Error en la solicitud a la API: ${response.status}`);
     }
 
-    const data: ApiResponse = await response.json();
+    const data = await response.toString();
 
     console.log(data);
   } catch (error) {
@@ -35,4 +41,4 @@ export async function uploadVideo(uri: string) {
   }
 }
 
-export default uploadVideo;
+export default getVideoAnalysis;
