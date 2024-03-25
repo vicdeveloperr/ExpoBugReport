@@ -2,11 +2,14 @@ import { Text, View } from "react-native";
 
 type RecomendedQuestionsType = (questions: string[]) => React.ReactNode;
 
-const Container = (children: React.ReactNode) => {
+interface ContainerProps {
+  children: React.ReactNode;
+}
+const Container = ({ children }: ContainerProps) => {
   return <View testID="RecomendedQuestions">{children}</View>;
 };
 
-const RecomendedQuestions: RecomendedQuestionsType = (questions) => {
+export const RecomendedQuestions: RecomendedQuestionsType = (questions) => {
   const elements = questions.map((question) => {
     return (
       <View>
