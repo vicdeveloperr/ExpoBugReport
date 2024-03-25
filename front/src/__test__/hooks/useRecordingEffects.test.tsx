@@ -2,16 +2,24 @@ import { renderHook } from "@testing-library/react-hooks";
 import useRecordingEffects from "../../components/camerascreen/hooks/useRecordingEffects";
 import useRecordVideo from "../../utils/useRecordVideo";
 import type { RenderHookResult, Renderer } from "@testing-library/react-hooks";
-import type { Camera } from "expo-camera";
+import { camRef } from "../../components/camerascreen/CameraView";
+import type { CameraType } from "expo-camera";
+import { Camera } from "expo-camera";
 import stopVideoRecording from "../../utils/stopVideoRecording";
 
 jest.mock("../../utils/useRecordVideo", () =>
-  jest.fn(async (camera: Camera) => {
+  jest.fn(async (camera: CameraType) => {
     return await new Promise((resolve) => {
       resolve("resolve.mp4");
     });
   })
 );
+
+jest.mock("../../components/camerascreen/CameraView", () => ({
+  camRef: {
+    current: {},
+  },
+}));
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: () => ({ navigate: jest.fn() }),
