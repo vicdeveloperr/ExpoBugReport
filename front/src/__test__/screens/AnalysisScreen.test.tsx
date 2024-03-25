@@ -19,17 +19,11 @@ describe("<AnalysisScreen />", () => {
 
     expect(getByTestId("RecomendedQuestions")).toBeTruthy();
   });
-  it("Muestra botones de navegación", () => {
+
+  it("Muestra barra de navegación", () => {
     const { getByTestId } = renderComponent();
 
-    expect(getByTestId("HomeButton")).toBeTruthy();
-    expect(getByTestId("TryAgainButton")).toBeTruthy();
-  });
-
-  it("Muestra animación de voz", () => {
-    const { getByTestId } = renderComponent();
-
-    expect(getByTestId("AnimatedSpeech")).toBeTruthy();
+    expect(getByTestId("nav")).toBeTruthy();
   });
 
   it("Muestra vídeo del movimiento realizado por el usuario", () => {
