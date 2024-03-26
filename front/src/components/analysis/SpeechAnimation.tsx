@@ -1,25 +1,22 @@
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { AnimatedSpeech } from "./AnimatedSpeech";
 import { Shadow } from "react-native-shadow-2";
 
 export const SpeechAnimation: React.FC = () => {
   return (
-    <Shadow
-      startColor="#000"
-      style={[styles.container]}
-      distance={15}
-    >
-      <AnimatedSpeech />
-    </Shadow>
+    <Image
+      source={{
+        uri: "https://i.pinimg.com/564x/7b/07/b3/7b07b3ed967d66066ab27904f9ef0944.jpg",
+      }}
+      style={styles.container}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 100,
     width: 110,
     height: 110,
-    borderWidth: 10,
-    borderColor: "#000",
+    aspectRatio: "1/1",
   },
 });
