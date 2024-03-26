@@ -42,8 +42,12 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     borderRadius: 50,
-    padding: 4,
-    backgroundColor: "rgba(199, 79, 31, 0.5)",
+    paddingVertical: 5,
+    paddingHorizontal: 30,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(250, 250, 250, 0.4)",
   },
   questionText: {
     fontWeight: "bold",
