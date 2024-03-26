@@ -2,8 +2,8 @@ import { Nav } from "../components/analysis/Nav";
 import { RecomendedQuestions } from "../components/analysis/RecomendedQuestions";
 import { UserMovementVideo } from "../components/analysis/UserMovementVideo";
 import { StyleSheet, Text, View } from "react-native";
-import ScreenContainer from "../components/ScreenContainer";
 import { questions } from "../utils/recomendedQuestions";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Title = () => <Text>Análisis generado...</Text>;
 
@@ -12,8 +12,15 @@ export const AnalysisScreen = () => {
     <>
       <UserMovementVideo />
       <View style={styles.container}>
-        <Title />
-        <RecomendedQuestions questions={questions} />
+        <LinearGradient
+          colors={["#000", "transparent"]}
+          style={styles.container}
+          start={[0, 1]}
+          end={[0, 0.8]}
+        >
+          <Title />
+          <RecomendedQuestions questions={questions} />
+        </LinearGradient>
         <Nav />
       </View>
     </>
