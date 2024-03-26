@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     maxHeight: 33,
+    marginVertical: 10,
   },
   questionContainer: {
     borderRadius: 50,
