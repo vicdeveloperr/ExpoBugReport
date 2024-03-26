@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import { primaryColor, whiteColor } from "../../utils/colors";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { paragraph } from "../../utils/genericStyles";
-import { useStatusBarHeightStore } from "../../stateManagement";
 import { Button } from "../Button";
 
 type RecomendedQuestionsType = (
@@ -13,12 +11,14 @@ interface ContainerProps {
 }
 const Container = ({ children }: ContainerProps) => {
   return (
-    <View
+    <ScrollView
+      horizontal
       style={[styles.container]}
       testID="RecomendedQuestions"
+      showsHorizontalScrollIndicator={false}
     >
       {children}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
+    maxHeight: 33,
   },
   questionContainer: {
     borderRadius: 50,
-    paddingVertical: 3,
     paddingHorizontal: 25,
     display: "flex",
     justifyContent: "center",
