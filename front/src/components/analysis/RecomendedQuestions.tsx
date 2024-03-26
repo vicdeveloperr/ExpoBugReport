@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import { primaryColor, whiteColor } from "../../utils/colors";
 import { paragraph } from "../../utils/genericStyles";
+import { useStatusBarHeightStore } from "../../stateManagement";
+import { Button } from "../Button";
 
 type RecomendedQuestionsType = (
   props: RecomendedQuestionsProps
@@ -12,7 +14,7 @@ interface ContainerProps {
 const Container = ({ children }: ContainerProps) => {
   return (
     <View
-      style={styles.container}
+      style={[styles.container]}
       testID="RecomendedQuestions"
     >
       {children}
@@ -26,9 +28,9 @@ interface RecomendedQuestionsProps {
 export const RecomendedQuestions: RecomendedQuestionsType = ({ questions }) => {
   const elements = questions.map((question) => {
     return (
-      <View style={styles.questionContainer}>
+      <Button styles={styles.questionContainer}>
         <Text style={[paragraph, styles.questionText]}>{question}</Text>
-      </View>
+      </Button>
     );
   });
 
@@ -42,12 +44,13 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     borderRadius: 50,
-    paddingVertical: 5,
-    paddingHorizontal: 30,
+    paddingVertical: 3,
+    paddingHorizontal: 25,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(250, 250, 250, 0.4)",
+    marginLeft: 10,
   },
   questionText: {
     fontWeight: "bold",
