@@ -1,5 +1,5 @@
 import useHandlerStates from "./useHandlerStates";
-import recordVideo from "../../../utils/useRecordVideo";
+import recordVideo from "../../../utils/recordVideo";
 import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
 import { useNavigation } from "@react-navigation/native";
