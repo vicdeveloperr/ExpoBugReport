@@ -1,6 +1,6 @@
 export const questions = [
-  "¿Por qué estoy cometiendo estos errores?",
-  "¿Qué estoy haciendo bien?",
+  "¿Por qué?",
+  "¿Qué hago bien?",
   "¿Cómo puedo entrenarlo?",
-  "¿En qué debo concentrarme?",
+  "¿Qué hago mal?",
 ];
