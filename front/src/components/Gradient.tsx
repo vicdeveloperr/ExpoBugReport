@@ -23,7 +23,7 @@ export const Gradient: React.FC<GradientProps> = ({
         colors={["#000", "transparent"]}
         style={styles.littleBlack}
         start={[0, 1]}
-        end={[0, 0.8]}
+        end={[0, 0.7]}
       >
         {children}
       </LinearGradient>
