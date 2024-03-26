@@ -1,9 +1,10 @@
 import useHandlerStates from "./useHandlerStates";
-import useRecordVideo from "../../../utils/useRecordVideo";
+import recordVideo from "../../../utils/recordVideo";
 import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
 import { useNavigation } from "@react-navigation/native";
 import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
+import { useRecordedStore } from "../../../stateManagement";
 
 type typeUseRecordingEffects = () => {
   onStartRecording: () => Promise<void>;
@@ -14,6 +15,7 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
   const { setIsTimerVisible, startCountdown, setIsRecording, resetCountdown } =
     useHandlerStates();
   const { navigate } = useNavigation<CameraScreenNavigator>();
+  const { setRecorded } = useRecordedStore((state) => state);
 
   const onStartRecording: () => Promise<void> = async () => {
     setIsTimerVisible(true);
@@ -25,17 +27,18 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
     }
 
     if (camRef.current != null) {
-      await useRecordVideo(camRef.current)
-        .then(() => {
+      await recordVideo(camRef.current)
+        .then((data) => {
+          if (typeof data === "string") {
+            setRecorded(data);
+          }
           resetCountdown();
           setIsRecording(false);
-          navigate("loadVideo");
+          navigate("analysis");
         })
         .catch((err: string) => {
           console.log(err);
         });
-    } else {
-      console.log("Falló al iniciar cámara. Verifique los permisos")
     }
   };
 

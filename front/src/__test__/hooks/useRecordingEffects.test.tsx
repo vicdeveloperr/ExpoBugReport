@@ -1,13 +1,11 @@
 import { renderHook } from "@testing-library/react-hooks";
 import useRecordingEffects from "../../components/camerascreen/hooks/useRecordingEffects";
-import useRecordVideo from "../../utils/useRecordVideo";
+import recordVideo from "../../utils/recordVideo";
 import type { RenderHookResult, Renderer } from "@testing-library/react-hooks";
-import { camRef } from "../../components/camerascreen/CameraView";
 import type { CameraType } from "expo-camera";
-import { Camera } from "expo-camera";
 import stopVideoRecording from "../../utils/stopVideoRecording";
 
-jest.mock("../../utils/useRecordVideo", () =>
+jest.mock("../../utils/recordVideo", () =>
   jest.fn(async (camera: CameraType) => {
     return await new Promise((resolve) => {
       resolve("resolve.mp4");
@@ -63,7 +61,7 @@ describe("useRecordingEffects()", () => {
 
     await onStartRecording();
 
-    expect(useRecordVideo).toHaveBeenCalled();
+    expect(recordVideo).toHaveBeenCalled();
   });
 
   it("Termina grabación del vídeo al ejecutar onStopRecording()", async () => {
