@@ -1,7 +1,7 @@
 import { Nav } from "../components/analysis/Nav";
 import { RecomendedQuestions } from "../components/analysis/RecomendedQuestions";
 import { UserMovementVideo } from "../components/analysis/UserMovementVideo";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import ScreenContainer from "../components/ScreenContainer";
 import { questions } from "../utils/recomendedQuestions";
 
@@ -11,17 +11,18 @@ export const AnalysisScreen = () => {
   return (
     <>
       <UserMovementVideo />
-      <ScreenContainer styles={styles.container}>
+      <View style={styles.container}>
         <Title />
         <RecomendedQuestions questions={questions} />
         <Nav />
-      </ScreenContainer>
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     display: "flex",
     justifyContent: "flex-end",
   },

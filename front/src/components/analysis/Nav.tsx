@@ -1,6 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
-import { medium, small } from "../../utils/iconSizes";
-import { primaryColor, whiteColor } from "../../utils/colors";
+import { small } from "../../utils/iconSizes";
+import { whiteColor } from "../../utils/colors";
 import { StyleSheet, View } from "react-native";
 import { SpeechAnimation } from "./SpeechAnimation";
 
@@ -10,29 +10,32 @@ export const Nav: NavType = () => {
   return (
     <View
       testID="nav"
-      style={styles.container}
+      style={styles.bg}
     >
-      <AntDesign
-        name="home"
-        size={small}
-        color={whiteColor}
-      />
-      <SpeechAnimation />
-      <AntDesign
-        name="back"
-        size={small}
-        color={whiteColor}
-      />
+      <View style={styles.contentContainer}>
+        <AntDesign
+          name="home"
+          size={small}
+          color={whiteColor}
+        />
+        <SpeechAnimation />
+        <AntDesign
+          name="back"
+          size={small}
+          color={whiteColor}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
+  bg: {
+    backgroundColor: "#000",
+  },
+  contentContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "#000",
   },
 });
