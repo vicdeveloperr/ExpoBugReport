@@ -11,6 +11,7 @@ export const UserMovementVideo = () => {
   return (
     <>
       <VideoFullScreen
+        onLoadInit={() => setIsLoading(true)}
         sourceUri={
           "https://player.vimeo.com/progressive_redirect/playback/562969203/rendition/540p/file.mp4?loc=external&oauth2_token_id=1747418641&signature=d823a8401b6f5f93bd4e73a4483fd2502327fc034d6f469ba6eb5da972b81ae0"
         }

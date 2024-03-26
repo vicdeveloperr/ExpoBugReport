@@ -6,12 +6,16 @@ import { questions } from "../utils/recomendedQuestions";
 import { LinearGradient } from "expo-linear-gradient";
 import { Gradient } from "../components/Gradient";
 import { paragraph } from "../utils/genericStyles";
+import Loader from "../components/Loader";
+import useLoaderVisibilityStore from "../stateManagement/useLoaderVisibilityStore";
 
 const Title = () => (
   <Text style={[paragraph, styles.title]}>Análisis generado...</Text>
 );
 
 export const AnalysisScreen = () => {
+  const { isLoading } = useLoaderVisibilityStore((state) => state);
+
   return (
     <>
       <UserMovementVideo />
@@ -25,6 +29,7 @@ export const AnalysisScreen = () => {
         </Gradient>
         <Nav />
       </View>
+      <Loader isLoading={isLoading} />
     </>
   );
 };
