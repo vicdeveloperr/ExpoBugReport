@@ -4,6 +4,7 @@ import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
 import { useNavigation } from "@react-navigation/native";
 import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
+import { useRecordedStore } from "../../../stateManagement";
 
 type typeUseRecordingEffects = () => {
   onStartRecording: () => Promise<void>;
@@ -14,6 +15,7 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
   const { setIsTimerVisible, startCountdown, setIsRecording, resetCountdown } =
     useHandlerStates();
   const { navigate } = useNavigation<CameraScreenNavigator>();
+  const { setRecorded } = useRecordedStore((state) => state);
 
   const onStartRecording: () => Promise<void> = async () => {
     setIsTimerVisible(true);
@@ -24,15 +26,20 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
       setIsRecording(true);
     }
 
-    await recordVideo(camRef)
-      .then(() => {
-        resetCountdown();
-        setIsRecording(false);
-        navigate("loadVideo");
-      })
-      .catch((err: string) => {
-        console.log(err);
-      });
+    if (camRef.current != null) {
+      await recordVideo(camRef.current)
+        .then((data) => {
+          if (typeof data === "string") {
+            setRecorded(data);
+          }
+          resetCountdown();
+          setIsRecording(false);
+          navigate("loadVideo");
+        })
+        .catch((err: string) => {
+          console.log(err);
+        });
+    }
   };
 
   const onStopRecording: () => void = () => {
