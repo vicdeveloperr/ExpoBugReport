@@ -4,6 +4,7 @@ import { whiteColor } from "../../utils/colors";
 import { StyleSheet, View } from "react-native";
 import { SpeechAnimation } from "./SpeechAnimation";
 import { useStatusBarHeightStore } from "../../stateManagement";
+import { Button } from "../Button";
 
 type NavType = () => React.ReactNode;
 
@@ -21,17 +22,21 @@ export const Nav: NavType = () => {
           { paddingBottom: height ? height : 0 },
         ]}
       >
-        <AntDesign
-          name="home"
-          size={small}
-          color={whiteColor}
-        />
+        <Button>
+          <AntDesign
+            name="home"
+            size={small}
+            color={whiteColor}
+          />
+        </Button>
         <SpeechAnimation />
-        <AntDesign
-          name="back"
-          size={small}
-          color={whiteColor}
-        />
+        <Button>
+          <AntDesign
+            name="back"
+            size={small}
+            color={whiteColor}
+          />
+        </Button>
       </View>
     </View>
   );
