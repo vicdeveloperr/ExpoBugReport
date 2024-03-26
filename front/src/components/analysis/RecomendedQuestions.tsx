@@ -1,4 +1,5 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { whiteColor } from "../../utils/colors";
 
 type RecomendedQuestionsType = (
   props: RecomendedQuestionsProps
@@ -8,7 +9,14 @@ interface ContainerProps {
   children: React.ReactNode;
 }
 const Container = ({ children }: ContainerProps) => {
-  return <View testID="RecomendedQuestions">{children}</View>;
+  return (
+    <View
+      style={styles.container}
+      testID="RecomendedQuestions"
+    >
+      {children}
+    </View>
+  );
 };
 
 interface RecomendedQuestionsProps {
@@ -17,7 +25,7 @@ interface RecomendedQuestionsProps {
 export const RecomendedQuestions: RecomendedQuestionsType = ({ questions }) => {
   const elements = questions.map((question) => {
     return (
-      <View>
+      <View style={styles.questionsContainer}>
         <Text>{question}</Text>
       </View>
     );
@@ -25,3 +33,16 @@ export const RecomendedQuestions: RecomendedQuestionsType = ({ questions }) => {
 
   return <Container>{elements}</Container>;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  questionsContainer: {
+    borderWidth: 2,
+    borderColor: whiteColor,
+    borderRadius: 50,
+    padding: 3,
+  },
+});
