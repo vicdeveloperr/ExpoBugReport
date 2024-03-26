@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import { whiteColor } from "../../utils/colors";
+import { primaryColor, whiteColor } from "../../utils/colors";
+import { paragraph } from "../../utils/genericStyles";
 
 type RecomendedQuestionsType = (
   props: RecomendedQuestionsProps
@@ -25,8 +26,8 @@ interface RecomendedQuestionsProps {
 export const RecomendedQuestions: RecomendedQuestionsType = ({ questions }) => {
   const elements = questions.map((question) => {
     return (
-      <View style={styles.questionsContainer}>
-        <Text>{question}</Text>
+      <View style={styles.questionContainer}>
+        <Text style={[paragraph, styles.questionText]}>{question}</Text>
       </View>
     );
   });
@@ -39,10 +40,12 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
-  questionsContainer: {
-    borderWidth: 2,
-    borderColor: whiteColor,
+  questionContainer: {
     borderRadius: 50,
-    padding: 3,
+    padding: 4,
+    backgroundColor: "rgba(199, 79, 31, 0.5)",
+  },
+  questionText: {
+    fontWeight: "bold",
   },
 });
