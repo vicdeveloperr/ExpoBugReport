@@ -1,7 +1,13 @@
 import { render } from "@testing-library/react-native";
 import { AnalysisScreen } from "../../screens/AnalysisScreen";
+import type { ReactTestInstance } from "react-test-renderer";
 
-const renderComponent = () => {
+type renderComponentType = () => {
+  getByTestId: (id: string) => ReactTestInstance;
+  getByText: (text: string) => ReactTestInstance;
+};
+
+const renderComponent: renderComponentType = () => {
   const selectors = render(<AnalysisScreen />);
 
   return selectors;
@@ -30,5 +36,11 @@ describe("<AnalysisScreen />", () => {
     const { getByTestId } = renderComponent();
 
     expect(getByTestId("UserMovementVideo")).toBeTruthy();
+  });
+
+  it("Reproduce audio del análisis generado por el modelo", () => {
+    const { getByTestId } = renderComponent();
+
+    expect(getByTestId("AnalysisAudio")).toBeTruthy();
   });
 });
