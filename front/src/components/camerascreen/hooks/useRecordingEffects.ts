@@ -1,12 +1,8 @@
 import useHandlerStates from "./useHandlerStates";
 import { camRef } from "../CameraView";
 import stopVideoRecording from "../../../utils/stopVideoRecording";
-import { useNavigation } from "@react-navigation/native";
-import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
-import { useRecordedStore } from "../../../stateManagement";
 
 type typeUseRecordingEffects = () => {
-  onStartRecording: onStartRecordingType;
   onStopRecording: () => void;
 };
 
@@ -19,7 +15,7 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
     setIsRecording(false);
   };
 
-  return { onStartRecording, onStopRecording };
+  return { onStopRecording };
 };
 
 export default useRecordingEffects;
