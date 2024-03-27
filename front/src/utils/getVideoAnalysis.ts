@@ -1,4 +1,5 @@
-import { movementsAvailable } from "../types/movementsAvailable";
+import "react-native-get-random-values";
+import type { movementsAvailable } from "../types/movementsAvailable";
 import { apiUrl } from "./apiUrl";
 import { v4 as uuidv4 } from "uuid";
 
