@@ -6,7 +6,7 @@ import useHandlerStates from "./useHandlerStates";
 import { camRef } from "../CameraView";
 import { CameraScreenNavigator } from "../../../screens/CameraScreen";
 
-type onStartRecordingType = () => Promise<() => void>;
+type onStartRecordingType = () => () => void;
 
 function useBeforeStart() {
   const { setIsTimerVisible, startCountdown, setIsRecording } =
@@ -25,7 +25,7 @@ function useBeforeStart() {
   return beforeStart;
 }
 
-export const useOnStartRecording: onStartRecordingType = async () => {
+export const useOnStartRecording: onStartRecordingType = () => {
   const beforeStart = useBeforeStart();
 
   const { navigate } = useNavigation<CameraScreenNavigator>();
@@ -34,7 +34,7 @@ export const useOnStartRecording: onStartRecordingType = async () => {
 
   const onStartRecording = async () => {
     beforeStart();
-    
+
     if (camRef.current != null) {
       await recordVideo(camRef.current)
         .then(async (data) => {
