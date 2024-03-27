@@ -6,10 +6,14 @@ import useHandlerStates from "./useHandlerStates";
 import { camRef } from "../CameraView";
 import { CameraScreenNavigator } from "../../../screens/CameraScreen";
 
-type onStartRecordingType = (useBeforeStart: () => void) => Promise<void>;
+type onStartRecordingType = (
+  useBeforeStart: () => void,
+  afterEnd?: () => void
+) => Promise<void>;
 
 export const useOnStartRecording: onStartRecordingType = async (
-  useBeforeStart
+  useBeforeStart,
+  afterEnd
 ) => {
   useBeforeStart();
 
@@ -32,4 +36,6 @@ export const useOnStartRecording: onStartRecordingType = async (
         console.log(err);
       });
   }
+
+  afterEnd ? afterEnd() : undefined;
 };
