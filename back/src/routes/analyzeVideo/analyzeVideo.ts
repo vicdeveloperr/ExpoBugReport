@@ -32,6 +32,7 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
 });
 analyzeVideo.post("/", async (c) => {
   await cleaner();
+  console.log("Carpeta 'data' borrada");
 });
 
 export default analyzeVideo;
