@@ -22,7 +22,7 @@ export async function getVideoAnalysis(
 
   try {
     const response = await fetch(
-      `${apiUrl}/analyzeVideo/${movementWantImprove}`,
+      `${process.env.EXPO_PUBLIC_API_URL}/analyzeVideo/${movementWantImprove}`,
       {
         method: "POST",
         body: videoData,
