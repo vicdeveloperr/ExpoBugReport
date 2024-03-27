@@ -4,15 +4,15 @@ import { useNavigation } from "@react-navigation/native";
 import { useRecordedStore } from "../../../stateManagement";
 import useHandlerStates from "./useHandlerStates";
 import { camRef } from "../CameraView";
-import { CameraScreenNavigator } from "../../../screens/CameraScreen";
+import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
 
-type onStartRecordingType = () => () => void;
+type onStartRecordingType = () => () => Promise<void>;
 
-function useBeforeStart() {
+function useBeforeStart(): () => void {
   const { setIsTimerVisible, startCountdown, setIsRecording } =
     useHandlerStates();
 
-  const beforeStart = () => {
+  const beforeStart: () => void = () => {
     setIsTimerVisible(true);
     startCountdown(onFinishCountdown);
 
@@ -32,7 +32,7 @@ export const useOnStartRecording: onStartRecordingType = () => {
   const { setRecorded } = useRecordedStore((state) => state);
   const { resetCountdown, setIsRecording } = useHandlerStates();
 
-  const onStartRecording = async () => {
+  const onStartRecording: () => Promise<void> = async () => {
     beforeStart();
 
     if (camRef.current != null) {
