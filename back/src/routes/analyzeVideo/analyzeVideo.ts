@@ -6,6 +6,7 @@ import {
 } from "../../middlewares/analyzeVideo/validators";
 import { serveStatic } from "hono/bun";
 import { responseGenerator } from "../../analyzeVideo/infractructure/responseGenerator";
+import { cleaner } from "../../analyzeVideo/infractructure/cleaner";
 
 const analyzeVideo = new Hono();
 
@@ -28,6 +29,9 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
 
     return c.text(result);
   }
+});
+analyzeVideo.post("/", async (c) => {
+  await cleaner();
 });
 
 export default analyzeVideo;
