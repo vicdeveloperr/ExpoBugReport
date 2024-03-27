@@ -33,7 +33,7 @@ export async function getVideoAnalysis(
       throw new Error(`Error en la solicitud a la API: ${response.status}`);
     }
 
-    const data = await response.toString();
+    const data = await response.json();
 
     console.log(data);
   } catch (error) {
