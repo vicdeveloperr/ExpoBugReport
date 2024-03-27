@@ -1,6 +1,6 @@
 import { movementsAvailable } from "../types/movementsAvailable";
 import { apiUrl } from "./apiUrl";
-import uniqid from "uniqid";
+import { v4 as uuidv4 } from "uuid";
 
 type ApiResponse = {
   status: 200;
@@ -12,7 +12,7 @@ export async function getVideoAnalysis(
   movementWantImprove: movementsAvailable
 ) {
   const videoData = new FormData();
-  const id = uniqid(`${movementWantImprove}--`);
+  const id = uuidv4();
   videoData.append("video", {
     uri,
     name: `${id}.mp4`,
