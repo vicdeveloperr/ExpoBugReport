@@ -3,9 +3,22 @@ import { TouchableOpacity } from "react-native";
 import FormattedIcon from "../FormattedIcon";
 import useRecordingEffects from "./hooks/useRecordingEffects";
 
+function useBeforeStart() {
+  const { setIsTimerVisible, startCountdown, setIsRecording } =
+    useHandlerStates();
+
+  setIsTimerVisible(true);
+  startCountdown(onFinishCountdown);
+
+  function onFinishCountdown(): void {
+    setIsTimerVisible(false);
+    setIsRecording(true);
+  }
+}
+
 const CameraRecordControllers: React.FC = () => {
   const { isRecording } = useHandlerStates();
-  const { onStopRecording, onStartRecording } = useRecordingEffects();
+  const effects = useRecordingEffects();
 
   const testIdValue = isRecording ? "stopRecordButton" : "recordButton";
   type typeNameValue = "controller-stop" | "controller-record";
@@ -13,8 +26,8 @@ const CameraRecordControllers: React.FC = () => {
     ? "controller-stop"
     : "controller-record";
   const togglerRecording: () => void = isRecording
-    ? onStopRecording
-    : onStartRecording;
+    ? effects.onStopRecording
+    : () => effects.onStartRecording(useBeforeStart);
 
   return (
     <TouchableOpacity
