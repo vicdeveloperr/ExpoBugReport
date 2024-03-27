@@ -5,9 +5,12 @@ import stopVideoRecording from "../../../utils/stopVideoRecording";
 import { useNavigation } from "@react-navigation/native";
 import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
 import { useRecordedStore } from "../../../stateManagement";
+import getVideoAnalysis from "../../../utils/getVideoAnalysis";
+
+type onStartRecordingType = (beforeStart: () => void) => Promise<void>;
 
 type typeUseRecordingEffects = () => {
-  onStartRecording: () => Promise<void>;
+  onStartRecording: onStartRecordingType;
   onStopRecording: () => void;
 };
 
@@ -17,24 +20,26 @@ const useRecordingEffects: typeUseRecordingEffects = () => {
   const { navigate } = useNavigation<CameraScreenNavigator>();
   const { setRecorded } = useRecordedStore((state) => state);
 
-  const onStartRecording: () => Promise<void> = async () => {
-    setIsTimerVisible(true);
-    startCountdown(onFinishCountdown);
+  const onStartRecording: onStartRecordingType = async (beforeStart) => {
+    beforeStart();
+    // setIsTimerVisible(true);
+    // startCountdown(onFinishCountdown);
 
-    function onFinishCountdown(): void {
-      setIsTimerVisible(false);
-      setIsRecording(true);
-    }
+    // function onFinishCountdown(): void {
+    //   setIsTimerVisible(false);
+    //   setIsRecording(true);
+    // }
 
     if (camRef.current != null) {
       await recordVideo(camRef.current)
-        .then((data) => {
+        .then(async (data) => {
           if (typeof data === "string") {
             setRecorded(data);
+            await getVideoAnalysis(data, "allen iverson cross");
+            navigate("analysis");
           }
           resetCountdown();
           setIsRecording(false);
-          navigate("analysis");
         })
         .catch((err: string) => {
           console.log(err);
