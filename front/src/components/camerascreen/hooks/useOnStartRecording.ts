@@ -39,14 +39,15 @@ export const useOnStartRecording: onStartRecordingType = () => {
     if (camRef.current != null) {
       await recordVideo(camRef.current)
         .then(async (data) => {
+          setIsRecording(false);
+          resetCountdown();
+          
           if (typeof data === "string") {
             setRecorded(data);
             const res = await getVideoAnalysis(data, "allen iverson cross");
             setSpeech(res);
             navigate("analysis");
           }
-          resetCountdown();
-          setIsRecording(false);
         })
         .catch((err: string) => {
           console.log(err);
