@@ -7,13 +7,13 @@ import {
 import { serveStatic } from "hono/bun";
 import { responseGenerator } from "../../analyzeVideo/infractructure/responseGenerator";
 import { cleaner } from "../../analyzeVideo/infractructure/cleaner";
+import { storageDataPath } from "../../analyzeVideo/infractructure/storageDataPath";
 
 const analyzeVideo = new Hono();
 
 analyzeVideo.post("/", async (_, next) => {
   await next();
-  await cleaner();
-  console.log("Carpeta 'data' borrada");
+  await cleaner(storageDataPath);
 });
 
 analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {

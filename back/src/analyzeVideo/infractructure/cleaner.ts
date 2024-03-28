@@ -1,9 +1,12 @@
-import { rmdir } from "node:fs/promises";
-import { storageDataPath } from "./storageDataPath";
+import { rmdir, exists } from "node:fs/promises";
 
-export const cleaner = async () => {
+export const cleaner = async (path: string) => {
   try {
-    await rmdir(storageDataPath);
+    if (await exists(path)) {
+      await rmdir(path, { recursive: true });
+      console.log("Ruta borrada");
+    }
+    console.log("Ruta inexcistente: ", path);
   } catch (err) {
     console.log(err);
   }
