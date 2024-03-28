@@ -1,7 +1,7 @@
 import recordVideo from "../../../utils/recordVideo";
 import getVideoAnalysis from "../../../utils/getVideoAnalysis";
 import { useNavigation } from "@react-navigation/native";
-import { useRecordedStore } from "../../../stateManagement";
+import { useRecordedStore, useSpeechStore } from "../../../stateManagement";
 import useHandlerStates from "./useHandlerStates";
 import { camRef } from "../CameraView";
 import type { CameraScreenNavigator } from "../../../screens/CameraScreen";
@@ -31,6 +31,7 @@ export const useOnStartRecording: onStartRecordingType = () => {
   const { navigate } = useNavigation<CameraScreenNavigator>();
   const { setRecorded } = useRecordedStore((state) => state);
   const { resetCountdown, setIsRecording } = useHandlerStates();
+  const { setStatusSpeech } = useSpeechStore();
 
   const onStartRecording: () => Promise<void> = async () => {
     beforeStart();
@@ -41,6 +42,7 @@ export const useOnStartRecording: onStartRecordingType = () => {
           if (typeof data === "string") {
             setRecorded(data);
             await getVideoAnalysis(data, "allen iverson cross");
+            setStatusSpeech(true);
             navigate("analysis");
           }
           resetCountdown();
