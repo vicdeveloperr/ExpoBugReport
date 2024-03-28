@@ -5,11 +5,14 @@ import { StyleSheet, View } from "react-native";
 import { SpeechAnimation } from "./SpeechAnimation";
 import { useStatusBarHeightStore } from "../../stateManagement";
 import { Button } from "../Button";
+import type { AnalysisScreenNavigator } from "../../types/AnalysisScreenNavigator";
+import { useNavigation } from "@react-navigation/native";
 
 type NavType = () => React.ReactNode;
 
 export const Nav: NavType = () => {
   const { height } = useStatusBarHeightStore((state) => state);
+  const { navigate, goBack } = useNavigation<AnalysisScreenNavigator>();
 
   return (
     <View
@@ -19,10 +22,14 @@ export const Nav: NavType = () => {
       <View
         style={[
           styles.contentContainer,
-          { paddingBottom: height ? height : 0 },
+          { paddingBottom: height },
         ]}
       >
-        <Button>
+        <Button
+          action={() => {
+            navigate("videoTutorial");
+          }}
+        >
           <AntDesign
             name="home"
             size={small}
@@ -30,7 +37,11 @@ export const Nav: NavType = () => {
           />
         </Button>
         <SpeechAnimation />
-        <Button>
+        <Button
+          action={() => {
+            goBack();
+          }}
+        >
           <AntDesign
             name="back"
             size={small}
