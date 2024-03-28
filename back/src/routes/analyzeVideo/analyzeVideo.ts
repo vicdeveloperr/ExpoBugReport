@@ -10,6 +10,12 @@ import { cleaner } from "../../analyzeVideo/infractructure/cleaner";
 
 const analyzeVideo = new Hono();
 
+analyzeVideo.post("/", async (_, next) => {
+  next();
+  await cleaner();
+  console.log("Carpeta 'data' borrada");
+});
+
 analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
   const { movement } = await c.req.valid("param");
   const form = await c.req.valid("form");
@@ -29,10 +35,6 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
 
     return c.text(result);
   }
-});
-analyzeVideo.post("/", async (c) => {
-  await cleaner();
-  console.log("Carpeta 'data' borrada");
 });
 
 export default analyzeVideo;
