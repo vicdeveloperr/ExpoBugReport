@@ -6,7 +6,7 @@ import getErrorMessage from "./getErrorMessage";
 export async function getVideoAnalysis(
   uri: string,
   movementWantImprove: movementsAvailable
-): Promise<Blob | string> {
+): Promise<string> {
   const videoData = new FormData();
   const id = uuidv4();
 
@@ -31,8 +31,9 @@ export async function getVideoAnalysis(
     }
 
     const data = await response.blob();
+    const uri = URL.createObjectURL(data);
 
-    return data;
+    return uri;
   } catch (error) {
     const msg = getErrorMessage(error);
     console.error(msg);
