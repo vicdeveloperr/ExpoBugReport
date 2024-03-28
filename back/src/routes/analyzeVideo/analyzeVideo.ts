@@ -11,7 +11,7 @@ import { cleaner } from "../../analyzeVideo/infractructure/cleaner";
 const analyzeVideo = new Hono();
 
 analyzeVideo.post("/", async (_, next) => {
-  next();
+  await next();
   await cleaner();
   console.log("Carpeta 'data' borrada");
 });
