@@ -31,7 +31,7 @@ export const useOnStartRecording: onStartRecordingType = () => {
   const { navigate } = useNavigation<CameraScreenNavigator>();
   const { setRecorded } = useRecordedStore((state) => state);
   const { resetCountdown, setIsRecording } = useHandlerStates();
-  const { setStatusSpeech } = useSpeechStore();
+  const { setSpeech } = useSpeechStore();
 
   const onStartRecording: () => Promise<void> = async () => {
     beforeStart();
@@ -41,8 +41,8 @@ export const useOnStartRecording: onStartRecordingType = () => {
         .then(async (data) => {
           if (typeof data === "string") {
             setRecorded(data);
-            await getVideoAnalysis(data, "allen iverson cross");
-            setStatusSpeech(true);
+            const res = await getVideoAnalysis(data, "allen iverson cross");
+            setSpeech(res);
             navigate("analysis");
           }
           resetCountdown();
