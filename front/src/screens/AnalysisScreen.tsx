@@ -17,13 +17,12 @@ const Title: React.FC = () => (
 
 export const AnalysisScreen: React.FC = () => {
   const { isLoading } = useLoaderVisibilityStore((state) => state);
-  const { activeSpeech, setStatusSpeech } = useSpeechStore();
+  const { speech } = useSpeechStore();
 
   useEffect(() => {
     void (async () => {
-      if (activeSpeech) {
-        // await playSound();
-        setStatusSpeech(false);
+      if (speech != null) {
+        await playSound(speech);
       }
     })();
   });
