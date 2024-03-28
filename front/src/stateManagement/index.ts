@@ -10,3 +10,4 @@ export { default as useVideoPickerErrorDialogVisibilityStore } from "./useVideoP
 export { default as useVideoTutorialLoadingState } from "./useVideoTutorialLoadingState";
 export { default as useRecordedStore } from "./useRecordedStore";
 export { default as useStatusBarHeightStore } from "./useStatusBarHeightStore";
+export { default as useSpeechStore } from "./useSpeechStore";
