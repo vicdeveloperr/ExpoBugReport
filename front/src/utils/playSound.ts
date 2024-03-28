@@ -1,12 +1,14 @@
 import { Audio } from "expo-av";
-import type { AVPlaybackSource } from "expo-av";
 
-type playSoundType = (audio: AVPlaybackSource) => Promise<void>;
-export const playSound: playSoundType = async (audio) => {
+interface Params {
+  uri: string;
+}
+type playSoundType = ({ uri }: Params) => Promise<void>;
+export const playSound: playSoundType = async ({ uri }) => {
   const sound = new Audio.Sound();
 
   try {
-    await sound.loadAsync(audio);
+    await sound.loadAsync({ uri });
     await sound.playAsync();
     // await sound.unloadAsync();
   } catch (err) {
