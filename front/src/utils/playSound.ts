@@ -1,10 +1,7 @@
 import { Audio } from "expo-av";
 
-interface Params {
-  uri: string;
-}
-type playSoundType = ({ uri }: Params) => Promise<void>;
-export const playSound: playSoundType = async ({ uri }) => {
+type playSoundType = (uri: string) => Promise<void>;
+export const playSound: playSoundType = async (uri) => {
   const sound = new Audio.Sound();
 
   try {
