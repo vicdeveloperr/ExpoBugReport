@@ -7,6 +7,9 @@ import { Gradient } from "../components/Gradient";
 import { paragraph } from "../utils/genericStyles";
 import Loader from "../components/Loader";
 import useLoaderVisibilityStore from "../stateManagement/useLoaderVisibilityStore";
+import { useEffect } from "react";
+import { useSpeechStore } from "../stateManagement";
+import { playSound } from "../utils/playSound";
 
 const Title: React.FC = () => (
   <Text style={[paragraph, styles.title]}>Análisis generado...</Text>
@@ -14,6 +17,16 @@ const Title: React.FC = () => (
 
 export const AnalysisScreen: React.FC = () => {
   const { isLoading } = useLoaderVisibilityStore((state) => state);
+  const { activeSpeech, setStatusSpeech } = useSpeechStore();
+
+  useEffect(() => {
+    void (async () => {
+      if (activeSpeech) {
+        // await playSound();
+        setStatusSpeech(false);
+      }
+    })();
+  });
 
   return (
     <>
