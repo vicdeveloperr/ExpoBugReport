@@ -1,19 +1,15 @@
 import "react-native-get-random-values";
 import type { movementsAvailable } from "../types/movementsAvailable";
-import { apiUrl } from "./apiUrl";
 import { v4 as uuidv4 } from "uuid";
-
-type ApiResponse = {
-  status: 200;
-  filename: string;
-};
 
 export async function getVideoAnalysis(
   uri: string,
   movementWantImprove: movementsAvailable
-) {
+): Promise<any> {
   const videoData = new FormData();
   const id = uuidv4();
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   videoData.append("video", {
     uri,
     name: `${id}.mp4`,
@@ -38,7 +34,6 @@ export async function getVideoAnalysis(
     console.log(data);
   } catch (error) {
     console.error("Error en la solicitud a la API:", error);
-    throw error;
   }
 }
 
