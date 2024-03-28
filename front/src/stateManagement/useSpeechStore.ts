@@ -1,15 +1,15 @@
 import { create } from "zustand";
 
 interface SpeechStore {
-  activeSpeech: boolean;
-  setStatusSpeech: (status: boolean) => void;
+  speech: string | null;
+  setSpeech: (status: SpeechStore["speech"]) => void;
 }
 
 const useSpeechStore = create<SpeechStore>((set) => ({
-  activeSpeech: false,
-  setStatusSpeech: (status) => {
+  speech: null,
+  setSpeech: (status) => {
     set({
-      activeSpeech: status,
+      speech: status,
     });
   },
 }));
