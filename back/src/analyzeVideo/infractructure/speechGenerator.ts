@@ -20,7 +20,7 @@ export const speechGenerator: tSpeechGenerator = async (text) => {
     if (response.audioContent) {
       const id = uniqid("speech-");
       const filename = `${id}.mp3`;
-      const path = pathJoin(__dirname, "/speechs", filename);
+      const path = pathJoin(__dirname, "../../../speechs", filename);
 
       await saveFile(response.audioContent, path);
       console.log(`Audio guardado como ${filename}`);
