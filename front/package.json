@@ -35,6 +35,7 @@
     "react-native-shadow-2": "^7.0.8",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-web": "~0.19.6",
+    "rn-fetch-blob": "^0.12.0",
     "uuid": "^9.0.1",
     "zustand": "^4.4.7"
   },
@@ -45,6 +46,7 @@
     "@types/jest": "^29.5.11",
     "@types/react": "~18.2.14",
     "@types/react-test-renderer": "^18.0.7",
+    "@types/rn-fetch-blob": "^1.2.7",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "babel-jest": "^29.7.0",
