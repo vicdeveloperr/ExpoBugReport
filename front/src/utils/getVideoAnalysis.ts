@@ -1,11 +1,12 @@
 import "react-native-get-random-values";
 import type { movementsAvailable } from "../types/movementsAvailable";
 import { v4 as uuidv4 } from "uuid";
+import getErrorMessage from "./getErrorMessage";
 
 export async function getVideoAnalysis(
   uri: string,
   movementWantImprove: movementsAvailable
-): Promise<any> {
+): Promise<Blob | string> {
   const videoData = new FormData();
   const id = uuidv4();
 
@@ -29,11 +30,13 @@ export async function getVideoAnalysis(
       throw new Error(`Error en la solicitud a la API: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = await response.blob();
 
-    console.log(data);
+    return data;
   } catch (error) {
-    console.error("Error en la solicitud a la API:", error);
+    const msg = getErrorMessage(error);
+    console.error(msg);
+    return msg;
   }
 }
 
