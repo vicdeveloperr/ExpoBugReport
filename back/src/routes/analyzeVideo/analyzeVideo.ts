@@ -4,16 +4,16 @@ import {
   bodyValidator,
   paramsValidator,
 } from "../../middlewares/analyzeVideo/validators";
-import { serveStatic } from "hono/bun";
 import { responseGenerator } from "../../analyzeVideo/infractructure/responseGenerator";
 import { cleaner } from "../../analyzeVideo/infractructure/cleaner";
-import { storageDataPath } from "../../analyzeVideo/infractructure/storageDataPath";
+import path from "path";
 
 const analyzeVideo = new Hono();
 
 analyzeVideo.post("/", async (_, next) => {
   await next();
-  await cleaner(storageDataPath);
+  const pathToClean = path.resolve(__dirname, "../../../data");
+  await cleaner(pathToClean);
 });
 
 analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
