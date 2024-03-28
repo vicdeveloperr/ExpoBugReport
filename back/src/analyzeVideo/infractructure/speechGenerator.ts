@@ -2,7 +2,6 @@ import { TextToSpeechClient } from "@google-cloud/text-to-speech";
 import type { google } from "@google-cloud/text-to-speech/build/protos/protos";
 import { saveFile } from "./saveFile";
 import { join as pathJoin } from "path";
-import { storageDataPath } from "./storageDataPath";
 import uniqid from "uniqid";
 
 type tSpeechGenerator = (text: string) => Promise<string | void>;
@@ -21,7 +20,7 @@ export const speechGenerator: tSpeechGenerator = async (text) => {
     if (response.audioContent) {
       const id = uniqid("speech-");
       const filename = `${id}.mp3`;
-      const path = pathJoin(storageDataPath, "/speechs", filename);
+      const path = pathJoin(__dirname, "/speechs", filename);
 
       await saveFile(response.audioContent, path);
       console.log(`Audio guardado como ${filename}`);
