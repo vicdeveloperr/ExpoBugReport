@@ -7,6 +7,7 @@ speechs.get(
   "/*",
   serveStatic({
     root: "./",
+    rewriteRequestPath: (path) => path.replace(/^\/speechs/, "/speechsStorage"),
   })
 );
 
