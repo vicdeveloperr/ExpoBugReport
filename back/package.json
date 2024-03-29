@@ -19,7 +19,8 @@
     "@types/ffmpeg": "^1.0.7",
     "@types/multer": "^1.4.11",
     "bun-types": "latest",
-    "form-data": "^4.0.0"
+    "form-data": "^4.0.0",
+    "oxc": "^1.0.1"
   },
   "module": "src/index.js"
 }
