@@ -38,12 +38,13 @@ describe("POST /analyzeVideo", () => {
     expect(res.status).toBe(400);
   });
 
-  it("Retorna status 200, si la solicitud es correcta", async () => {
+  it("Retorna status 200 y path, si la solicitud es correcta", async () => {
     const videoToAnalyze = new FormData();
     videoToAnalyze.append("video", new Blob());
     const req = request(videoToAnalyze);
 
     const res = await app.fetch(req);
     expect(res.status).toBe(200);
+    expect(res.text()).toBeInstanceOf(String);
   });
 });
