@@ -7,7 +7,7 @@ import { Gradient } from "../components/Gradient";
 import { paragraph } from "../utils/genericStyles";
 import Loader from "../components/Loader";
 import useLoaderVisibilityStore from "../stateManagement/useLoaderVisibilityStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSpeechStore } from "../stateManagement";
 import { playSound } from "../utils/playSound";
 
@@ -18,10 +18,12 @@ const Title: React.FC = () => (
 export const AnalysisScreen: React.FC = () => {
   const { isLoading } = useLoaderVisibilityStore((state) => state);
   const { speech } = useSpeechStore();
+  const [isPlayingSpeech, setIsPlayingSpeech] = useState(false);
 
   useEffect(() => {
     void (async () => {
-      if (speech != null) {
+      if (speech != null && isPlayingSpeech) {
+        setIsPlayingSpeech(true);
         await playSound(speech);
       }
     })();
