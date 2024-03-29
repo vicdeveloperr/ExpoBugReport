@@ -2,7 +2,6 @@ import "react-native-get-random-values";
 import type { movementsAvailable } from "../types/movementsAvailable";
 import { v4 as uuidv4 } from "uuid";
 import getErrorMessage from "./getErrorMessage";
-import RNFetchBlob from "rn-fetch-blob";
 
 export async function getVideoAnalysis(
   uri: string,
@@ -19,21 +18,22 @@ export async function getVideoAnalysis(
   } as any); // FormData.append espera un Blob como segundo argumento. Pero, igualmente pasarle un objeto con la estructura {uri, name y type} funciona para almacenar datos de vídeo. Por ello, utilizamos el tipo any.
 
   try {
-    const response = await RNFetchBlob.fetch(
-      "POST",
+    const response = await fetch(
       `${process.env.EXPO_PUBLIC_API_URL}/analyzeVideo/${movementWantImprove}`,
-      {},
-      videoData
+      {
+        method: "POST",
+        body: videoData,
+      }
     );
 
-    const info = response.info();
-    if (info.status !== 200) {
-      throw new Error(`Error en la solicitud a la API: ${info.status}`);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud a la API: ${response.status}`);
     }
 
-    const data = response.path();
+    const data = await response.blob();
+    const uri = URL.createObjectURL(data);
 
-    return data;
+    return uri;
   } catch (error) {
     const msg = getErrorMessage(error);
     console.error(msg);
