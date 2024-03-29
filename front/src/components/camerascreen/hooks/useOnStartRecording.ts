@@ -41,11 +41,11 @@ export const useOnStartRecording: onStartRecordingType = () => {
         .then(async (data) => {
           setIsRecording(false);
           resetCountdown();
-          
+
           if (typeof data === "string") {
             setRecorded(data);
-            const res = await getVideoAnalysis(data, "allen iverson cross");
-            setSpeech(res);
+            const path = await getVideoAnalysis(data, "allen iverson cross");
+            setSpeech(path);
             navigate("analysis");
           }
         })
