@@ -6,7 +6,7 @@ export const cleaner = async (path: string) => {
       await rmdir(path, { recursive: true });
       console.log("Ruta borrada");
     } else {
-      console.log("Ruta inexcistente: ", path);
+      console.log("Ruta inexcistente:", path);
     }
   } catch (err) {
     console.log(err);

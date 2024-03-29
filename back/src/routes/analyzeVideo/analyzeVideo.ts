@@ -27,7 +27,7 @@ analyzeVideo.post("/", paramsValidator, bodyValidator, async (c) => {
       movement
     );
 
-    if (typeof result != "string") {
+    if (typeof result !== "string") {
       const file = Bun.file(result.audioUrl);
       const res = new Response(file);
       return res;

@@ -10,7 +10,7 @@ export const responseGenerator: tResponseGenerator = async (
   let audio: string | void;
 
   audio = await speechGenerator(modelResponse.message.content);
-  if (typeof audio == "string") {
+  if (typeof audio === "string") {
     return {
       audioUrl: audio,
     };
