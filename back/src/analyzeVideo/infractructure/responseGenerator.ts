@@ -7,12 +7,10 @@ export const responseGenerator: tResponseGenerator = async (
   movementToImprove
 ) => {
   const modelResponse = await modelConsultor(video, movementToImprove);
-  let audio: string | void;
-
-  audio = await speechGenerator(modelResponse.message.content);
-  if (typeof audio === "string") {
+  const filename = await speechGenerator(modelResponse.message.content);
+  if (typeof filename === "string") {
     return {
-      audioUrl: audio,
+      filename,
     };
   }
 };

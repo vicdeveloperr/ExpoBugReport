@@ -9,7 +9,7 @@ export interface Video extends FormData {
 export type tFramesExtractor = (uri: string) => Promise<string[] | void>;
 
 export interface AnalyzeVideoResult {
-  audioUrl: string;
+  filename: string;
 }
 
 export type tResponseGenerator = (
