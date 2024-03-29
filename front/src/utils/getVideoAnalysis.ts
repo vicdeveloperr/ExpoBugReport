@@ -3,6 +3,8 @@ import type { movementsAvailable } from "../types/movementsAvailable";
 import { v4 as uuidv4 } from "uuid";
 import getErrorMessage from "./getErrorMessage";
 
+const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+
 export async function getVideoAnalysis(
   uri: string,
   movementWantImprove: movementsAvailable
@@ -19,7 +21,7 @@ export async function getVideoAnalysis(
 
   try {
     const response = await fetch(
-      `${process.env.EXPO_PUBLIC_API_URL}/analyzeVideo/${movementWantImprove}`,
+      `${apiUrl}/analyzeVideo/${movementWantImprove}`,
       {
         method: "POST",
         body: videoData,
@@ -30,10 +32,10 @@ export async function getVideoAnalysis(
       throw new Error(`Error en la solicitud a la API: ${response.status}`);
     }
 
-    const data = await response.blob();
-    const uri = URL.createObjectURL(data);
+    const filename = await response.text();
+    const audioUrl = `${apiUrl}/speechs/${filename}`;
 
-    return uri;
+    return audioUrl;
   } catch (error) {
     const msg = getErrorMessage(error);
     console.error(msg);
